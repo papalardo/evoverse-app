@@ -24,7 +24,8 @@ class AccountController extends GetxController with LoaderMixin {
       fetchPods(),
     ]);
 
-    loader.showWhile(() => future);
+    loader.wait(() => future, 'scaffold');
+    // loader.showWhile(() => future);
 
     super.onReady();
   }
@@ -42,7 +43,6 @@ class AccountController extends GetxController with LoaderMixin {
 
   Future<void> fetchPods() async {
     pods = await AccountDatasource().getAccountPods();
-
     update();
   }
 

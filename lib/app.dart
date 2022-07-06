@@ -26,6 +26,7 @@ class App extends StatelessWidget {
     return Navigator(
       onGenerateRoute: (settings) => MaterialPageRoute(
         builder: (_) => LoaderWrapperWidget(
+          id: 'default',
           child: widget!,
           loader: const LoaderWidget(),
         ),

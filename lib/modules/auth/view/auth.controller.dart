@@ -18,8 +18,7 @@ class AuthController extends GetxController with LoaderMixin {
 
   @override
   void onReady() {
-    loader.showWhile(() => submit())
-      .catchError((e) => Toast.danger(e.toString()));
+    loader.wait(() => submit());
 
     super.onReady();
   }
@@ -39,8 +38,6 @@ class AuthController extends GetxController with LoaderMixin {
     var response = await _httpClient.post('GetPreFarmingLabData');
 
     if (response.isError()) {
-      Toast.danger("Invalid access token");
-
       await _storageClient.delete('accessToken');
       return;
     }

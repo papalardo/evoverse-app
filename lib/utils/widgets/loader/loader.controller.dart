@@ -3,16 +3,30 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoaderController extends GetxController {
-  var loading = false.obs;
+  Map<String, bool> loaders = {
+    'default': false,
+  };
 
-  Future<T> showWhile<T>(Future<T> Function() asyncFunction) {
-    return Get.showOverlay<T>(
-      asyncFunction: asyncFunction,
-      loadingWidget: const LoaderWidget()
-    );
+  Future<void> wait(Future Function() callable, [String key = 'default']) async {
+    setLoading(true, key);
+    try {
+      await callable();
+    } finally {
+      setLoading(false, key);
+    }
   }
 
-  void show() => loading(true);
+  void setLoading(bool newStatus, [String key = 'default']) {
+    if (newStatus == true) {
+      loaders[key] = newStatus;
+    } else {
+      loaders.remove(key);
+    }
 
-  void hide() => loading(false);
+    update();
+  }
+
+  bool isLoading([String key = 'default']) => loaders[key] ?? false;
+
+  bool anyLoading() => loaders.values.every((status) => status == true);
 }

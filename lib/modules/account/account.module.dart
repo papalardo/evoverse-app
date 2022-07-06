@@ -3,6 +3,7 @@ import 'package:app/core/app.routes.dart';
 import 'package:app/modules/account/application/account.bindings.dart';
 import 'package:app/modules/account/application/account.view.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:get/get_navigation/src/routes/transitions_type.dart';
 
 class AccountModule implements Module {
   @override
@@ -10,7 +11,8 @@ class AccountModule implements Module {
     GetPage(
       name: AppRoutes.ACCOUNT,
       page: () => const AccountView(),
-      binding: AccountBindings()
+      binding: AccountBindings(),
+      transition: Transition.noTransition
     ),
   ];
 

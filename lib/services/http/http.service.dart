@@ -27,12 +27,12 @@ class HttpService {
   }
 
   Future<HttpResponse> get(String url) => client.get(url)
-      .then((r) => _handleResponse(r));
+      .then((r) => handleResponse(r));
 
   Future<HttpResponse> post(String url, [dynamic body]) => client.post(url, data: body)
-      .then((r) => _handleResponse(r));
+      .then((r) => handleResponse(r));
 
-  _handleResponse(Response<dynamic> response) => HttpResponse(
+  handleResponse(Response<dynamic> response) => HttpResponse(
     statusCode: _handleStatusCode(response),
     body: response.data.toString(),
     json: _handleBody(response.data)

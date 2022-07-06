@@ -104,7 +104,7 @@ class MiningPodListWidget extends GetView<MiningController> {
       title: "You sure ?",
       content: const Text("This action cannot be undone"),
       onConfirm: () {
-        controller.loader.showWhile(() => controller.energize())
+        controller.loader.wait(() => controller.energize())
           .then((_) => Toast.show("PODs energized"))
           .catchError((e) => Toast.danger(e.toString(), 'Error'));
 

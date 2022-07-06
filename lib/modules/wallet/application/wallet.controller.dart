@@ -52,6 +52,8 @@ class WalletController extends GetxController {
       onDisplayUri: (uri) => launchUrl(Uri.parse(uri)),
     );
 
+    print("connector ==> ${connector.session.toUri()}");
+
     return connector.session;
   }
 

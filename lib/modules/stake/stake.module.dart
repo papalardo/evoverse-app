@@ -9,7 +9,7 @@ class StakeModule implements Module {
   List<GetPage> routes() => [
     GetPage(
       name: AppRoutes.STAKE,
-      page: () => StakeView(),
+      page: () => const StakeView(),
       binding: StakeBindings(),
       transition: Transition.noTransition
     )

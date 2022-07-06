@@ -1,16 +1,23 @@
-# app
 
-A new Flutter project.
+> Set app name
 
-## Getting Started
+```yaml
+# root
+flutter_launcher_name:
+    name: "EvoVerse"
+```
 
-This project is a starting point for a Flutter application.
+Uncomment `#  flutter_launcher_name: "^0.0.1"` line on `pubspec.yaml`
 
-A few resources to get you started if this is your first Flutter project:
+```bash
+$ flutter pub run flutter_launcher_name:main
+```
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+> Set app icon
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+> set ```flutter_launcher_icons.yaml```
+References: https://pub.dev/packages/flutter_launcher_icons#mag-attributes
+ 
+```bash
+$ flutter pub run flutter_launcher_icons:main -f flutter_launcher_icons.yaml
+```

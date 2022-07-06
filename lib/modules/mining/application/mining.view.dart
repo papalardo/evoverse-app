@@ -15,40 +15,41 @@ class MiningView extends GetView<MiningController> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<MiningController>(builder: (_) {
-      if (controller.miningData == null) {
-        return const SizedBox();
-      }
+    return AppScaffold(
+      body: GetBuilder<MiningController>(builder: (_) {
+        if (controller.miningData == null) {
+          return const SizedBox();
+        }
 
-      var mining = controller.miningData!;
+        var mining = controller.miningData!;
 
-      return AppScaffold(
-        body: ListView(
-          padding: EdgeInsets.only(
-            top: Get.mediaQuery.padding.top + kPadding,
-            bottom: kPadding,
-            left: kPadding,
-            right: kPadding
-          ),
-          children: [
-            MiningCardWidget(
-              title: "My Stats",
-              child: MiningUserStatsWidget(miningData: mining),
+          return ListView(
+            padding: EdgeInsets.only(
+                top: Get.mediaQuery.padding.top + kPadding,
+                bottom: kPadding,
+                left: kPadding,
+                right: kPadding
             ),
-            const SizedBox(height: 10),
-            MiningCardWidget(
-              title: "Global Stats",
-              child: MiningGlobalStatsWidget(miningData: mining),
-            ),
-            const SizedBox(height: 10),
-            MiningCardWidget(
-              title: "POD List",
-              child: MiningPodListWidget(miningData: mining),
-            ),
-          ],
-        ),
-      );
-    });
+            children: [
+              MiningCardWidget(
+                title: "My Stats",
+                child: MiningUserStatsWidget(miningData: mining),
+              ),
+              const SizedBox(height: 10),
+              MiningCardWidget(
+                title: "Global Stats",
+                child: MiningGlobalStatsWidget(miningData: mining),
+              ),
+              const SizedBox(height: 10),
+              MiningCardWidget(
+                title: "POD List",
+                child: MiningPodListWidget(miningData: mining),
+              ),
+            ],
+          );
+        }
+      ),
+    );
 
   }
 }

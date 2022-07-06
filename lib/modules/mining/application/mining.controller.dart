@@ -9,7 +9,7 @@ class MiningController extends GetxController with LoaderMixin {
 
   @override
   void onReady() {
-    loader.showWhile(() => fetchMiningData());
+    loader.wait(() => fetchMiningData(), 'scaffold');
 
     super.onReady();
   }

@@ -3,7 +3,6 @@ import 'package:app/core/app.routes.dart';
 import 'package:app/modules/mining/application/mining.bindings.dart';
 import 'package:app/modules/mining/application/mining.view.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/src/routes/get_route.dart';
 
 class MiningModule implements Module {
   @override
