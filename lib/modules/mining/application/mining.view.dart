@@ -15,7 +15,7 @@ class MiningView extends GetView<MiningController> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder(builder: (_) {
+    return GetBuilder<MiningController>(builder: (_) {
       if (controller.miningData == null) {
         return const SizedBox();
       }

@@ -14,27 +14,28 @@ class MiningCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Color(0xFF272f3b),
+        color: const Color(0xFF272f3b),
         borderRadius: BorderRadius.circular(10)
       ),
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: Column(
         children: [
           Text(title,
-            style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 20
+            style: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 20
             ),
             textAlign: TextAlign.center,
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Container(
+            width: double.infinity,
             decoration: BoxDecoration(
-                color: Color(0xFF1f2329),
-                borderRadius: BorderRadius.circular(10)
+              color: const Color(0xFF1f2329),
+              borderRadius: BorderRadius.circular(10)
             ),
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: child,
           )
         ],

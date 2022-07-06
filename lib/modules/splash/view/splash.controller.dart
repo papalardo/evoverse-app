@@ -22,8 +22,13 @@ class SplashController extends GetxController with LoaderMixin {
 
   Future<void> _checkAvailable() async {
     // Handled on error interceptor
-    await Get.find<HttpService>()
-        .get('https://farming.evoverse.app');
+    try {
+      await Get.find<HttpService>()
+          .get('https://farming.evoverse.app');
+    } on FormatException catch(e) {
+      //
+    }
+
   }
 
 }

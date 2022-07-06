@@ -34,6 +34,7 @@ class MiningController extends GetxController with LoaderMixin {
       Toast.show("PODs energized");
       miningData = await MiningDatasource().fetch();
     } catch (e) {
+      print("eee ==> $e");
       Toast.danger(e.toString(), 'Error');
     } finally {
       loader.hide();

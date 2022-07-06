@@ -10,7 +10,7 @@ class MiningModule implements Module {
   List<GetPage> routes() => [
     GetPage(
       name: AppRoutes.MINING,
-      page: () => MiningView(),
+      page: () => const MiningView(),
       binding: MiningBindings(),
       transition: Transition.noTransition
     ),

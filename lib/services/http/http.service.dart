@@ -36,15 +36,19 @@ class HttpService {
     body: _handleBody(response.data)
   );
 
-  Map<String, dynamic>? _handleBody(String? body) {
-    print("body ==> ${body}");
-
-    if (body == null) {
-      return null;
+  Map<String, dynamic>? _handleBody(dynamic body) {
+    if (body is Map && body.containsKey('body')) {
+      if (body['body'] is String) {
+        return jsonDecode(body['body']);
+      }
+      return body['body'];
     }
 
-    var rootBody = jsonDecode(body);
-    return jsonDecode(rootBody['body']);
+    if (body is String) {
+      return {};
+    }
+
+    return body;
   }
 
 }

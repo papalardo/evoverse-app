@@ -9,7 +9,7 @@ class AccountView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder(
-        future: AccountDatasource().fetch(),
+        future: AccountDatasource().fetch('0x522Be008Db71BaC39a54Df3daE5De419DaAe62F6'),
         builder: (context, AsyncSnapshot<AccountModel> snapshot) {
           if (snapshot.hasData) {
             var account = snapshot.data!;

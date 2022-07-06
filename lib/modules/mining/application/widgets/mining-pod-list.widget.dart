@@ -34,51 +34,61 @@ class MiningPodListWidget extends GetView<MiningController> {
           onPressed: _hasOncePodMining() ? null : () => _energize(),
         ),
         const SizedBox(height: 10),
-        ListView.separated(
-          shrinkWrap: true,
-          primary: false,
-          itemCount: miningData.pods.length,
-          separatorBuilder: (BuildContext context, int index) {
-            return const Divider(color: Colors.white);
-          },
-          itemBuilder: (_, idx) {
-            var pod = miningData.pods[idx];
+        podsListWidget()
+      ],
+    );
+  }
 
-            return Wrap(
-              runSpacing: 5,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("POD #${pod.id}"),
-                    Wrap(
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      spacing: 5,
-                      children: [
-                        Text("HP ${Number.toCurrency(pod.totalHashPower)}"),
-                        InfiniteRotationWidget(
-                          enable: pod.farming,
-                          child: Container(
-                            decoration: BoxDecoration(
+  Widget podsListWidget() {
+    if (miningData.pods.isEmpty) {
+      return Column(children: const [
+        SizedBox(height: 10),
+        Text("No PODs yet", style: TextStyle(fontWeight: FontWeight.bold))
+      ]);
+    }
+    return ListView.separated(
+      shrinkWrap: true,
+      primary: false,
+      itemCount: miningData.pods.length,
+      separatorBuilder: (BuildContext context, int index) {
+        return const Divider(color: Colors.white);
+      },
+      itemBuilder: (_, idx) {
+        var pod = miningData.pods[idx];
+
+        return Wrap(
+            runSpacing: 5,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("POD #${pod.id}"),
+                  Wrap(
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    spacing: 5,
+                    children: [
+                      Text("HP ${Number.toCurrency(pod.totalHashPower)}"),
+                      InfiniteRotationWidget(
+                        enable: pod.farming,
+                        child: Container(
+                          decoration: BoxDecoration(
                               color: AppPalette.gray400,
                               borderRadius: BorderRadius.circular(999)
-                            ),
-                            padding: EdgeInsets.zero,
-                            child: Image.asset('lib/assets/images/hashpower-fan-center.png',
-                              width: 20,
-                              height: 20,
-                            ),
+                          ),
+                          padding: EdgeInsets.zero,
+                          child: Image.asset('lib/assets/images/hashpower-fan-center.png',
+                            width: 20,
+                            height: 20,
                           ),
                         ),
-                      ],
-                    )
-                  ],
-                ),
-                Text(pod.rarity),
-              ]);
-          },
-        )
-      ],
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              Text(pod.rarity),
+            ]);
+      },
     );
   }
 
@@ -89,7 +99,7 @@ class MiningPodListWidget extends GetView<MiningController> {
   _energize() {
     Get.defaultDialog(
       title: "You sure ?",
-      content: Text("This action cannot be undone"),
+      content: const Text("This action cannot be undone"),
       onConfirm: () {
         controller.energize();
         Navigator.of(Get.overlayContext!, rootNavigator: true).pop();

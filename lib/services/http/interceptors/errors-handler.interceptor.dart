@@ -12,7 +12,7 @@ class ErrorsHandlerInterceptor extends Interceptor {
     var statusCode = err.response!.statusCode;
 
     if (statusCode == 503 && await on503()) {
-        return;
+        // return;
     }
 
     return handler.next(err);

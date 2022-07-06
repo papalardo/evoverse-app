@@ -1,16 +1,16 @@
 class AccountModel {
   String walletAddress;
-  double epw;
-  double epwToClaim;
-  double ekeyToClaim;
-  double evs;
-  double evsToClaim;
-  double epwLastClaimDate;
-  double evsLasClaimDate;
-  int nonce;
-  int lastEnergizeAll;
+  num epw;
+  num epwToClaim;
+  num ekeyToClaim;
+  num evs;
+  num evsToClaim;
+  num epwLastClaimDate;
+  num evsLasClaimDate;
+  num nonce;
+  num lastEnergizeAll;
   bool busdApprove;
-  double epwStaked;
+  num epwStaked;
 
   AccountModel({
     required this.walletAddress,

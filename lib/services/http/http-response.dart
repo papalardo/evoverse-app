@@ -12,5 +12,6 @@ class HttpResponse {
 
   bool isError() => statusCode == null
     || statusCode! >= 400
-    || body!['type'] == 'error';
+    || body!['type'] == 'error'
+    || body!['type'] == 'crash';
 }

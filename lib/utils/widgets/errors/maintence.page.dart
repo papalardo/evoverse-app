@@ -18,25 +18,27 @@ class MaintenancePage extends StatelessWidget {
           ),
           Positioned(
             bottom: 100,
-            left: 50,
-            right: 50,
-            child: Container(
-              padding: const EdgeInsets.all(15),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(width: 3, color: const Color(0xFFd9d9d9)),
-                gradient: const LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                  colors: [
-                    Color(0xFF202d73),
-                    Color(0xFF632482)
-                  ]
+            left: 0,
+            right: 0,
+            child: Center(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(width: 3, color: const Color(0xFFd9d9d9)),
+                  gradient: const LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    colors: [
+                      Color(0xFF202d73),
+                      Color(0xFF632482)
+                    ]
+                  ),
                 ),
-              ),
-              child: const Text("Server is under maintenance.",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                child: const Text("Server is under maintenance.",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                ),
               ),
             )
           )
@@ -44,8 +46,8 @@ class MaintenancePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => Get.offAllNamed(AppRoutes.SPLASH),
-        label: Text("Try again"),
-        icon: Icon(Icons.refresh),
+        label: const Text("Try again"),
+        icon: const Icon(Icons.refresh),
       ),
     );
   }

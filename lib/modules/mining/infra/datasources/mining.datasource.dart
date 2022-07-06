@@ -1,5 +1,6 @@
 import 'package:app/core/base/base.datasource.dart';
 import 'package:app/modules/mining/infra/models/mining.model.dart';
+import 'package:deep_pick/deep_pick.dart';
 
 class MiningDatasource extends BaseDatasource {
   Future<MiningModel> fetch() async {
@@ -14,7 +15,8 @@ class MiningDatasource extends BaseDatasource {
     });
 
     if (response.isError()) {
-      throw response.body!['message'];
+      var message = pick(response.body, 'message').asStringOrNull() ?? '';
+      throw message.isNotEmpty ? message : 'Unkown error';
     }
 
   }
