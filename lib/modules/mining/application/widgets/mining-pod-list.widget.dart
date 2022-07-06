@@ -2,6 +2,7 @@ import 'package:app/modules/mining/application/mining.controller.dart';
 import 'package:app/modules/mining/infra/models/mining.model.dart';
 import 'package:app/utils/number.dart';
 import 'package:app/utils/theme/app.palette.dart';
+import 'package:app/utils/toast/toast.dart';
 import 'package:app/utils/widgets/infinite-rotation.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,7 +32,9 @@ class MiningPodListWidget extends GetView<MiningController> {
             ),
             Text(Number.toCurrency(miningData.energizeCost)),
           ]),
-          onPressed: _hasOncePodMining() ? null : () => _energize(),
+          onPressed: _hasOncePodMining() || miningData.pods.isEmpty
+              ? null
+              : () => _energize(),
         ),
         const SizedBox(height: 10),
         podsListWidget()
@@ -101,7 +104,10 @@ class MiningPodListWidget extends GetView<MiningController> {
       title: "You sure ?",
       content: const Text("This action cannot be undone"),
       onConfirm: () {
-        controller.energize();
+        controller.loader.showWhile(() => controller.energize())
+          .then((_) => Toast.show("PODs energized"))
+          .catchError((e) => Toast.danger(e.toString(), 'Error'));
+
         Navigator.of(Get.overlayContext!, rootNavigator: true).pop();
       },
       onCancel: () => Navigator.of(Get.overlayContext!, rootNavigator: true).pop(),

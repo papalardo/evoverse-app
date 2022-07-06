@@ -1,17 +1,30 @@
-class HttpResponse {
-  int? statusCode;
+import 'package:deep_pick/deep_pick.dart';
 
-  Map<String, dynamic>? body;
+class HttpResponse {
+  final int? statusCode;
+  final String body;
+  final Map<String, dynamic>? json;
 
   HttpResponse({
-    this.statusCode,
-    this.body,
+    required this.statusCode,
+    required this.body,
+    required this.json,
   });
 
   bool isOk() => isError() == false;
 
   bool isError() => statusCode == null
     || statusCode! >= 400
-    || body!['type'] == 'error'
-    || body!['type'] == 'crash';
+    || _errorFromBody();
+
+  bool _errorFromBody() =>
+    json == null
+    || json!['type'] == 'error'
+    || json!['type'] == 'crash';
+
+  String getMessageError() {
+    var message = pick(json, 'message').asStringOrNull() ?? '';
+    return message.isNotEmpty ? message : 'Unknown error';
+  }
+
 }

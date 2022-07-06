@@ -6,7 +6,7 @@ class MiningDatasource extends BaseDatasource {
   Future<MiningModel> fetch() async {
     var response = await httpClient.post('GetPreFarmingLabData');
 
-    return MiningModel.fromJson(response.body!['data']);
+    return MiningModel.fromJson(response.json!['data']);
   }
 
   Future<void> energize() async {
@@ -15,8 +15,7 @@ class MiningDatasource extends BaseDatasource {
     });
 
     if (response.isError()) {
-      var message = pick(response.body, 'message').asStringOrNull() ?? '';
-      throw message.isNotEmpty ? message : 'Unkown error';
+      throw response.getMessageError();
     }
 
   }

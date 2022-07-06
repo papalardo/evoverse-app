@@ -65,12 +65,13 @@ class AuthView extends GetView<AuthController> {
                             child: Text("Connect".toUpperCase()),
                             onPressed: () async {
                               FocusManager.instance.primaryFocus?.unfocus();
-                              await controller.submit();
+                              await controller.loader.showWhile(() => controller.submit());
                               focusNode.requestFocus();
                             },
                           ),
                           ElevatedButton(
-                            onPressed: () => openWallet(),
+                            onPressed: () => controller.authFromWallet()
+                              .catchError((e) => Toast.danger(e.toString())),
                             child: Text("Connect with wallet")
                           )
                         ],
@@ -95,68 +96,4 @@ class AuthView extends GetView<AuthController> {
     );
   }
 
-  connect(WalletConnect connector, int chainId, String walletAddress) async {
-    if (chainId != 56) {
-      Toast.danger("Invalid chain");
-    }
-
-    var responseNonce = await AccountDatasource().fetch(walletAddress);
-
-    launchUrl(Uri.parse(connector.session.toUri()));
-
-    var messageToSign = "evoverse.app signing: ${responseNonce.nonce}";
-
-    try {
-
-      var responseWallet = await connector.sendCustomRequest(
-          method: 'personal_sign',
-          params: [walletAddress, messageToSign]
-      );
-
-      var response = await Get.find<HttpService>()
-          .post('JWTVerifySignature', {
-            'signature': responseWallet,
-            'wallet_address': walletAddress
-          });
-
-      await Get.find<StorageServiceContract>()
-        .put('accessToken', response.body!['token']);
-
-      Get.offAllNamed(AppRoutes.MINING);
-
-    } catch (e) {
-      print("e ==> $e");
-    }
-  }
-
-  openWallet() async {
-    final connector = WalletConnect(
-      bridge: 'https://bridge.walletconnect.org',
-      clientMeta: const PeerMeta(
-        name: 'EvoVerse',
-        // description: 'WalletConnect Developer App',
-        url: 'https://farming.evoverse.app',
-        icons: [
-          'https://farming.evoverse.app/assets/img/Gameart-Animus_rbx_32px.png'
-        ],
-      ),
-    );
-
-    // Subscribe to events
-    connector.on('connect', (session) => print("session ==> $session"));
-    connector.on('session_update', (WCSessionUpdateResponse payload) {
-      connect(connector, payload.chainId, payload.accounts[0]);
-    });
-    connector.on('disconnect', (session) => print("session ==> $session"));
-
-    if (!connector.connected) {
-      final session = await connector.createSession(
-        chainId: 56,
-        onDisplayUri: (uri) => launchUrl(Uri.parse(uri)),
-      );
-
-      connect(connector, session.chainId, session.accounts[0]);
-    }
-
-  }
 }

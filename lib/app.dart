@@ -14,7 +14,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       getPages: AppModule().routes(),
-      initialRoute: AppRoutes.INITIAL,
+      initialRoute: AppRoutes.SPLASH,
       initialBinding: AppBindings(),
       debugShowCheckedModeBanner: false,
       builder: (context, widget) => _addRouterWrappers(context, widget),

@@ -14,6 +14,7 @@ class AppScaffold extends StatelessWidget {
   }) : super(key: key);
 
   static const List<String> pages = [
+    AppRoutes.ACCOUNT,
     AppRoutes.MINING,
     AppRoutes.STAKE
   ];
@@ -26,6 +27,10 @@ class AppScaffold extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         onTap: (pageIdx) => _onChangePage(pageIdx),
         items: [
+          BottomNavigationBarItem(
+              icon: SvgIcon("lib/assets/icons/userprofile.svg"),
+              label: "Acount"
+          ),
           BottomNavigationBarItem(
               icon: SvgIcon("lib/assets/icons/mininglab.svg"),
               label: "Mining Lab"

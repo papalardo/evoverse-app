@@ -5,9 +5,7 @@ import 'package:get/get.dart';
 class LoaderController extends GetxController {
   var loading = false.obs;
 
-  Future<T> showWhile<T>({
-    required Future<T> Function() asyncFunction,
-  }) {
+  Future<T> showWhile<T>(Future<T> Function() asyncFunction) {
     return Get.showOverlay<T>(
       asyncFunction: asyncFunction,
       loadingWidget: const LoaderWidget()

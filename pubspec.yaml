@@ -42,6 +42,7 @@ dependencies:
   walletconnect_dart: ^0.0.11
   url_launcher: ^6.1.4
   deep_pick: ^0.10.0
+  jwt_decoder: ^2.0.1
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +70,7 @@ flutter:
   assets:
     - lib/assets/
     - lib/assets/images/
+    - lib/assets/images/pod-rarities/
     - lib/assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -9,36 +9,19 @@ class MiningController extends GetxController with LoaderMixin {
 
   @override
   void onReady() {
-    fetch();
+    loader.showWhile(() => fetchMiningData());
 
     super.onReady();
   }
 
-  Future<void> fetch() async {
-    loader.show();
-
-    try {
-      miningData = await MiningDatasource().fetch();
-    } finally {
-      loader.hide();
-    }
-
+  Future<void> fetchMiningData() async {
+    miningData = await MiningDatasource().fetch();
     update();
   }
 
   Future<void> energize() async {
-    try {
-      loader.show();
-
-      await MiningDatasource().energize();
-      Toast.show("PODs energized");
-      miningData = await MiningDatasource().fetch();
-    } catch (e) {
-      print("eee ==> $e");
-      Toast.danger(e.toString(), 'Error');
-    } finally {
-      loader.hide();
-    }
+    await MiningDatasource().energize();
+    await fetchMiningData();
   }
 
   Future<void> claim() async {
