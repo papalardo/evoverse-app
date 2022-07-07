@@ -1,10 +1,5 @@
 import 'package:app/modules/account/application/account.controller.dart';
-import 'package:app/modules/account/infra/datasources/account.datasource.dart';
-import 'package:app/modules/account/infra/models/account.model.dart';
-import 'package:app/utils/number.dart';
 import 'package:app/utils/widgets/app-scaffold.widget.dart';
-import 'package:app/utils/widgets/main-card-item.widget.dart';
-import 'package:app/utils/widgets/main-card.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,8 +20,6 @@ class AccountView extends StatelessWidget {
             return const SizedBox();
           }
 
-          var account = controller.account!;
-
           return ListView(
             padding: EdgeInsets.only(
                 top: Get.mediaQuery.padding.top + kPadding,
@@ -34,9 +27,9 @@ class AccountView extends StatelessWidget {
                 left: kPadding,
                 right: kPadding
             ),
-            children: [
+            children: const [
               AccountGameWalletSection(),
-              const SizedBox(height: kPadding),
+              SizedBox(height: kPadding),
               AccountPodsSection()
             ],
           );

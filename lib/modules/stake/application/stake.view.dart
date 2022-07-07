@@ -11,7 +11,9 @@ class StakeView extends StatelessWidget {
     return AppScaffold(
       body: GetBuilder<StakeController>(
         builder: (controller) {
-          return const Text("Stake view");
+          return const Center(
+            child: Text("Coming soon"),
+          );
         },
       ),
     );

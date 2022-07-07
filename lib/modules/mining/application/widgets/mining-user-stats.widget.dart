@@ -1,10 +1,12 @@
 import 'package:app/modules/mining/application/mining.controller.dart';
 import 'package:app/modules/mining/infra/models/mining.model.dart';
 import 'package:app/utils/number.dart';
+import 'package:app/utils/theme/app.palette.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'mining-item-info.widget.dart';
+import 'package:niku/namespace.dart' as n;
 
 class MiningUserStatsWidget extends GetView<MiningController> {
   final MiningModel miningData;
@@ -28,8 +30,11 @@ class MiningUserStatsWidget extends GetView<MiningController> {
         ),
         MiningItemInfoWidget(
           title: "My Hash Power",
-          value: Number.toCurrency(miningData.userBaseHashPower),
+          value: Number.toCurrency(miningData.userTotalHashPower),
           icon: Image.asset('lib/assets/images/hashpower-fan-center.png'),
+          child: n.Text("+${miningData.hashPowerBonus}%")
+                ..color = AppPalette.green400
+                ..fontSize = 10,
         ),
         Center(
           child: Wrap(
@@ -42,16 +47,14 @@ class MiningUserStatsWidget extends GetView<MiningController> {
                   spacing: 5,
                   children: [
                     const Text("Claim"),
-                    Text("(${claimData.claimPercent}% Fee)",
-                      style: const TextStyle(fontWeight: FontWeight.w200),
-                    )
+                    n.Text("(${claimData.claimPercent}% Fee)")
+                      ..fontWeight = FontWeight.w200
                   ],
                 )
               ),
               if (claimData.daysRemaining > 0)
-              Text("Free claim in ${claimData.daysRemaining} days.",
-                style: const TextStyle(color: Color(0xFF6c757d)),
-              )
+                n.Text("Free claim in ${claimData.daysRemaining} days.")
+                  ..color = AppPalette.gray400
             ],
           ),
         ),

@@ -5,7 +5,7 @@ class StakeController extends GetxController with LoaderMixin {
 
   @override
   void onReady() {
-    loader.wait(() => Future.delayed(const Duration(seconds: 2)), 'scaffold');
+    // loader.wait(() => Future.delayed(const Duration(seconds: 2)), 'scaffold');
 
     super.onReady();
   }

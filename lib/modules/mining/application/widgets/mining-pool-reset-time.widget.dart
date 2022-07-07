@@ -1,7 +1,10 @@
 import 'dart:async';
 
+import 'package:app/modules/mining/application/mining.controller.dart';
+import 'package:app/services/http/http.service.dart';
 import 'package:app/utils/extensions/datetime.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MiningPoolResetTimeWidget extends StatefulWidget {
   const MiningPoolResetTimeWidget({Key? key}) : super(key: key);
@@ -12,13 +15,28 @@ class MiningPoolResetTimeWidget extends StatefulWidget {
 
 class _MiningPoolResetTimeWidgetState extends State<MiningPoolResetTimeWidget> {
   var time = "00:00:00";
+  DateTime now = DateTime.now();
+
   Timer? timer;
 
   @override
   void initState() {
+    fetchTimeFromServer().whenComplete(() => initTime());
+
+    super.initState();
+  }
+
+  Future<void> fetchTimeFromServer() async {
+    var httpClient = Get.find<HttpService>();
+    var response = await httpClient.get('https://worldtimeapi.org/api/timezone/Etc/GMT');
+
+    now = DateTime.parse(response.json!['datetime'].substring(0, 19));
+  }
+
+  initTime() {
     timer = Timer.periodic(const Duration(seconds: 1), (_) {
-      // TODO:: Get date from server
-      var now = DateTime.now();
+      now = now.add(const Duration(seconds: 1));
+
       var dateCycleEnds = now.copyWith(
           day: now.day + 1,
           hour: 0,
@@ -26,24 +44,21 @@ class _MiningPoolResetTimeWidgetState extends State<MiningPoolResetTimeWidget> {
           second: 0
       );
 
-      setState(() {
-        time = sDuration(dateCycleEnds.difference(now));
-      });
-    });
+      var diff = dateCycleEnds.difference(now);
 
-    super.initState();
+      if (diff.inSeconds <= 1) {
+        var miningCtrl = Get.find<MiningController>();
+        miningCtrl.loader.wait(() => miningCtrl.fetchMiningData(), 'scaffold');
+      }
+
+      setState(() => time = diff.toString().substring(0, 8));
+    });
   }
 
   @override
   dispose() {
     timer!.cancel();
     super.dispose();
-  }
-
-  String sDuration(Duration duration) {
-    return "${duration.inHours.toString().padLeft(2, '0')}:"
-        "${duration.inMinutes.remainder(60).toString().padLeft(2, '0')}:"
-        "${(duration.inSeconds.remainder(60).toString().padLeft(2, '0'))}";
   }
 
   @override

@@ -1,5 +1,6 @@
 import 'package:app/core/base/base.datasource.dart';
 import 'package:app/modules/account/infra/models/account.model.dart';
+import 'package:app/modules/account/infra/models/player-hash-power.model.dart';
 import 'package:app/modules/account/infra/models/pod-count.model.dart';
 import 'package:app/modules/account/infra/models/workshop-info.model.dart';
 
@@ -30,6 +31,12 @@ class AccountDatasource extends BaseDatasource {
     var pods = response.json!['data']['pod_count'];
 
     return List<PodCount>.from(pods.map((item) => PodCount.fromJson(item)));
+  }
+
+  Future<PlayerHashPowerModel> getPlayerHashPower() async {
+      var response = await httpClient.post('GetPlayerHashPower');
+
+      return PlayerHashPowerModel.fromJson(response.json!['data']);
   }
 
 }

@@ -71,7 +71,7 @@ class AuthView extends GetView<AuthController> {
                                 focusNode.requestFocus();
                               },
                             ),
-                            // if (! AppPlatform.isDesktop)
+                            if (! AppPlatform.isDesktop)
                             ElevatedButton(
                               onPressed: () => controller.authFromWallet()
                                 .catchError((e) => Toast.danger(e.toString())),

@@ -1,5 +1,6 @@
 import 'package:app/modules/account/infra/datasources/account.datasource.dart';
 import 'package:app/modules/account/infra/models/account.model.dart';
+import 'package:app/modules/account/infra/models/player-hash-power.model.dart';
 import 'package:app/modules/account/infra/models/pod-count.model.dart';
 import 'package:app/modules/account/infra/models/workshop-info.model.dart';
 import 'package:app/modules/wallet/application/wallet.controller.dart';
@@ -12,6 +13,8 @@ class AccountController extends GetxController with LoaderMixin {
 
   AccountModel? account;
   WorkshopInfoModel? workshop;
+  PlayerHashPowerModel? playerHashPower;
+
   List<PodCount> pods = [];
 
   String? walletAddress;
@@ -24,8 +27,8 @@ class AccountController extends GetxController with LoaderMixin {
       fetchPods(),
     ]);
 
-    loader.wait(() => future, 'scaffold');
-    // loader.showWhile(() => future);
+    loader.wait(() => future, 'scaffold')
+      .whenComplete(() => update());
 
     super.onReady();
   }
@@ -33,6 +36,7 @@ class AccountController extends GetxController with LoaderMixin {
   Future<void> fetch() async {
     walletAddress = await _storageClient.get<String>('walletAddress');
     account = await AccountDatasource().fetch(walletAddress!);
+    playerHashPower = await AccountDatasource().getPlayerHashPower();
     update();
   }
 
