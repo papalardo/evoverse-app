@@ -14,34 +14,32 @@ class AccountView extends GetView<AccountController> {
 
   @override
   Widget build(BuildContext context) {
-    return AppScaffold(
-      body: GetBuilder<AccountController>(
-        builder: (c) {
-          return RefreshIndicator(
-            onRefresh: () async {
-              controller.userWorkshopStore.reload();
-              controller.userAccountStore.reload();
-              controller.userPodsStore.reload();
-            },
-            child: ListView(
-              padding: EdgeInsets.only(
-                  top: Get.mediaQuery.padding.top + kPadding,
-                  bottom: kPadding,
-                  left: kPadding,
-                  right: kPadding
-              ),
-              children: [
-                AccountGameWalletSection(
-                  userAccountStore: c.userAccountStore,
-                  userWorkshopStore: c.userWorkshopStore,
-                ),
-                const SizedBox(height: kPadding),
-                AccountPodsSection(userPodsStore: c.userPodsStore)
-              ],
+    return GetBuilder<AccountController>(
+      builder: (c) {
+        return RefreshIndicator(
+          onRefresh: () async {
+            controller.userWorkshopStore.reload();
+            controller.userAccountStore.reload();
+            controller.userPodsStore.reload();
+          },
+          child: ListView(
+            padding: EdgeInsets.only(
+                top: Get.mediaQuery.padding.top + kPadding,
+                bottom: kPadding,
+                left: kPadding,
+                right: kPadding
             ),
-          );
-        },
-      ),
+            children: [
+              AccountGameWalletSection(
+                userAccountStore: c.userAccountStore,
+                userWorkshopStore: c.userWorkshopStore,
+              ),
+              const SizedBox(height: kPadding),
+              AccountPodsSection(userPodsStore: c.userPodsStore)
+            ],
+          ),
+        );
+      },
     );
   }
 }

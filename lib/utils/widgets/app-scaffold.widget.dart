@@ -12,11 +12,13 @@ import 'package:svg_icon/svg_icon.dart';
 class AppScaffold extends StatelessWidget {
   final Widget body;
   final Widget? floatingActionButton;
+  final PreferredSizeWidget? appBar;
 
   const AppScaffold({
     Key? key,
     required this.body,
     this.floatingActionButton,
+    this.appBar,
   }) : super(key: key);
 
   static const List<String> pages = [
@@ -28,6 +30,7 @@ class AppScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: appBar,
       backgroundColor: AppPalette.BACKGROUND,
       floatingActionButton: floatingActionButton,
       body: LoaderWrapperWidget(
@@ -62,7 +65,7 @@ class AppScaffold extends StatelessWidget {
     if (route == Get.currentRoute) {
       return;
     }
-
-    Get.offAllNamed(pages[pageIdx]);
+    
+    Get.toNamed(route);
   }
 }

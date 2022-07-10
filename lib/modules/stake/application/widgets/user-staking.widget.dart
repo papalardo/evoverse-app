@@ -1,8 +1,10 @@
+import 'package:app/core/app.routes.dart';
+import 'package:app/modules/stake/application/stake.controller.dart';
 import 'package:app/stores/stake.store.dart';
 import 'package:app/utils/functions.dart';
 import 'package:app/utils/number.dart';
 import 'package:app/utils/theme/app.palette.dart';
-import 'package:app/utils/widgets/main-card-item.widget.dart';
+import 'package:app/utils/widgets/conditional.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -11,6 +13,7 @@ class UserStakingWidget extends StatelessWidget {
   const UserStakingWidget({Key? key}) : super(key: key);
 
   StakeStore get stakeStore => Get.find<StakeStore>();
+  StakeController get controller => Get.find<StakeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -107,11 +110,16 @@ class UserStakingWidget extends StatelessWidget {
         ],
       ),
       const SizedBox(height: 10),
-      ElevatedButton(
-        child: Text("Unstake EPW"),
-        onPressed: () {
-
-        },
+      Hero(
+        tag: 'stakeEpw',
+        child: ElevatedButton(
+          child: Text("Unstake EPW"),
+          onPressed: () {
+            Get.toNamed(AppRoutes.STAKE_EPW, parameters: {
+              'unstake': '1',
+            });
+          },
+        ),
       ),
     ],
   );
@@ -127,7 +135,7 @@ class UserStakingWidget extends StatelessWidget {
           const SizedBox(width: 10),
           Column(
             children: [
-              Text("${stakeStore.stake?.eKeyDaily} EKEYS",
+              Text("${stakeStore.stake?.eKeyToClaim} EKEYS",
                 style: Get.textTheme.headline6,
               ),
               Text("1.00 = EKEY unit",
@@ -139,10 +147,10 @@ class UserStakingWidget extends StatelessWidget {
       ),
       const SizedBox(height: 10),
       ElevatedButton(
-        child: Text("Claim EKEY"),
-        onPressed: () {
-
-        },
+        child: const Text("Claim EKEY"),
+        onPressed: stakeStore.stake!.eKeyToClaim >= 1
+          ? () => controller.claimEkey()
+          : null,
       ),
     ],
   );

@@ -25,4 +25,17 @@ class StakeDatasource extends BaseDatasource {
     return true;
   }
 
+  Future<bool> unstake(int amount) async {
+    await httpClient.post('UnstakeEPW', {
+      'amount': amount,
+    });
+
+    return true;
+  }
+
+  Future<bool> claimEkey() async {
+    await httpClient.post('ClaimEKEY');
+    return true;
+  }
+
 }

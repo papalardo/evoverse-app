@@ -5,7 +5,7 @@ import 'mining.controller.dart';
 class MiningBindings extends Bindings {
   @override
   void dependencies() {
-    Get.put(MiningController());
+    Get.lazyPut(() => MiningController());
   }
 
 }

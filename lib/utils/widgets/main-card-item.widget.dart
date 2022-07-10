@@ -7,6 +7,7 @@ import 'package:shimmer/shimmer.dart';
 class MainCardItemWidget extends StatelessWidget {
   final String? title;
   final String? value;
+  final Widget? afterValue;
   final Widget icon;
   final Widget? child;
 
@@ -15,7 +16,8 @@ class MainCardItemWidget extends StatelessWidget {
     required this.icon,
     this.title,
     this.value,
-    this.child
+    this.child,
+    this.afterValue,
   }) : super(key: key);
 
   static Widget shimmer({
@@ -49,6 +51,8 @@ class MainCardItemWidget extends StatelessWidget {
                   color: Color(0xFFFFFFFF),
                   fontWeight: FontWeight.bold
               )),
+            if (afterValue != null)
+              afterValue!,
           ],
         )
       ],

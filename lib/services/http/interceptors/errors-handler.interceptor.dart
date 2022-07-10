@@ -53,15 +53,15 @@ class ErrorsHandlerInterceptor extends Interceptor {
       //
     }
 
-    if (type == 'error') {
-      throw message;
-    }
-
     if (message.contains('Session is invalid')) {
       if (Getx.Get.currentRoute != AppRoutes.AUTH) {
         Getx.Get.offAllNamed(AppRoutes.AUTH);
       }
 
+      throw message;
+    }
+
+    if (type == 'error') {
       throw message;
     }
   }

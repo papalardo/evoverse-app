@@ -1,5 +1,6 @@
 import 'package:app/modules/account/account.module.dart';
 import 'package:app/modules/auth/auth.module.dart';
+import 'package:app/modules/home/home.module.dart';
 import 'package:app/modules/mining/mining.module.dart';
 import 'package:app/modules/splash/splash.module.dart';
 import 'package:app/modules/stake/application/modules/stake-epw/stake-epw.module.dart';
@@ -19,6 +20,8 @@ class AppModule implements Module {
     ...MiningModule().routes(),
     ...StakeModule().routes(),
     ...StakeEpwModule().routes(),
+    ...HomeModule().routes(),
+
   ];
 
 

@@ -10,10 +10,6 @@ class ErrorHandlerConfig {
         enableDeviceParameters: false,
         enableApplicationParameters: false,
       ),
-      ToastHandler(
-        gravity: ToastHandlerGravity.top,
-        backgroundColor: Colors.red.withOpacity(0.6)
-      ),
     ],
   );
 
