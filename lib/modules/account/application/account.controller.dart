@@ -5,49 +5,24 @@ import 'package:app/modules/account/infra/models/pod-count.model.dart';
 import 'package:app/modules/account/infra/models/workshop-info.model.dart';
 import 'package:app/modules/wallet/application/wallet.controller.dart';
 import 'package:app/services/storage/istorage.service.dart';
+import 'package:app/stores/user-accout.store.dart';
+import 'package:app/stores/user-pods.store.dart';
+import 'package:app/stores/user-workshop.store.dart';
 import 'package:app/utils/widgets/loader/loader.mixin.dart';
 import 'package:get/get.dart';
 
 class AccountController extends GetxController with LoaderMixin {
-  final _storageClient = Get.find<StorageServiceContract>();
-
-  AccountModel? account;
-  WorkshopInfoModel? workshop;
-  PlayerHashPowerModel? playerHashPower;
-
-  List<PodCount> pods = [];
-
-  String? walletAddress;
+  final userPodsStore = Get.find<UserPodsStore>();
+  final userAccountStore = Get.find<UserAccountStore>();
+  final userWorkshopStore = Get.find<UserWorkshopStore>();
 
   @override
-  void onReady() {
-    var future = Future.wait([
-      fetch(),
-      fetchWorkshopInfo(),
-      fetchPods(),
-    ]);
+  void onInit() {
+    userAccountStore.reload();
+    userPodsStore.reload();
+    userWorkshopStore.reload();
 
-    loader.wait(() => future, 'scaffold')
-      .whenComplete(() => update());
-
-    super.onReady();
-  }
-
-  Future<void> fetch() async {
-    walletAddress = await _storageClient.get<String>('walletAddress');
-    account = await AccountDatasource().fetch(walletAddress!);
-    playerHashPower = await AccountDatasource().getPlayerHashPower();
-    update();
-  }
-
-  Future<void> fetchWorkshopInfo() async {
-    workshop = await AccountDatasource().workshopInfo();
-    update();
-  }
-
-  Future<void> fetchPods() async {
-    pods = await AccountDatasource().getAccountPods();
-    update();
+    super.onInit();
   }
 
 }

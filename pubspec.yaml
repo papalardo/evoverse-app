@@ -45,6 +45,15 @@ dependencies:
   jwt_decoder: ^2.0.1
   niku: 2.3.2
   nil: ^1.1.1
+  pretty_dio_logger: ^1.2.0-beta-1
+  logger: ^1.1.0
+  shimmer: ^2.0.0
+  catcher: ^0.6.9
+
+dependency_overrides:
+  catcher:
+    git:
+      url: https://github.com/ThexXTURBOXx/catcher.git
 
 dev_dependencies:
 #  flutter_launcher_name: "^0.0.1"
@@ -77,6 +86,7 @@ flutter:
     - lib/assets/images/
     - lib/assets/images/pod-rarities/
     - lib/assets/icons/
+    - lib/assets/svg/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

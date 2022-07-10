@@ -5,4 +5,5 @@ class AppRoutes {
   static const ACCOUNT = '/account';
   static const MINING = '/mining';
   static const STAKE = '/stake';
+  static const STAKE_EPW = '/stake-epw';
 }

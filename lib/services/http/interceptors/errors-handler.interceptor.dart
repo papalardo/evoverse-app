@@ -39,12 +39,22 @@ class ErrorsHandlerInterceptor extends Interceptor {
 
   verifyIfErrorOnRequest(Response response) {
     var message = '';
+    var type = 'success';
 
     try {
-      var body = jsonDecode(response.data['body']);
-      message = body['message'];
+      message = response.data['message'];
     } catch (e) {
-      return;
+      //
+    }
+
+    try {
+      type = response.data['type'];
+    } catch (e) {
+      //
+    }
+
+    if (type == 'error') {
+      throw message;
     }
 
     if (message.contains('Session is invalid')) {

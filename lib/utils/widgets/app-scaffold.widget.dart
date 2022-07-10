@@ -11,10 +11,12 @@ import 'package:svg_icon/svg_icon.dart';
 
 class AppScaffold extends StatelessWidget {
   final Widget body;
+  final Widget? floatingActionButton;
 
   const AppScaffold({
     Key? key,
     required this.body,
+    this.floatingActionButton,
   }) : super(key: key);
 
   static const List<String> pages = [
@@ -27,6 +29,7 @@ class AppScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppPalette.BACKGROUND,
+      floatingActionButton: floatingActionButton,
       body: LoaderWrapperWidget(
         id: 'scaffold',
         child: body,

@@ -1,17 +1,18 @@
 import 'dart:convert';
 
+import 'package:app/main.dart';
 import 'package:app/services/http/interceptors/authorization.interceptor.dart';
 import 'package:app/services/http/interceptors/errors-handler.interceptor.dart';
 import 'package:app/services/storage/istorage.service.dart';
-import 'package:app/utils/widgets/errors/maintence.page.dart';
 import 'package:deep_pick/deep_pick.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' as Getx;
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import 'http-response.dart';
+import 'interceptors/app-formatter.interceptor.dart';
 
 class HttpService {
-  // GetConnect client = GetConnect();
   var client = Dio();
 
   var storage = Getx.Get.find<StorageServiceContract>();
@@ -20,6 +21,15 @@ class HttpService {
     client.options.baseUrl = 'https://api.evoverse.app/';
 
     client.interceptors.addAll([
+      AppFormatterInterceptor(),
+      PrettyDioLogger(
+        requestHeader: true,
+        requestBody: true,
+        responseBody: true,
+        responseHeader: false,
+        error: true,
+        compact: true,
+      ),
       AuthorizationInterceptor(),
       ErrorsHandlerInterceptor(),
     ]);

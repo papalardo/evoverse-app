@@ -17,15 +17,21 @@ class InfiniteRotationWidget extends StatefulWidget {
 }
 
 class _InfiniteRotationWidgetState extends State<InfiniteRotationWidget> with SingleTickerProviderStateMixin {
-  late final AnimationController _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 2)
-  )..repeat();
+  late final AnimationController _controller;
+
+  @override
+  void initState() {
+    _controller = AnimationController(
+        vsync: this,
+        duration: const Duration(seconds: 2)
+    );
+    _controller.repeat();
+    super.initState();
+  }
 
   @override
   dispose() {
     _controller.dispose();
-
     super.dispose();
   }
 

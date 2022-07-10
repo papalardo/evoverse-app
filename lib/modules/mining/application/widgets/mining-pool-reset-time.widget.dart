@@ -2,12 +2,18 @@ import 'dart:async';
 
 import 'package:app/modules/mining/application/mining.controller.dart';
 import 'package:app/services/http/http.service.dart';
+import 'package:app/stores/mining.store.dart';
 import 'package:app/utils/extensions/datetime.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MiningPoolResetTimeWidget extends StatefulWidget {
-  const MiningPoolResetTimeWidget({Key? key}) : super(key: key);
+  final MiningStore miningStore;
+
+  const MiningPoolResetTimeWidget({
+    Key? key,
+    required this.miningStore,
+  }) : super(key: key);
 
   @override
   State<MiningPoolResetTimeWidget> createState() => _MiningPoolResetTimeWidgetState();
@@ -46,12 +52,11 @@ class _MiningPoolResetTimeWidgetState extends State<MiningPoolResetTimeWidget> {
 
       var diff = dateCycleEnds.difference(now);
 
-      if (diff.inSeconds <= 1) {
-        var miningCtrl = Get.find<MiningController>();
-        miningCtrl.loader.wait(() => miningCtrl.fetchMiningData(), 'scaffold');
+      if (diff.inSeconds < 1) {
+        widget.miningStore.reload();
       }
 
-      setState(() => time = diff.toString().substring(0, 8));
+      setState(() => time = diff.toString().split('.').first.padLeft(8, '0'));
     });
   }
 

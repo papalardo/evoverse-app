@@ -21,3 +21,4 @@ References: https://pub.dev/packages/flutter_launcher_icons#mag-attributes
 ```bash
 $ flutter pub run flutter_launcher_icons:main -f flutter_launcher_icons.yaml
 ```
+

@@ -1,6 +1,7 @@
 import 'package:app/utils/app-platform.dart';
 import 'package:app/utils/theme/app.palette.dart';
 import 'package:app/utils/toast/toast.dart';
+import 'package:catcher/core/catcher.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -65,6 +66,9 @@ class AuthView extends GetView<AuthController> {
                             ElevatedButton(
                               child: Text("Connect".toUpperCase()),
                               onPressed: () async {
+                                Catcher.sendTestException();
+                                return;
+
                                 FocusManager.instance.primaryFocus?.unfocus();
                                 await controller.loader.wait(() => controller.submit())
                                   .catchError((_) => Toast.danger("Invalid access token"));
