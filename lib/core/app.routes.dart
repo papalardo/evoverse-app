@@ -3,6 +3,7 @@ class AppRoutes {
   static const SPLASH = '/splash';
   static const AUTH = '/auth';
   static const HOME = '/home';
+  static const STATISTICS = '/statistics';
   static const ACCOUNT = '/account';
   static const MINING = '/mining';
   static const STAKE = '/stake';

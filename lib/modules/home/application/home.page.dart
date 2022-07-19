@@ -1,6 +1,7 @@
 import 'package:app/modules/account/application/account.view.dart';
 import 'package:app/modules/mining/application/mining.view.dart';
 import 'package:app/modules/stake/application/stake.view.dart';
+import 'package:app/modules/statistics/application/statistics.page.dart';
 import 'package:flutter/material.dart';
 import 'package:svg_icon/svg_icon.dart';
 
@@ -23,6 +24,10 @@ class _HomePageState extends State<HomePage> {
         currentIndex: _currentIndex,
         items: const [
           BottomNavigationBarItem(
+              icon: Icon(Icons.analytics_outlined),
+              label: "Statistics"
+          ),
+          BottomNavigationBarItem(
               icon: SvgIcon("lib/assets/icons/userprofile.svg"),
               label: "Acount"
           ),
@@ -41,6 +46,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget getBody() {
     List<Widget> pages = [
+      StatisticsPage(),
       AccountView(),
       MiningView(),
       StakeView(),

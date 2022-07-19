@@ -12,6 +12,16 @@ class Conditional extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  static dynamic fn(bool condition, {
+    dynamic Function()? onTrue,
+    dynamic Function()? onFalse,
+  }) {
+    if (condition) {
+      return onTrue == null ? null : onTrue();
+    }
+    return onFalse == null ? null : onFalse();
+  }
+
   @override
   Widget build(BuildContext context) {
     if (condition) {
