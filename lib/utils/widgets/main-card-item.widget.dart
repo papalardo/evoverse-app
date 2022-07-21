@@ -38,7 +38,7 @@ class MainCardItemWidget extends StatelessWidget {
         )),
         Wrap(
           crossAxisAlignment: WrapCrossAlignment.center,
-          spacing: 5,
+          spacing: 10,
           children: [
             SizedBox(
               height: 30,

@@ -34,7 +34,6 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   get: ^4.6.5
-  svg_icon: ^0.0.1
   get_storage: ^2.0.3
   another_flushbar: ^1.10.29
   intl: ^0.17.0
@@ -50,6 +49,10 @@ dependencies:
   shimmer: ^2.0.0
   catcher: ^0.6.9
   styled_widget: ^0.4.0+3
+  lazy_load_indexed_stack: ^0.1.4
+  floating_bottom_bar: ^0.0.1
+  flashy_tab_bar2: ^0.0.4
+  flutter_svg: ^1.1.1+1
 
 dependency_overrides:
   catcher:
@@ -85,6 +88,7 @@ flutter:
   assets:
     - lib/assets/
     - lib/assets/images/
+    - lib/assets/images-animated/
     - lib/assets/images/pod-rarities/
     - lib/assets/icons/
     - lib/assets/svg/

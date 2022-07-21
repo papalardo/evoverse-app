@@ -5,21 +5,10 @@ import 'package:app/modules/account/infra/models/player-hash-power.model.dart';
 
 import 'base.store.dart';
 
-class UserAccountStore extends BaseStore<UserAccountStore> {
-  AccountModel? account;
-  PlayerHashPowerModel? playerHashPower;
-
+class UserAccountStore extends BaseStore<UserAccountStore, AccountModel> {
   @override
-  Future<void> fetch() async {
+  Future<AccountModel> fetch() async {
     var walletAddress = await AppFactory.storageClient().get<String>('walletAddress');
-
-    await Future.wait([
-      AccountDatasource().fetch(walletAddress!)
-          .then((response) => account = response),
-      AccountDatasource().getPlayerHashPower()
-          .then((response) => playerHashPower = response)
-    ]);
-
+    return AccountDatasource().fetch(walletAddress!);
   }
-
 }

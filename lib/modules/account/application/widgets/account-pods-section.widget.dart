@@ -1,7 +1,6 @@
 import 'package:app/modules/account/application/account.controller.dart';
 import 'package:app/modules/account/infra/models/pod-count.model.dart';
 import 'package:app/stores/user-pods.store.dart';
-import 'package:app/utils/number.dart';
 import 'package:app/utils/widgets/main-card-item.widget.dart';
 import 'package:app/utils/widgets/main-card.widget.dart';
 import 'package:flutter/material.dart';
@@ -10,14 +9,12 @@ import 'package:get/get.dart';
 import 'pod-card.widget.dart';
 
 class AccountPodsSection extends GetView<AccountController> {
-  final UserPodsStore userPodsStore;
+  const AccountPodsSection({Key? key}) : super(key: key);
 
-  const AccountPodsSection({
-    Key? key,
-    required this.userPodsStore,
-  }) : super(key: key);
+  UserPodsStore get userPodsStore => Get.find<UserPodsStore>();
 
-  Map<String, PodCount> get pods => userPodsStore.pods.asMap()
+  Map<String, PodCount> podsMapped(List<PodCount> pods) => pods
+      .asMap()
       .map((key, pod) => MapEntry(pod.rarity.toLowerCase(), pod));
 
   @override
@@ -31,16 +28,16 @@ class AccountPodsSection extends GetView<AccountController> {
           itemExtent: 35,
           children: List.generate(4, (index) => MainCardItemWidget.shimmer()),
         ),
-        done: () => ListView(
+        done: (List<PodCount> pods) => ListView(
           padding: EdgeInsets.zero,
           itemExtent: 35,
           shrinkWrap: true,
           primary: false,
           children: [
-            podCard('Legendary'),
-            podCard('Epic'),
-            podCard('Rare'),
-            podCard('Common'),
+            podCard(pods, 'Legendary'),
+            podCard(pods, 'Epic'),
+            podCard(pods, 'Rare'),
+            podCard(pods, 'Common'),
           ],
         )
       ),
@@ -48,8 +45,8 @@ class AccountPodsSection extends GetView<AccountController> {
 
   }
 
-  Widget podCard(String rarity) {
-    var pod = pods[rarity.toLowerCase()] ?? PodCount(rarity: rarity, qty: 0);
+  Widget podCard(List<PodCount> pods, String rarity) {
+    var pod = podsMapped(pods)[rarity.toLowerCase()] ?? PodCount(rarity: rarity, qty: 0);
 
     return PodCardWidget(
       qty: pod.qty,

@@ -36,7 +36,8 @@ class HttpService {
 
   }
 
-  Future<HttpResponse> get(String url) => client.get(url)
+  Future<HttpResponse> get(String url, [Map<String, dynamic>? params]) => client
+      .get(url, queryParameters: params)
       .then((r) => handleResponse(r));
 
   Future<HttpResponse> post(String url, [dynamic body]) => client.post(url, data: body)

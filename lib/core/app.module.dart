@@ -1,5 +1,6 @@
 import 'package:app/modules/account/account.module.dart';
 import 'package:app/modules/auth/auth.module.dart';
+import 'package:app/modules/donate/donate.module.dart';
 import 'package:app/modules/home/home.module.dart';
 import 'package:app/modules/mining/mining.module.dart';
 import 'package:app/modules/splash/splash.module.dart';
@@ -23,6 +24,7 @@ class AppModule implements Module {
     ...StakeEpwModule().routes(),
     ...HomeModule().routes(),
     ...StatisticsModule().routes(),
+    ...DonateModule().routes(),
   ];
 
 

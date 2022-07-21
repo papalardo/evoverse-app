@@ -1,10 +1,10 @@
 import 'package:app/core/app.routes.dart';
 import 'package:app/modules/stake/application/stake.controller.dart';
+import 'package:app/modules/stake/infra/models/stake.model.dart';
 import 'package:app/stores/stake.store.dart';
 import 'package:app/utils/functions.dart';
 import 'package:app/utils/number.dart';
 import 'package:app/utils/theme/app.palette.dart';
-import 'package:app/utils/widgets/conditional.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -18,21 +18,21 @@ class UserStakingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return stakeStore.when(
-      done: () => Column(
+      done: (stake) => Column(
         children: [
-          rewards(),
+          rewards(stake),
           const SizedBox(height: 20),
-          staked(),
+          staked(stake),
           const SizedBox(height: 20),
-          hashPower(),
+          hashPower(stake),
           const SizedBox(height: 20),
-          hashPowerBonus(),
+          hashPowerBonus(stake),
         ],
       )
     );
   }
 
-  Widget hashPower() => Column(
+  Widget hashPower(StakeModel stake) => Column(
     children: [
       Text("Total Hash Power", style: Get.textTheme.bodySmall),
       const SizedBox(height: 8),
@@ -44,16 +44,16 @@ class UserStakingWidget extends StatelessWidget {
             crossAxisAlignment: WrapCrossAlignment.center,
             children: [
               Image.asset(asset("images/hashpower-fan-center.png"), width: 30, height: 30,),
-              Text("${stakeStore.stake!.userHashPower}", style: Get.textTheme.headline6),
+              Text("${stake.userHashPower}", style: Get.textTheme.headline6),
             ],
           ),
-          Text("↑${stakeStore.stake!.hashPowerBonus}%",
+          Text("↑${stake.hashPowerBonus}%",
             style: Get.textTheme.headline6!.copyWith(color: AppPalette.green400),
           ),
           Column(
             children: [
-              Text("Base: ${stakeStore.stake!.userHashPowerBase}", style: Get.textTheme.bodySmall),
-              Text("Bonus: ${stakeStore.stake!.userHashPower}", style: Get.textTheme.bodySmall),
+              Text("Base: ${stake.userHashPowerBase}", style: Get.textTheme.bodySmall),
+              Text("Bonus: ${stake.userHashPower}", style: Get.textTheme.bodySmall),
             ],
           )
         ],
@@ -61,7 +61,7 @@ class UserStakingWidget extends StatelessWidget {
     ],
   );
 
-  Widget hashPowerBonus() => Column(
+  Widget hashPowerBonus(StakeModel stake) => Column(
     children: [
       Text("Hash Power Boost", style: Get.textTheme.bodySmall),
       const SizedBox(height: 8),
@@ -73,13 +73,13 @@ class UserStakingWidget extends StatelessWidget {
             crossAxisAlignment: WrapCrossAlignment.center,
             children: [
               Image.asset(asset("images/hashpower-fan-center.png"), width: 30, height: 30,),
-              Text("+${stakeStore.stake!.hashPowerBonus}%", style: Get.textTheme.headline6),
+              Text("+${stake.hashPowerBonus}%", style: Get.textTheme.headline6),
             ],
           ),
           Column(
             children: [
-              Text("Next boost (${stakeStore.stake!.nextHashPowerBonus}%):", style: Get.textTheme.bodySmall),
-              Text("${Number.toCurrency(stakeStore.stake!.nextEpwRange)} EPW", style: Get.textTheme.bodySmall),
+              Text("Next boost (${stake.nextHashPowerBonus}%):", style: Get.textTheme.bodySmall),
+              Text("${Number.toCurrency(stake.nextEpwRange)} EPW", style: Get.textTheme.bodySmall),
               Text("Staked", style: Get.textTheme.bodySmall),
             ],
           )
@@ -88,7 +88,7 @@ class UserStakingWidget extends StatelessWidget {
     ],
   );
 
-  Widget staked() => Column(
+  Widget staked(StakeModel stake) => Column(
     children: [
       Text("Total EPW Staked", style: Get.textTheme.bodySmall),
       const SizedBox(height: 10),
@@ -99,10 +99,10 @@ class UserStakingWidget extends StatelessWidget {
           const SizedBox(width: 10),
           Column(
             children: [
-              Text("${Number.toCurrency(stakeStore.stake?.userTotalStaked)} EPW",
+              Text("${Number.toCurrency(stake.userTotalStaked)} EPW",
                 style: Get.textTheme.headline6,
               ),
-              Text("${stakeStore.stake?.eKeyDaily} EKEY/day",
+              Text("${stake.eKeyDaily} EKEY/day",
                 style: Get.textTheme.bodySmall,
               )
             ],
@@ -124,7 +124,7 @@ class UserStakingWidget extends StatelessWidget {
     ],
   );
 
-  Widget rewards() => Column(
+  Widget rewards(StakeModel stake) => Column(
     children: [
       Text("Available EKEY Rewards", style: Get.textTheme.bodySmall),
       const SizedBox(height: 10),
@@ -135,7 +135,7 @@ class UserStakingWidget extends StatelessWidget {
           const SizedBox(width: 10),
           Column(
             children: [
-              Text("${stakeStore.stake?.eKeyToClaim} EKEYS",
+              Text("${stake.eKeyToClaim} EKEYS",
                 style: Get.textTheme.headline6,
               ),
               Text("1.00 = EKEY unit",
@@ -148,7 +148,7 @@ class UserStakingWidget extends StatelessWidget {
       const SizedBox(height: 10),
       ElevatedButton(
         child: const Text("Claim EKEY"),
-        onPressed: stakeStore.stake!.eKeyToClaim >= 1
+        onPressed: stake.eKeyToClaim >= 1
           ? () => controller.claimEkey()
           : null,
       ),

@@ -7,7 +7,6 @@ import 'package:app/utils/widgets/loader/loader.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:svg_icon/svg_icon.dart';
 
 class AppScaffold extends StatelessWidget {
   final Widget body;
@@ -41,17 +40,17 @@ class AppScaffold extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         onTap: (pageIdx) => _onChangePage(pageIdx),
         currentIndex: max(pages.indexOf(Get.currentRoute), 0),
-        items: const [
+        items: [
           BottomNavigationBarItem(
-              icon: SvgIcon("lib/assets/icons/userprofile.svg"),
+              icon: SvgPicture.asset("lib/assets/icons/userprofile.svg"),
               label: "Acount"
           ),
           BottomNavigationBarItem(
-              icon: SvgIcon("lib/assets/icons/mininglab.svg"),
+              icon: SvgPicture.asset("lib/assets/icons/mininglab.svg"),
               label: "Mining Lab"
           ),
           BottomNavigationBarItem(
-              icon: SvgIcon("lib/assets/icons/staking.svg"),
+              icon: SvgPicture.asset("lib/assets/icons/staking.svg"),
               label: "Staking"
           ),
         ],

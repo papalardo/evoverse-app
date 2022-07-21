@@ -11,25 +11,31 @@ import 'package:styled_widget/styled_widget.dart';
 import 'statistics.controller.dart';
 import 'widgets/statistic-card.widget.dart';
 
-class StatisticsPage extends StatelessWidget {
+class StatisticsPage extends GetView<StatisticsController> {
   const StatisticsPage({Key? key}) : super(key: key);
 
-  StatisticsController get c => Get.find<StatisticsController>();
   UserAccountStore get accountStore => Get.find<UserAccountStore>();
   StakeStore get stakeStore => Get.find<StakeStore>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: RefreshIndicator(
-        onRefresh: () => c.fetch(),
-        child: ListView(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: GetBuilder<StatisticsController>(
-                builder: (_) {
-                  return GridView(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          controller.fetch();
+          accountStore.reload();
+          stakeStore.reload();
+        },
+        child: const Icon(Icons.refresh),
+      ),
+      body: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GetBuilder<StatisticsController>(
+              builder: (_) {
+                return accountStore.when(
+                  busy: () => GridView(
                     shrinkWrap: true,
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
@@ -37,39 +43,41 @@ class StatisticsPage extends StatelessWidget {
                       mainAxisSpacing: 10.0,
                       mainAxisExtent: 100,
                     ),
-                    children: Conditional.fn(c.isLoading(),
-                      onTrue: () => List.generate(6, (index) => StatisticCard.shimmer()),
-                      onFalse: () => [
-                        StatisticCard(
-                          title: c.epw!.symbol,
-                          text1: "\$ ${c.epw!.price}",
-                          image: c.epw!.image,
-                        ),
-                        card(c.epw!),
-                        card(c.evs!),
-                        accountStore.when(
-                            done: () => userData(c.epw!, "EPW to Withdraw", accountStore.account!.epw)
-                        ),
-                        accountStore.when(
-                            done: () => userData(c.epw!, "EPW to Claim", accountStore.account!.epwToClaim)
-                        ),
-                        accountStore.when(
-                            done: () => userData(c.epw!, "EPW Staked", accountStore.account!.epwStaked)
-                        ),
-                        accountStore.when(
-                            done: () => userData(c.epw!, "Total EPW in Game", accountStore.account!.epw
-                                + accountStore.account!.epwStaked
-                                + accountStore.account!.epwToClaim)
-                        ),
-                        // userData(c.epw!)
-                      ]
-                    ),
-                  );
-                }
-              ),
+                    children: List.generate(6, (index) => StatisticCard.shimmer()),
+                  ),
+                  done: (account) => GetBuilder<StatisticsController>(
+                    builder: (_) => GridView(
+                      shrinkWrap: true,
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 10.0,
+                        mainAxisSpacing: 10.0,
+                        mainAxisExtent: 100,
+                      ),
+                      children: Conditional.fn(controller.isLoading(),
+                          onTrue: () => List.generate(6, (index) => StatisticCard.shimmer()),
+                          onFalse: () => [
+                            StatisticCard(
+                              title: controller.epw!.symbol,
+                              text1: "\$ ${controller.epw!.price}",
+                              image: controller.epw!.image,
+                            ),
+                            card(controller.epw!),
+                            card(controller.evs!),
+                            userData(controller.epw!, "EPW to Withdraw", account.epw),
+                            userData(controller.epw!, "EPW Staked", account.epwStaked),
+                            userData(controller.epw!, "Total EPW in Game", account.epw
+                                + account.epwStaked
+                                + account.epwToClaim),
+                          ]
+                      ),
+                    )
+                  )
+                );
+              }
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -91,8 +99,7 @@ class StatisticsPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween
       )
       .padding(vertical: 10, horizontal: 15)
-      .borderRadius(all: 30)
-      .backgroundColor(const Color(0xFF272f3b));
+      .card(color: const Color(0xFF272f3b));
   }
 
   Widget userData(TokenModel token, String title, num value) {
@@ -107,14 +114,11 @@ class StatisticsPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
       ),
       Image.asset(asset(token.image), width: 30, height: 30),
-    ]
-        .toRow(
-        separator: const SizedBox(width: 10),
-        mainAxisAlignment: MainAxisAlignment.spaceBetween
-    )
-        .padding(vertical: 10, horizontal: 15)
-        .borderRadius(all: 30)
-        .backgroundColor(const Color(0xFF272f3b));
+    ] .toRow(
+      separator: const SizedBox(width: 10),
+      mainAxisAlignment: MainAxisAlignment.spaceBetween
+    ) .padding(vertical: 10, horizontal: 15)
+      .card(color: const Color(0xFF272f3b));
   }
 
 }

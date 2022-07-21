@@ -1,5 +1,8 @@
+import 'package:app/modules/account/infra/models/account.model.dart';
+import 'package:app/modules/account/infra/models/player-hash-power.model.dart';
 import 'package:app/stores/stake.store.dart';
 import 'package:app/stores/user-accout.store.dart';
+import 'package:app/stores/user-hash-power.store.dart';
 import 'package:app/utils/functions.dart';
 import 'package:app/utils/number.dart';
 import 'package:app/utils/theme/app.palette.dart';
@@ -21,6 +24,8 @@ class StakeEpwView extends StatelessWidget {
   StakeStore get stakeStore => Get.find<StakeStore>();
 
   UserAccountStore get accountStore => Get.find<UserAccountStore>();
+
+  UserHashPowerStore get hashPowerStore => Get.find<UserHashPowerStore>();
 
   @override
   Widget build(BuildContext context) {
@@ -47,26 +52,25 @@ class StakeEpwView extends StatelessWidget {
               title: "Preview",
               child: [
                 accountStore.when(
-                  busy: () => MainCardItemWidget
-                      .shimmer(usingTitle: true),
-                  done: () => MainCardItemWidget(
+                  busy: () => MainCardItemWidget.shimmer(usingTitle: true),
+                  done: (account) => MainCardItemWidget(
                     title: "Wallet EPW",
                     icon: Image.asset(asset("images/rpw_verde.png")),
-                    value: "${Number.toCurrency(accountStore.account!.epw)} EPW",
-                  )
+                    value: "${Number.toCurrency(account.epw)} EPW",
+                  ),
                 ),
                 GetBuilder<StakeEpwController>(
                   builder: (_) => Conditional(controller.isLoading(),
-                      onTrue: () => List.generate(4, (idx) => MainCardItemWidget
-                          .shimmer(usingTitle: true))
-                          .toColumn(
-                          separator: const SizedBox(height: 5),
-                          crossAxisAlignment: CrossAxisAlignment.start
-                      ),
-                      onFalse: () => content()
-                          .toColumn(
-                          separator: const SizedBox(height: 5),
-                          crossAxisAlignment: CrossAxisAlignment.start
+                    onTrue: () => List.generate(4, (idx) => MainCardItemWidget
+                        .shimmer(usingTitle: true))
+                        .toColumn(
+                        separator: const SizedBox(height: 5),
+                        crossAxisAlignment: CrossAxisAlignment.start
+                    ),
+                    onFalse: () => content()
+                      .toColumn(
+                        separator: const SizedBox(height: 5),
+                        crossAxisAlignment: CrossAxisAlignment.start
                       )
                   )
                 )
@@ -89,50 +93,70 @@ class StakeEpwView extends StatelessWidget {
   List<Widget> content() {
     var preview = controller.preview;
     return [
+      stakeStore.when(
+        done: (stake) => MainCardItemWidget(
+          title: "Current EPW Staked",
+          icon: Image.asset(asset("images/rpw_verde.png")),
+          value: "${Number.toCurrency(stake.userTotalStaked)} EPW",
+        ),
+      ),
       MainCardItemWidget(
-        title: "EPW Staked",
+        title: "New EPW Staked",
         icon: Image.asset(asset("images/rpw_verde.png")),
         value: "${Number.toCurrency(preview.newStakeTotal)} EPW",
       ),
-      MainCardItemWidget(
-          title: "Hash Power Bonus",
-          icon: Icon(Icons.arrow_circle_up_outlined)
-              .iconColor(Colors.green),
-          value: "${preview.newHashPowerBonus}%",
-          afterValue: Conditional(controller.unstakeMode,
-              onTrue: () => Text("- ${stakeStore.stake!.hashPowerBonus - preview.newHashPowerBonus}%")
-                  .fontSize(10)
-                  .textColor(Colors.red),
-              onFalse: () => Text("+ ${preview.newHashPowerBonus - stakeStore.stake!.hashPowerBonus}%")
-                  .fontSize(10)
-                  .textColor(Colors.green)
-          )
+      hashPowerStore.when(
+        done: (userHashPower) => [
+          MainCardItemWidget(
+              title: "Hash Power Bonus",
+              icon: Icon(Icons.arrow_circle_up_outlined)
+                  .iconColor(Colors.green)
+                  .iconSize(30),
+              value: "${preview.newHashPowerBonus}%",
+              afterValue: Conditional(controller.unstakeMode,
+                  onTrue: () => Text("- ${userHashPower.bonus - preview.newHashPowerBonus}%")
+                      .fontSize(10)
+                      .textColor(Colors.red),
+                  onFalse: () => Text("+ ${preview.newHashPowerBonus - userHashPower.bonus}%")
+                      .fontSize(10)
+                      .textColor(Colors.green)
+              )
+          ),
+          MainCardItemWidget(
+              title: "Total Hash Power",
+              icon: Padding(
+                padding: const EdgeInsets.all(3),
+                child: Image.asset(asset("images/fan.png")),
+              ),
+              value: Number.toCurrency(preview.newTotalHashPower),
+              afterValue: Conditional(controller.unstakeMode,
+                  onTrue: () => Text("- ${Number.toCurrency(userHashPower.hpTotal - preview.newTotalHashPower)}")
+                      .fontSize(10)
+                      .textColor(Colors.red),
+                  onFalse: () => Text("+ ${Number.toCurrency(preview.newTotalHashPower - userHashPower.hpTotal)}")
+                      .fontSize(10)
+                      .textColor(Colors.green)
+              )
+          ),
+        ].toColumn(
+            separator: const SizedBox(height: 5),
+            crossAxisAlignment: CrossAxisAlignment.start
+        )
       ),
-      MainCardItemWidget(
-          title: "Total Hash Power",
-          icon: Image.asset(asset("images/hashpower-fan-center.png")),
-          value: Number.toCurrency(preview.newTotalHashPower),
-          afterValue: Conditional(controller.unstakeMode,
-              onTrue: () => Text("- ${Number.toCurrency(stakeStore.stake!.userHashPower - preview.newTotalHashPower)}")
-                  .fontSize(10)
-                  .textColor(Colors.red),
-              onFalse: () => Text("+ ${Number.toCurrency(preview.newTotalHashPower - stakeStore.stake!.userHashPower)}")
-                  .fontSize(10)
-                  .textColor(Colors.green)
-          )
-      ),
-      MainCardItemWidget(
+      stakeStore.when(
+        done: (stake) => MainCardItemWidget(
           title: "EKEY Rewards",
           icon: Image.asset(asset("images/e-key.png")),
           value: "${Number.toCurrency(preview.newDailyEkey, 4)} EKEY/day",
           afterValue: Conditional(controller.unstakeMode,
-              onTrue: () => Text("- ${Number.toCurrency(stakeStore.stake!.eKeyDaily - preview.newDailyEkey, 3)}")
+              onTrue: () => Text("- ${Number.toCurrency(stake.eKeyDaily - preview.newDailyEkey, 3)}")
                   .fontSize(10)
                   .textColor(Colors.red),
-              onFalse: () => Text("+ ${Number.toCurrency(preview.newDailyEkey - stakeStore.stake!.eKeyDaily, 3)}")
+              onFalse: () => Text("+ ${Number.toCurrency(preview.newDailyEkey - stake.eKeyDaily, 3)}")
                   .fontSize(10)
                   .textColor(Colors.green)
           )
+        )
       ),
     ];
   }

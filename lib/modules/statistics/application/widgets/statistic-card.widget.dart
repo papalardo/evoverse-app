@@ -46,9 +46,7 @@ class StatisticCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween
       )
       .padding(vertical: 10, horizontal: 15)
-      .borderRadius(all: 30)
-      .backgroundColor(const Color(0xFF272f3b))
-      .card();
+      .card(color: const Color(0xFF272f3b));
   }
 
   static Widget shimmer() {
@@ -57,19 +55,24 @@ class StatisticCard extends StatelessWidget {
       highlightColor: Colors.white,
       child: [
         [
-          SizedBox(height: 10, width: 30,),
-          SizedBox(height: 10, width: 30,),
+          Container(height: 25, width: 50, color: Colors.white),
+          Container(height: 20, width: 70, color: Colors.white),
         ].toColumn(
           separator: const SizedBox(height: 5),
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
         ),
-        SizedBox(height: 30, width: 30,)
+        const CircleAvatar(
+          radius: 15,
+          backgroundColor: Colors.white,
+        ),
       ].toRow(
-        separator: const SizedBox(width: 10),
-        mainAxisAlignment: MainAxisAlignment.spaceBetween
-      ).card(),
-    );
+          separator: const SizedBox(width: 10),
+          mainAxisAlignment: MainAxisAlignment.spaceBetween
+      ),
+    )
+    .padding(vertical: 10, horizontal: 15)
+    .card(color: const Color(0xFF272f3b));
   }
 
 }

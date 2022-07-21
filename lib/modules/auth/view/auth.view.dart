@@ -53,28 +53,28 @@ class AuthView extends GetView<AuthController> {
                                 fontWeight: FontWeight.bold
                               ),
                             ),
-                            const SizedBox(height: 10),
-                            TextField(
-                              focusNode: focusNode,
-                              style: const TextStyle(color: Colors.white),
-                              onChanged: (v) => controller.token = v,
-                              decoration: const InputDecoration(
-                                hintText: 'Access Token',
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            ElevatedButton(
-                              child: Text("Connect".toUpperCase()),
-                              onPressed: () async {
-                                Catcher.sendTestException();
-                                return;
-
-                                FocusManager.instance.primaryFocus?.unfocus();
-                                await controller.loader.wait(() => controller.submit())
-                                  .catchError((_) => Toast.danger("Invalid access token"));
-                                focusNode.requestFocus();
-                              },
-                            ),
+                            const SizedBox(height: 10, width: double.infinity),
+                            // TextField(
+                            //   focusNode: focusNode,
+                            //   style: const TextStyle(color: Colors.white),
+                            //   onChanged: (v) => controller.token = v,
+                            //   decoration: const InputDecoration(
+                            //     hintText: 'Access Token',
+                            //   ),
+                            // ),
+                            // const SizedBox(height: 10),
+                            // ElevatedButton(
+                            //   child: Text("Connect".toUpperCase()),
+                            //   onPressed: () async {
+                            //     Catcher.sendTestException();
+                            //     return;
+                            //
+                            //     FocusManager.instance.primaryFocus?.unfocus();
+                            //     await controller.loader.wait(() => controller.submit())
+                            //       .catchError((_) => Toast.danger("Invalid access token"));
+                            //     focusNode.requestFocus();
+                            //   },
+                            // ),
                             if (! AppPlatform.isDesktop)
                             ElevatedButton(
                               onPressed: () => controller.authFromWallet()

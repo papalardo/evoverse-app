@@ -7,12 +7,7 @@ import 'package:app/modules/mining/infra/models/mining.model.dart';
 
 import 'base.store.dart';
 
-class MiningStore extends BaseStore<MiningStore> {
-  MiningModel? miningData;
-
+class MiningStore extends BaseStore<MiningStore, MiningModel> {
   @override
-  Future<void> fetch() async {
-    miningData = await MiningDatasource().fetch();
-  }
-
+  Future<MiningModel> fetch() => MiningDatasource().fetch();
 }

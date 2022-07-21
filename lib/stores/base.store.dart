@@ -2,17 +2,25 @@ import 'package:app/utils/widgets/loader/loader-state.mixin.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-abstract class BaseStore<T extends GetxController> extends GetxController
+abstract class BaseStore<P extends GetxController, M> extends GetxController
     with LoaderStateMixin {
+
+  M? _state;
 
   dynamic _error;
 
-  Future<void> fetch();
+  Future<M> fetch();
 
-  reload() async {
+  @override
+  onInit() {
+    reload();
+    super.onInit();
+  }
+
+  Future<void> reload() async {
     try {
       setLoading(true);
-      await fetch();
+      _state = await fetch();
       _error = null;
     } catch (e) {
       _error = e;
@@ -25,11 +33,12 @@ abstract class BaseStore<T extends GetxController> extends GetxController
   dynamic getError() => _error;
 
   Widget when({
-    required Widget Function() done,
+    required Widget Function(M) done,
     Widget Function()? busy,
     Widget Function(dynamic)? error,
+    Widget? empty,
   }) {
-    return GetBuilder<T>(
+    return GetBuilder<P>(
         builder: (controller) {
           // BUSY
           if (isLoading()) {
@@ -40,8 +49,12 @@ abstract class BaseStore<T extends GetxController> extends GetxController
           if (_error != null) {
             return error == null ? const Text("Error") : error(_error);
           }
+          // EMPTY
+          if (_state == null) {
+            return empty ?? const SizedBox();
+          }
           // DONE
-          return done();
+          return done(_state!);
         }
     );
   }

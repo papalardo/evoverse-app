@@ -24,8 +24,7 @@ class MiningGlobalStatsWidget extends StatelessWidget {
         itemExtent: 60,
         children: List.generate(5, (index) => MainCardItemWidget.shimmer(usingTitle: true)),
       ),
-      done: () {
-        var miningData = miningStore.miningData!;
+      done: (miningData) {
         var multiplyFactor = miningData.totalHashPowerDaily / miningData.totalHashPowerPool;
 
         return SecondaryListView(
@@ -43,7 +42,7 @@ class MiningGlobalStatsWidget extends StatelessWidget {
             ),
             MiningItemInfoWidget(
               title: "Multiply factor",
-              value: Number.toCurrency(multiplyFactor),
+              value: "${Number.toCurrency(multiplyFactor)}x",
               icon: Image.asset('lib/assets/images/rpw_verde.png'),
             ),
             MiningItemInfoWidget(
@@ -54,9 +53,7 @@ class MiningGlobalStatsWidget extends StatelessWidget {
             MiningItemInfoWidget(
               title: "Mining Pool Reset Cycle",
               child: MiningPoolResetTimeWidget(miningStore: miningStore),
-              icon: InfiniteRotationWidget(
-                child: Image.asset('lib/assets/images/hourglass.png'),
-              ),
+              icon: Image.asset('lib/assets/images-animated/hourglass.gif'),
             ),
           ],
         );

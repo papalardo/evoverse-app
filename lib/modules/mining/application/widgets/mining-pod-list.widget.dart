@@ -4,9 +4,11 @@ import 'package:app/stores/mining.store.dart';
 import 'package:app/utils/number.dart';
 import 'package:app/utils/theme/app.palette.dart';
 import 'package:app/utils/toast/toast.dart';
+import 'package:app/utils/widgets/dialog/app-dialog.dart';
 import 'package:app/utils/widgets/infinite-rotation.widget.dart';
 import 'package:app/utils/widgets/main-card-item.widget.dart';
 import 'package:app/utils/widgets/secondary-list-view.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,8 +19,6 @@ class MiningPodListWidget extends GetView<MiningController> {
     Key? key,
     required this.miningStore,
   }) : super(key: key);
-
-  MiningModel? get miningData => miningStore.miningData;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class MiningPodListWidget extends GetView<MiningController> {
           return const Divider(color: Colors.white);
         },
       ),
-      done: () => Column(
+      done: (MiningModel mining) => Column(
         children: [
           ElevatedButton(
             child: Wrap(
@@ -46,21 +46,21 @@ class MiningPodListWidget extends GetView<MiningController> {
                     height: 20,
                     width: 20,
                   ),
-                  Text(Number.toCurrency(miningData!.energizeCost)),
+                  Text(Number.toCurrency(mining.energizeCost)),
                 ]),
-            onPressed: _hasOncePodMining() || miningData!.pods.isEmpty
+            onPressed: _hasOncePodMining(mining) || mining.pods.isEmpty
                 ? null
-                : () => _energize(),
+                : () => _energize(context: context),
           ),
           const SizedBox(height: 10),
-          podsListWidget()
+          podsListWidget(mining)
         ],
       )
     );
   }
 
-  Widget podsListWidget() {
-    if (miningData!.pods.isEmpty) {
+  Widget podsListWidget(MiningModel mining) {
+    if (mining.pods.isEmpty) {
       return Column(children: const [
         SizedBox(height: 10),
         Text("No PODs yet", style: TextStyle(fontWeight: FontWeight.bold))
@@ -69,12 +69,12 @@ class MiningPodListWidget extends GetView<MiningController> {
     return ListView.separated(
       shrinkWrap: true,
       primary: false,
-      itemCount: miningData!.pods.length,
+      itemCount: mining.pods.length,
       separatorBuilder: (BuildContext context, int index) {
         return const Divider(color: Colors.white);
       },
       itemBuilder: (_, idx) {
-        var pod = miningData!.pods[idx];
+        var pod = mining.pods[idx];
 
         return Wrap(
             runSpacing: 5,
@@ -85,22 +85,12 @@ class MiningPodListWidget extends GetView<MiningController> {
                   Text("POD #${pod.id}"),
                   Wrap(
                     crossAxisAlignment: WrapCrossAlignment.center,
-                    spacing: 5,
+                    spacing: 10,
                     children: [
                       Text("HP ${Number.toCurrency(pod.totalHashPower)}"),
-                      InfiniteRotationWidget(
-                        enable: pod.farming,
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: AppPalette.gray400,
-                              borderRadius: BorderRadius.circular(999)
-                          ),
-                          padding: EdgeInsets.zero,
-                          child: Image.asset('lib/assets/images/hashpower-fan-center.png',
-                            width: 20,
-                            height: 20,
-                          ),
-                        ),
+                      Image.asset('lib/assets/${pod.farming ? 'images-animated/fan.gif' : 'images/fan.png'}',
+                        width: 20,
+                        height: 20,
                       ),
                     ],
                   )
@@ -112,24 +102,29 @@ class MiningPodListWidget extends GetView<MiningController> {
     );
   }
 
-  _hasOncePodMining() {
-    return miningData!.pods.where((pod) => pod.farming).isNotEmpty;
+  _hasOncePodMining(MiningModel mining) {
+    return mining.pods.where((pod) => pod.farming).isNotEmpty;
   }
 
-  _energize() {
-    Get.defaultDialog(
-      title: "You sure ?",
-      content: const Text("This action cannot be undone"),
-      onConfirm: () {
-        controller.loader.wait(() => controller.energize())
-          .then((_) => Toast.show("PODs energized"))
-          .catchError((e) => Toast.danger(e.toString(), 'Error'));
-
-        Navigator.of(Get.overlayContext!, rootNavigator: true).pop();
-      },
-      onCancel: () => Navigator.of(Get.overlayContext!, rootNavigator: true).pop(),
-      textConfirm: "Yes",
-      textCancel: "Cancel"
+  _energize({
+    required BuildContext context,
+  }) {
+    showDialog(
+      context: context,
+      builder: (context) => AppDialog.confirm(
+          title: "You sure ?",
+          message: "It will makes not possible realized some actions about your pods",
+          context: context,
+          onConfirm: () async {
+            Navigator.of(context).pop();
+            try {
+              await controller.loader.wait(() => controller.energize());
+              Toast.show("Pods recharged");
+            } on DioError catch (e) {
+              Toast.danger("Problem to recharge: ${e.message}");
+            }
+          }
+      )
     );
   }
 }

@@ -185,6 +185,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
+  flashy_tab_bar2:
+    dependency: "direct main"
+    description:
+      name: flashy_tab_bar2
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.4"
+  floating_bottom_bar:
+    dependency: "direct main"
+    description:
+      name: floating_bottom_bar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -212,12 +226,12 @@ packages:
     source: hosted
     version: "2.0.1"
   flutter_svg:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_svg
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.22.0"
+    version: "1.1.1+1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -269,7 +283,7 @@ packages:
       name: image
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.3"
+    version: "3.2.0"
   intl:
     dependency: "direct main"
     description:
@@ -298,6 +312,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  lazy_load_indexed_stack:
+    dependency: "direct main"
+    description:
+      name: lazy_load_indexed_stack
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.4"
   lint:
     dependency: transitive
     description:
@@ -430,14 +451,14 @@ packages:
       name: path_drawing
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.1+1"
+    version: "1.0.0"
   path_parsing:
     dependency: transitive
     description:
       name: path_parsing
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.1"
+    version: "1.0.0"
   path_provider:
     dependency: transitive
     description:
@@ -500,7 +521,7 @@ packages:
       name: petitparser
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.4.0"
+    version: "5.0.0"
   platform:
     dependency: transitive
     description:
@@ -583,13 +604,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.0+3"
-  svg_icon:
-    dependency: "direct main"
-    description:
-      name: svg_icon
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.1"
   term_glyph:
     dependency: transitive
     description:
@@ -722,7 +736,7 @@ packages:
       name: xml
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.3.1"
+    version: "6.1.0"
   yaml:
     dependency: transitive
     description:
@@ -731,5 +745,5 @@ packages:
     source: hosted
     version: "3.1.1"
 sdks:
-  dart: ">=2.17.0-0 <3.0.0"
-  flutter: ">=2.10.0"
+  dart: ">=2.17.0 <3.0.0"
+  flutter: ">=2.11.0-0.1.pre"
