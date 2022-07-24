@@ -25,33 +25,41 @@ class AppDialog extends StatelessWidget {
     required String title,
     required BuildContext context,
     required void Function() onConfirm,
+    Widget? icon,
     String? message,
   }) => AppDialog(
     disableCloseButton: true,
+    icon: icon,
     child: [
-      Text(title, style: Get.textTheme.headline6),
+      Text(title.toUpperCase())
+        .textStyle(Get.textTheme.headline6!)
+        .textAlignment(TextAlign.center)
+        .fontSize(14),
       if (message != null)
-        Text(message, style: Get.textTheme.bodyMedium, textAlign: TextAlign.center,),
+        Text(message)
+          .textAlignment(TextAlign.center)
+          .textStyle(Get.textTheme.bodyMedium!),
       Wrap(
         alignment: WrapAlignment.spaceAround,
         spacing: 15,
         children: [
           ElevatedButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: Text("Cancel"),
+            child: const Text("Cancel"),
             style: ElevatedButton.styleFrom(
               primary: AppPalette.gray400,
-              shape: StadiumBorder()
+              shape: const StadiumBorder()
             ),
           ),
           ElevatedButton(
             onPressed: onConfirm,
-            child: Text("Confirm"),
+            child: const Text("Confirm"),
             style: ElevatedButton.styleFrom(
-              shape: StadiumBorder()
+              shape: const StadiumBorder()
             ),
           ),
-        ],)
+        ],
+      )
     ].toColumn(
       mainAxisSize: MainAxisSize.min,
       separator: const SizedBox(height: 10)
@@ -91,6 +99,7 @@ class AppDialog extends StatelessWidget {
               left: 0,
               right: 0,
               child: CircleAvatar(
+                backgroundColor: Colors.transparent,
                 child: icon,
                 radius: avatarRadius,
               ),
@@ -117,9 +126,9 @@ class AppDialog extends StatelessWidget {
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
             hoverColor: Colors.transparent,
-            padding: EdgeInsets.all(3),
+            padding: const EdgeInsets.all(3),
             color: Colors.white,
-            icon: Icon(Icons.close, size: 15,),
+            icon: const Icon(Icons.close, size: 15,),
             onPressed: () => Navigator.of(context).pop(),
           ),
         )

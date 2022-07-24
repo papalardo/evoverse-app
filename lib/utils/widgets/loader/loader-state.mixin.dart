@@ -5,10 +5,10 @@ mixin LoaderStateMixin implements ListNotifierMixin {
     'default': false,
   };
 
-  Future<void> wait(Future Function() callable, [String key = 'default']) async {
+  Future<T?> wait<T>(Future Function() callable, [String key = 'default']) async {
     setLoading(true, key);
     try {
-      await callable();
+      return await callable();
     } finally {
       setLoading(false, key);
     }

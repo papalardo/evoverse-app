@@ -7,6 +7,8 @@ abstract class BaseStore<P extends GetxController, M> extends GetxController
 
   M? _state;
 
+  M? get state => _state;
+
   dynamic _error;
 
   Future<M> fetch();

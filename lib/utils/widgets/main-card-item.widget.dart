@@ -1,8 +1,8 @@
 import 'package:app/utils/theme/app.palette.dart';
 import 'package:app/utils/widgets/conditional.widget.dart';
 import 'package:flutter/material.dart';
-import 'package:niku/namespace.dart' as n;
 import 'package:shimmer/shimmer.dart';
+import 'package:styled_widget/styled_widget.dart';
 
 class MainCardItemWidget extends StatelessWidget {
   final String? title;
@@ -26,36 +26,40 @@ class MainCardItemWidget extends StatelessWidget {
     usingTitle: usingTitle,
   );
 
+  static const TextStyle valueTextStyle = TextStyle(
+    color: Color(0xFFFFFFFF),
+    fontWeight: FontWeight.bold
+  );
+
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      direction: Axis.vertical,
-      spacing: 5,
-      children: [
-        if (title != null)
-        Text(title!, style: const TextStyle(
-            color: Color(0xFF979797)
-        )),
-        Wrap(
-          crossAxisAlignment: WrapCrossAlignment.center,
-          spacing: 10,
-          children: [
-            SizedBox(
-              height: 30,
-              width: 30,
-              child: icon,
-            ),
-            if (child != null) child!,
-            if (value != null)
-              Text(value!, style: const TextStyle(
-                  color: Color(0xFFFFFFFF),
-                  fontWeight: FontWeight.bold
-              )),
-            if (afterValue != null)
-              afterValue!,
-          ],
-        )
-      ],
+    return [
+      if (title != null)
+        Text(title!)
+          .textColor(const Color(0xFF979797)),
+      Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: 30,
+            width: 30,
+            child: icon,
+          ),
+          const SizedBox(width: 10),
+          Flexible(
+            child: [
+              if (value != null)
+                Text(value!, style: MainCardItemWidget.valueTextStyle),
+              if (child != null) child!,
+              if (afterValue != null)
+                afterValue!,
+            ].toRow()
+          )
+        ],
+      )
+    ].toColumn(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      separator: const SizedBox(height: 5)
     );
   }
 }
@@ -70,10 +74,10 @@ class MainCardItemShimmerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var box = n.Box()
-      ..height = 30
-      ..rounded
-      ..backgroundColor = AppPalette.gray400;
+    var box = Container()
+      .backgroundColor(AppPalette.gray400)
+      .borderRadius(all: 30)
+      .height(30);
 
     var content = Wrap(
       spacing: 8,

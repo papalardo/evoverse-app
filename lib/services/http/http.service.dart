@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:app/exceptions/http-exception.dart';
 import 'package:app/main.dart';
 import 'package:app/services/http/interceptors/authorization.interceptor.dart';
 import 'package:app/services/http/interceptors/errors-handler.interceptor.dart';
@@ -36,12 +38,26 @@ class HttpService {
 
   }
 
-  Future<HttpResponse> get(String url, [Map<String, dynamic>? params]) => client
-      .get(url, queryParameters: params)
-      .then((r) => handleResponse(r));
+  Future<HttpResponse> requestWrapper(Future Function() request) async {
+    try {
+      return await request()
+        .then((r) => handleResponse(r));
+    } on DioError catch(err) {
+      throw AppHttpException(err.message.toString(), err.response?.statusCode ?? 500);
+    }
+  }
 
-  Future<HttpResponse> post(String url, [dynamic body]) => client.post(url, data: body)
-      .then((r) => handleResponse(r));
+  Future<HttpResponse> get(String url, [Map<String, dynamic>? params]) {
+    return requestWrapper(() {
+      return client.get(url, queryParameters: params);
+    });
+  }
+
+  Future<HttpResponse> post(String url, [dynamic body]) {
+    return requestWrapper(() {
+      return client.post(url, data: body);
+    });
+  }
 
   handleResponse(Response<dynamic> response) => HttpResponse(
     statusCode: _handleStatusCode(response),
