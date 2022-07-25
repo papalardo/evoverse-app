@@ -37,34 +37,6 @@ class AppScaffold extends StatelessWidget {
         child: body,
         loader: const LoaderWidget(),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: (pageIdx) => _onChangePage(pageIdx),
-        currentIndex: max(pages.indexOf(Get.currentRoute), 0),
-        items: [
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset("lib/assets/icons/userprofile.svg"),
-              label: "Acount"
-          ),
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset("lib/assets/icons/mininglab.svg"),
-              label: "Mining Lab"
-          ),
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset("lib/assets/icons/staking.svg"),
-              label: "Staking"
-          ),
-        ],
-      ),
     );
-  }
-
-  _onChangePage(int pageIdx) {
-    var route = pages[pageIdx];
-
-    if (route == Get.currentRoute) {
-      return;
-    }
-    
-    Get.toNamed(route);
   }
 }

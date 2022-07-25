@@ -12,7 +12,6 @@ class AccountModule implements Module {
       name: AppRoutes.ACCOUNT,
       page: () => const AccountView(),
       binding: AccountBindings(),
-      transition: Transition.noTransition
     ),
   ];
 

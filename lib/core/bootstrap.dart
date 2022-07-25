@@ -9,6 +9,8 @@ class Bootstrap {
   }
 
   init(Widget app) async {
+    FutureBuilder.debugRethrowError = true;
+
     Catcher(
       runAppFunction: () async {
         await _boot();

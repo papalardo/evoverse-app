@@ -11,7 +11,6 @@ class StakeModule implements Module {
       name: AppRoutes.STAKE,
       page: () => const StakeView(),
       binding: StakeBindings(),
-      transition: Transition.noTransition
     )
   ];
 

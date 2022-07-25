@@ -3,11 +3,15 @@ import 'package:flutter/material.dart';
 class MainCardWidget extends StatelessWidget {
   final String title;
   final Widget child;
+  final Widget? leftTitle;
+  final Widget? rightTitle;
 
   const MainCardWidget({
     Key? key,
     required this.title,
-    required this.child
+    required this.child,
+    this.leftTitle,
+    this.rightTitle,
   }) : super(key: key);
 
   @override
@@ -20,13 +24,25 @@ class MainCardWidget extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       child: Column(
         children: [
-          Text(title,
-            style: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 20
-            ),
-            textAlign: TextAlign.center,
+          Stack(
+            alignment: AlignmentDirectional.center,
+            children: [
+              Align(
+                alignment: Alignment.center,
+                child: Text(title,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: rightTitle ?? const SizedBox(),
+              ),
+            ],
           ),
           const SizedBox(height: 10),
           Container(

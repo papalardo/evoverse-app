@@ -11,7 +11,6 @@ class MiningModule implements Module {
       name: AppRoutes.MINING,
       page: () => const MiningView(),
       binding: MiningBindings(),
-      transition: Transition.noTransition
     ),
   ];
   

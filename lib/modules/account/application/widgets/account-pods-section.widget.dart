@@ -1,3 +1,4 @@
+import 'package:app/core/app.routes.dart';
 import 'package:app/modules/account/application/account.controller.dart';
 import 'package:app/modules/account/infra/models/pod-count.model.dart';
 import 'package:app/stores/user-pods.store.dart';
@@ -5,6 +6,7 @@ import 'package:app/utils/widgets/main-card-item.widget.dart';
 import 'package:app/utils/widgets/main-card.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:styled_widget/styled_widget.dart';
 
 import 'pod-card.widget.dart';
 
@@ -21,6 +23,18 @@ class AccountPodsSection extends GetView<AccountController> {
   Widget build(BuildContext context) {
     return MainCardWidget(
       title: "My PODs",
+      rightTitle: TextButton(
+        onPressed: () => Get.toNamed(AppRoutes.PLAYER_ITEMS),
+        child: [
+          const Text("More"),
+          const Icon(Icons.chevron_right)
+        ].toRow(mainAxisSize: MainAxisSize.min),
+        style: TextButton.styleFrom(
+          primary: Colors.white,
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          minimumSize: Size.zero
+        ),
+      ),
       child: userPodsStore.when(
         busy: () => ListView(
           padding: EdgeInsets.zero,

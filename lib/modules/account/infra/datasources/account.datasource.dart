@@ -48,28 +48,28 @@ class AccountDatasource extends BaseDatasource {
   }
 
   Future<MintPodModel> openCommonToolkit() async {
-    throw AppHttpException("Not implemented yet");
-
-    // TODO:: Endpoint common toolkit
-    var response = await httpClient.post('');
+    var response = await httpClient.post('OpenToolkit', {
+      "blend": false,
+      "genesis": false,
+    });
 
     return MintPodModel.fromJson(response.json!['data']['pod']);
   }
 
   Future<MintPodModel> openHexToolkit() async {
-    throw AppHttpException("Not implemented yet");
-
-    // TODO:: Endpoint hex toolkit
-    var response = await httpClient.post('');
+    var response = await httpClient.post('OpenToolkit', {
+      "blend": true,
+      "genesis": false,
+    });
 
     return MintPodModel.fromJson(response.json!['data']['pod']);
   }
 
   Future<MintPodModel> openGenesisToolkit() async {
-    throw AppHttpException("Not implemented yet");
-
-    // TODO:: Endpoint genesis toolkit
-    var response = await httpClient.post('');
+    var response = await httpClient.post('OpenToolkit', {
+      "blend": false,
+      "genesis": true,
+    });
 
     return MintPodModel.fromJson(response.json!['data']['pod']);
   }

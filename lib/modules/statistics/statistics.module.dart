@@ -9,7 +9,7 @@ class StatisticsModule extends Module {
   List<GetPage> routes() => [
     GetPage(
       name: AppRoutes.STATISTICS,
-      page: () => StatisticsPage(),
+      page: () => const StatisticsPage(),
       binding: StatisticsBindings()
     ),
   ];
