@@ -4,6 +4,7 @@ import 'package:app/modules/donate/donate.module.dart';
 import 'package:app/modules/home/home.module.dart';
 import 'package:app/modules/mining/mining.module.dart';
 import 'package:app/modules/player-items/player-items.module.dart';
+import 'package:app/modules/raffle/raffle.module.dart';
 import 'package:app/modules/splash/splash.module.dart';
 import 'package:app/modules/stake/application/modules/stake-epw/stake-epw.module.dart';
 import 'package:app/modules/stake/stake.module.dart';
@@ -27,6 +28,7 @@ class AppModule implements Module {
     ...StatisticsModule().routes(),
     ...DonateModule().routes(),
     ...PlayerItemsModule().routes(),
+    ...RaffleModule().routes(),
   ];
 
 

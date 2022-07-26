@@ -17,36 +17,25 @@ class StatisticsPage extends GetView<StatisticsController> {
   UserAccountStore get accountStore => Get.find<UserAccountStore>();
   StakeStore get stakeStore => Get.find<StakeStore>();
 
+  refresh() {
+    controller.fetch();
+    accountStore.reload();
+    stakeStore.reload();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          controller.fetch();
-          accountStore.reload();
-          stakeStore.reload();
-        },
-        child: const Icon(Icons.refresh),
-      ),
-      body: ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: GetBuilder<StatisticsController>(
-              builder: (_) {
-                return accountStore.when(
-                  busy: () => GridView(
-                    shrinkWrap: true,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 10.0,
-                      mainAxisSpacing: 10.0,
-                      mainAxisExtent: 100,
-                    ),
-                    children: List.generate(6, (index) => StatisticCard.shimmer()),
-                  ),
-                  done: (account) => GetBuilder<StatisticsController>(
-                    builder: (_) => GridView(
+      body: RefreshIndicator(
+        onRefresh: () async => refresh(),
+        child: ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GetBuilder<StatisticsController>(
+                builder: (_) {
+                  return accountStore.when(
+                    busy: () => GridView(
                       shrinkWrap: true,
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
@@ -54,30 +43,42 @@ class StatisticsPage extends GetView<StatisticsController> {
                         mainAxisSpacing: 10.0,
                         mainAxisExtent: 100,
                       ),
-                      children: Conditional.fn(controller.isLoading(),
-                          onTrue: () => List.generate(6, (index) => StatisticCard.shimmer()),
-                          onFalse: () => [
-                            StatisticCard(
-                              title: controller.epw!.symbol,
-                              text1: "\$ ${controller.epw!.price}",
-                              image: controller.epw!.image,
-                            ),
-                            card(controller.epw!),
-                            card(controller.evs!),
-                            userData(controller.epw!, "EPW to Withdraw", account.epw),
-                            userData(controller.epw!, "EPW Staked", account.epwStaked),
-                            userData(controller.epw!, "Total EPW in Game", account.epw
-                                + account.epwStaked
-                                + account.epwToClaim),
-                          ]
-                      ),
+                      children: List.generate(6, (index) => StatisticCard.shimmer()),
+                    ),
+                    done: (account) => GetBuilder<StatisticsController>(
+                      builder: (_) => GridView(
+                        shrinkWrap: true,
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 10.0,
+                          mainAxisSpacing: 10.0,
+                          mainAxisExtent: 100,
+                        ),
+                        children: Conditional.fn(controller.isLoading(),
+                            onTrue: () => List.generate(6, (index) => StatisticCard.shimmer()),
+                            onFalse: () => [
+                              StatisticCard(
+                                title: controller.epw!.symbol,
+                                text1: "\$ ${controller.epw!.price}",
+                                image: controller.epw!.image,
+                              ),
+                              card(controller.epw!),
+                              card(controller.evs!),
+                              userData(controller.epw!, "EPW to Withdraw", account.epw),
+                              userData(controller.epw!, "EPW Staked", account.epwStaked),
+                              userData(controller.epw!, "Total EPW in Game", account.epw
+                                  + account.epwStaked
+                                  + account.epwToClaim),
+                            ]
+                        ),
+                      )
                     )
-                  )
-                );
-              }
+                  );
+                }
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

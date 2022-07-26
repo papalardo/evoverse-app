@@ -1,3 +1,4 @@
+import 'package:app/utils/logger.dart';
 import 'package:app/utils/widgets/loader/loader-state.mixin.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,8 +25,9 @@ abstract class BaseStore<P extends GetxController, M> extends GetxController
       setLoading(true);
       _state = await fetch();
       _error = null;
-    } catch (e) {
+    } catch (e, s) {
       _error = e;
+      logger.d(null, e, s);
     } finally {
       setLoading(false);
     }

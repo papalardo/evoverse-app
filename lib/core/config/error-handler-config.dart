@@ -22,7 +22,6 @@ class ErrorHandlerConfig {
         enableApplicationParameters: true,
         enableCustomParameters: true,
         enableStackTrace: true,
-        printLogs: true,
       ),
     ]
   );

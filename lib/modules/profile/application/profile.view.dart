@@ -15,7 +15,11 @@ class ProfilePage extends StatelessWidget {
         //   onTap: () => Get.toNamed(AppRoutes.DONATE),
         // ),
         ListTile(
-          title: Text("Logout"),
+          title: const Text("Raffle"),
+          onTap: () => Get.toNamed(AppRoutes.RAFFLE),
+        ),
+        ListTile(
+          title: const Text("Logout"),
           onTap: () async {
             await Get.find<StorageServiceContract>()
                 .delete('accessToken');

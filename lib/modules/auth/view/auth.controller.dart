@@ -1,6 +1,7 @@
 import 'package:app/core/app.routes.dart';
 import 'package:app/modules/wallet/application/wallet.controller.dart';
 import 'package:app/modules/wallet/infra/datasources/wallet.datasource.dart';
+import 'package:app/services/http/http-response.dart';
 import 'package:app/services/http/http.service.dart';
 import 'package:app/services/storage/istorage.service.dart';
 import 'package:app/utils/toast/toast.dart';
@@ -12,7 +13,7 @@ import 'package:jwt_decoder/jwt_decoder.dart';
 
 class AuthController extends GetxController with LoaderMixin {
   final _storageClient = Get.find<StorageServiceContract>();
-  var _httpClient = Get.find<HttpService>();
+  final _httpClient = Get.find<HttpService>();
 
   String token = '';
 
@@ -24,20 +25,15 @@ class AuthController extends GetxController with LoaderMixin {
   }
 
   submit() async {
-    if (token.isNotEmpty) {
-      await _storageClient.put('accessToken', token);
+    var token = await _storageClient.get<String>('accessToken');
+
+    if (token == null) {
+      return;
     }
 
-    if (token.isEmpty) {
-      var storageToken = await _storageClient.get<String>('accessToken');
-      if (storageToken != null) {
-        token = storageToken;
-      }
-    }
-
-    var response = await _httpClient.post('GetPreFarmingLabData');
-
-    if (response.isError()) {
+    try {
+      await _httpClient.post('GetPreFarmingLabData');
+    } catch (e) {
       await _storageClient.delete('accessToken');
       return;
     }
@@ -61,7 +57,7 @@ class AuthController extends GetxController with LoaderMixin {
       session.accounts[0],
     );
 
-    await walletController.authenticate(signature, walletAddress);
+    await loader.wait(() => walletController.authenticate(signature, walletAddress));
 
     await _storageClient.put('walletAddress', walletAddress);
 
