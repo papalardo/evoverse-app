@@ -1,4 +1,7 @@
 import 'package:get/get_state_manager/src/simple/list_notifier.dart';
+import 'package:get/instance_manager.dart';
+
+import 'loader.controller.dart';
 
 mixin LoaderStateMixin implements ListNotifierMixin {
   Map<String, bool> loaders = {

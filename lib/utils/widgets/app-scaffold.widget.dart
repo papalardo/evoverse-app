@@ -20,17 +20,10 @@ class AppScaffold extends StatelessWidget {
     this.appBar,
   }) : super(key: key);
 
-  static const List<String> pages = [
-    AppRoutes.ACCOUNT,
-    AppRoutes.MINING,
-    AppRoutes.STAKE
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar,
-      backgroundColor: AppPalette.BACKGROUND,
       floatingActionButton: floatingActionButton,
       body: LoaderWrapperWidget(
         id: 'scaffold',

@@ -7,4 +7,9 @@ class RaffleDatasource extends BaseDatasource {
 
     return RaffleDataModel.fromJson(response.json!['data']);
   }
+
+  Future<void> buyTickets(int amount) => httpClient.post('BuyRaffleTicket', {
+    'amount': amount
+  });
+
 }

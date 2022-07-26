@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
     required String label,
   }) {
     return FlashyTabBarItem(
-      activeColor: Colors.white60,
+      activeColor: Colors.white,
       inactiveColor: AppPalette.gray300,
       icon: Icon(icon),
       title: Text(label),
@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: getBody(),
       bottomNavigationBar: FlashyTabBar(
-        backgroundColor: AppPalette.PRIMARY,
+        backgroundColor: AppPalette.primary600,
         selectedIndex: _currentIndex,
         showElevation: true,
         iconSize: 24,

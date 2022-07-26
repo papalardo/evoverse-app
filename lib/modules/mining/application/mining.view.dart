@@ -30,31 +30,28 @@ class MiningView extends GetView<MiningController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: RefreshIndicator(
-        onRefresh: () => refresh(),
-        child: ListView(
-          padding: EdgeInsets.only(
-              top: Get.mediaQuery.padding.top + kPadding,
-              bottom: kPadding,
-              left: kPadding,
-              right: kPadding
+      body: SafeArea(
+        child: RefreshIndicator(
+          onRefresh: () => refresh(),
+          child: ListView(
+            padding: const EdgeInsets.all(kPadding),
+            children: [
+              MiningCardWidget(
+                title: "My Stats",
+                child: MiningUserStatsWidget(miningStore: miningStore),
+              ),
+              const SizedBox(height: 10),
+              MiningCardWidget(
+                title: "Global Stats",
+                child: MiningGlobalStatsWidget(miningStore: miningStore),
+              ),
+              const SizedBox(height: 10),
+              MiningCardWidget(
+                title: "POD List",
+                child: MiningPodListWidget(miningStore: miningStore),
+              ),
+            ],
           ),
-          children: [
-            MiningCardWidget(
-              title: "My Stats",
-              child: MiningUserStatsWidget(miningStore: miningStore),
-            ),
-            const SizedBox(height: 10),
-            MiningCardWidget(
-              title: "Global Stats",
-              child: MiningGlobalStatsWidget(miningStore: miningStore),
-            ),
-            const SizedBox(height: 10),
-            MiningCardWidget(
-              title: "POD List",
-              child: MiningPodListWidget(miningStore: miningStore),
-            ),
-          ],
         ),
       ),
     );

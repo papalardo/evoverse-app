@@ -14,24 +14,23 @@ class StakeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: EdgeInsets.only(
-          top: Get.mediaQuery.padding.top + kPadding,
-          bottom: kPadding,
-          left: kPadding,
-          right: kPadding
+    return AppScaffold(
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.all(kPadding),
+          children: const [
+            MainCardWidget(
+              title: "New stake",
+              child: NewStakeWidget(),
+            ),
+            SizedBox(height: 8),
+            MainCardWidget(
+              title: "Your Staking",
+              child: UserStakingWidget(),
+            ),
+          ],
+        ),
       ),
-      children: [
-        MainCardWidget(
-          title: "New stake",
-          child: NewStakeWidget(),
-        ),
-        const SizedBox(height: 8),
-        MainCardWidget(
-          title: "Your Staking",
-          child: UserStakingWidget(),
-        ),
-      ],
     );
   }
 }

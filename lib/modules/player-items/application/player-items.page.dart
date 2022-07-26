@@ -27,8 +27,7 @@ class PlayerItemsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppScaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: const Text("My PODs"),
+        title: const Text("MY PODS"),
       ),
       body: RefreshIndicator(
         onRefresh: () async => controller.update(),

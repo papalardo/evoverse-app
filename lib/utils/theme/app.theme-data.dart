@@ -6,6 +6,21 @@ class AppThemeData {
   static themeData() => ThemeData(
       brightness: Brightness.dark,
       primaryColor: AppPalette.PRIMARY,
+      appBarTheme: AppBarTheme(
+        backgroundColor: AppPalette.primary600,
+        centerTitle: true,
+        titleTextStyle: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          letterSpacing: 3,
+        ),
+      ),
+      listTileTheme: ListTileThemeData(
+        selectedColor: Colors.white,
+        tileColor: AppPalette.primary600,
+        selectedTileColor: Colors.red,
+      ),
+      scaffoldBackgroundColor: AppPalette.primary800,
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: AppPalette.gray500,
         elevation: 10,
