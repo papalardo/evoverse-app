@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:app/modules/training/application/stores/training.store.dart';
 
 class TrainingController extends GetxController {
+  static TrainingController get to => Get.find();
+
   var trainingSelected = 0.obs;
   var buyAmount = 1.obs;
 

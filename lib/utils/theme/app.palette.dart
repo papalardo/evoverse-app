@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 
 class AppPalette {
+  static const blue400 = Color(0xFF0ce5fe);
   static const PRIMARY = Color(0xFF325071);
   static const primary400 = Color(0xFF325071);
   static const primary600 = Color(0xFF272f3b);

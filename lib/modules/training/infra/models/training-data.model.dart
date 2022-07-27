@@ -4,8 +4,10 @@ import 'package:app/modules/config/utils/config-keys.dart';
 import "package:app/modules/training/infra/models/training-history.model.dart";
 import 'package:app/modules/training/infra/models/training.model.dart';
 
+import 'package:app/modules/training/infra/models/training-bid.model.dart';
+
 class TrainingDataModel {
-  List rechargedEvos;
+  List<TrainingBidModel> playerBids;
   List<TrainingHistoryModel> history;
   List<ConfigModel> config;
   List<TrainingModel> trainings;
@@ -16,7 +18,7 @@ class TrainingDataModel {
   int duration;
 
   TrainingDataModel({
-    required this.rechargedEvos,
+    required this.playerBids,
     required this.history,
     required this.trainings,
     required this.config,
@@ -31,7 +33,9 @@ class TrainingDataModel {
     var config = ConfigListModel.fromList(json["training_config"]);
 
     return TrainingDataModel(
-      rechargedEvos: [],
+      playerBids: List.from(
+        json['recharged_evos'].map((e) => TrainingBidModel.fromJson(e))
+      ),
       startDate: DateTime.now(),
       trainings: List.from(
         json["open_trainings"].map((e) => TrainingModel.fromJson(e))
