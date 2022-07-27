@@ -52,8 +52,8 @@ android {
         applicationId "app.evoverse"
         minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
-        versionCode 2
-        versionName "0.0.1"
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
     }
 
     signingConfigs {
