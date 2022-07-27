@@ -19,7 +19,7 @@ class RaffleTimeRemainingListTile extends StatelessWidget {
         title: "Time remaining",
         child: DateCountdownWidget(
           endsAt: state.endsAt,
-          timezone: "America/Sao_Paulo",
+          timezone: DateCountDownTimezones.br,
           onOver: () => store.reload(),
           style: MainCardItemWidget.valueTextStyle,
         ),

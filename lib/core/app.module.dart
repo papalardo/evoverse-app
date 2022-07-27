@@ -9,6 +9,7 @@ import "package:app/modules/splash/splash.module.dart";
 import "package:app/modules/stake/application/modules/stake-epw/stake-epw.module.dart";
 import "package:app/modules/stake/stake.module.dart";
 import "package:app/modules/statistics/statistics.module.dart";
+import 'package:app/modules/training/training.module.dart';
 import "package:get/get.dart";
 
 abstract class Module {
@@ -29,7 +30,7 @@ class AppModule implements Module {
     ...DonateModule().routes(),
     ...PlayerItemsModule().routes(),
     ...RaffleModule().routes(),
+    ...TrainingModule().routes(),
   ];
-
 
 }

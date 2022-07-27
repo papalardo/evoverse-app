@@ -34,9 +34,12 @@ class AppThemeData {
           linearTrackColor: Color(0xFFe9ecef)
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            primary: const Color(0xFF325071),
+        style: ElevatedButton.styleFrom(
+          primary: const Color(0xFF325071),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10)
           )
+        )
       ),
       inputDecorationTheme: InputDecorationTheme(
         fillColor: AppPalette.PRIMARY,

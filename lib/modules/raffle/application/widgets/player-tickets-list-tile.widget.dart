@@ -40,7 +40,9 @@ class PlayerTicketsListTile extends StatelessWidget {
               child: const Text("Buy"),
               onPressed: () => _showModal(context: context),
             ),
-          ].toRow(mainAxisAlignment: MainAxisAlignment.spaceBetween),
+          ].toRow(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          ),
         ),
       ),
     );

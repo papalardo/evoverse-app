@@ -5,6 +5,7 @@ class AppPalette {
   static const primary400 = Color(0xFF325071);
   static const primary600 = Color(0xFF272f3b);
   static const primary800 = Color(0xFF151821);
+  static const primary900 = Color(0xFF23232e);
   static const BACKGROUND = Color(0xFF070d14);
   static const BROWN = Color(0xFF353535);
   static const DANGER = Color(0xFFFF0000);
@@ -14,6 +15,7 @@ class AppPalette {
   static const gray300 = Color(0xFF707070);
   static const gray400 = Color(0xFF737373);
   static const green400 = Color(0xFF0dff13);
+  static const orange400 = Color(0xFFebaf09);
 
   // Rarities
   static const legendary = Color(0xFFf6b91d);

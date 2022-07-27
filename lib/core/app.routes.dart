@@ -10,5 +10,6 @@ class AppRoutes {
   static const STAKE_EPW = "/stake-epw";
   static const DONATE = "/donates";
   static const PLAYER_ITEMS = "/player-items";
-  static const RAFFLE = "/raffle";
+  static const raffles = "/raffle";
+  static const training = "/training";
 }

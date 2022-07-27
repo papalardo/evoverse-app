@@ -46,7 +46,15 @@ class ProfilePage extends StatelessWidget {
               height: kImageSize,
             ),
             label: "Raffle",
-            onTap: () => Get.toNamed(AppRoutes.RAFFLE),
+            onTap: () => Get.toNamed(AppRoutes.raffles),
+          ),
+          listTile(
+            icon: Image.asset(asset("images/training.png"),
+              width: kImageSize,
+              height: kImageSize,
+            ),
+            label: "Training",
+            onTap: () => Get.toNamed(AppRoutes.training),
           ),
           listTile(
             icon: const Icon(Icons.logout, size: kIconSize),

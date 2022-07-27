@@ -9,7 +9,7 @@ class RaffleModule implements Module {
   @override
   List<GetPage> routes() => [
     GetPage(
-      name: AppRoutes.RAFFLE,
+      name: AppRoutes.raffles,
       page: () => const RafflePage(),
       binding: RaffleBindings(),
     )

@@ -30,6 +30,10 @@ class ConfigListModel {
       return int.tryParse(config.value) as T;
     }
 
+    if (T == num) {
+      return num.tryParse(config.value) as T;
+    }
+
     return config.value as T;
   }
 

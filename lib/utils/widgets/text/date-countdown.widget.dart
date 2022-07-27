@@ -5,6 +5,10 @@ import "package:app/utils/widgets/loader/shimmer-wrapper.widget.dart";
 import "package:flutter/material.dart";
 import "package:get/instance_manager.dart";
 
+class DateCountDownTimezones {
+  static const br = "America/Sao_Paulo";
+}
+
 class DateCountdownWidget extends StatefulWidget {
   final DateTime endsAt;
   final Function()? onOver;
