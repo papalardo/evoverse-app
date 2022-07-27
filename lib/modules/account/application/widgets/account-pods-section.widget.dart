@@ -1,14 +1,14 @@
-import 'package:app/core/app.routes.dart';
-import 'package:app/modules/account/application/account.controller.dart';
-import 'package:app/modules/account/infra/models/pod-count.model.dart';
-import 'package:app/stores/user-pods.store.dart';
-import 'package:app/utils/widgets/main-card-item.widget.dart';
-import 'package:app/utils/widgets/main-card.widget.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:styled_widget/styled_widget.dart';
+import "package:app/core/app.routes.dart";
+import "package:app/modules/account/application/account.controller.dart";
+import "package:app/modules/account/infra/models/pod-count.model.dart";
+import "package:app/stores/user-pods.store.dart";
+import "package:app/utils/widgets/main-card-item.widget.dart";
+import "package:app/utils/widgets/main-card.widget.dart";
+import "package:flutter/material.dart";
+import "package:get/get.dart";
+import "package:styled_widget/styled_widget.dart";
 
-import 'pod-card.widget.dart';
+import "package:app/modules/account/application/widgets/pod-card.widget.dart";
 
 class AccountPodsSection extends GetView<AccountController> {
   const AccountPodsSection({Key? key}) : super(key: key);
@@ -48,10 +48,10 @@ class AccountPodsSection extends GetView<AccountController> {
           shrinkWrap: true,
           primary: false,
           children: [
-            podCard(pods, 'Legendary'),
-            podCard(pods, 'Epic'),
-            podCard(pods, 'Rare'),
-            podCard(pods, 'Common'),
+            podCard(pods, "Legendary"),
+            podCard(pods, "Epic"),
+            podCard(pods, "Rare"),
+            podCard(pods, "Common"),
           ],
         )
       ),

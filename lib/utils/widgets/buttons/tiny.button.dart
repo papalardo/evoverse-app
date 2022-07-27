@@ -1,5 +1,5 @@
-import 'package:app/utils/theme/app.palette.dart';
-import 'package:flutter/material.dart';
+import "package:app/utils/theme/app.palette.dart";
+import "package:flutter/material.dart";
 
 class TinyButton extends ElevatedButton {
   TinyButton({
@@ -17,7 +17,7 @@ class TinyButton extends ElevatedButton {
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         minimumSize: Size.zero,
         elevation: 0,
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5)
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5)
     )
   );
 }

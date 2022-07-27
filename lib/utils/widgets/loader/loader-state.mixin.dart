@@ -1,14 +1,12 @@
-import 'package:get/get_state_manager/src/simple/list_notifier.dart';
-import 'package:get/instance_manager.dart';
+import "package:get/get_state_manager/src/simple/list_notifier.dart";
 
-import 'loader.controller.dart';
 
 mixin LoaderStateMixin implements ListNotifierMixin {
   Map<String, bool> loaders = {
-    'default': false,
+    "default": false,
   };
 
-  Future<T?> wait<T>(Future Function() callable, [String key = 'default']) async {
+  Future<T?> wait<T>(Future Function() callable, [String key = "default"]) async {
     setLoading(true, key);
     try {
       return await callable();
@@ -17,7 +15,7 @@ mixin LoaderStateMixin implements ListNotifierMixin {
     }
   }
 
-  void setLoading(bool newStatus, [String key = 'default']) {
+  void setLoading(bool newStatus, [String key = "default"]) {
     if (newStatus == true) {
       loaders[key] = newStatus;
     } else {
@@ -27,7 +25,7 @@ mixin LoaderStateMixin implements ListNotifierMixin {
     refresh();
   }
 
-  bool isLoading([String key = 'default']) => loaders[key] ?? false;
+  bool isLoading([String key = "default"]) => loaders[key] ?? false;
 
   bool anyLoading() => loaders.values.every((status) => status == true);
 }

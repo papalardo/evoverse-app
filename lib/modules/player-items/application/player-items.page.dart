@@ -1,18 +1,17 @@
-import 'package:app/modules/player-items/infra/models/player-item-pod.model.dart';
-import 'package:app/modules/player-items/infra/models/player-items.model.dart';
-import 'package:app/utils/functions.dart';
-import 'package:app/utils/number.dart';
-import 'package:app/utils/widgets/app-scaffold.widget.dart';
-import 'package:app/utils/widgets/conditional.widget.dart';
-import 'package:app/utils/widgets/dialog/app-dialog.dart';
-import 'package:app/utils/widgets/loader/app-future-builder.widget.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
-import 'package:styled_widget/styled_widget.dart';
+import "package:app/modules/player-items/infra/models/player-item-pod.model.dart";
+import "package:app/modules/player-items/infra/models/player-items.model.dart";
+import "package:app/utils/functions.dart";
+import "package:app/utils/number.dart";
+import "package:app/utils/widgets/app-scaffold.widget.dart";
+import "package:app/utils/widgets/conditional.widget.dart";
+import "package:app/utils/widgets/dialog/app-dialog.dart";
+import "package:app/utils/widgets/loader/app-future-builder.widget.dart";
+import "package:flutter/material.dart";
+import "package:get/get.dart";
+import "package:styled_widget/styled_widget.dart";
 
-import 'player-items.controller.dart';
-import 'widgets/pod-list-tile.widget.dart';
+import "package:app/modules/player-items/application/player-items.controller.dart";
+import "package:app/modules/player-items/application/widgets/pod-list-tile.widget.dart";
 
 class PlayerItemsPage extends StatelessWidget {
   const PlayerItemsPage({Key? key}) : super(key: key);
@@ -41,7 +40,7 @@ class PlayerItemsPage extends StatelessWidget {
                 separatorBuilder: (_, __) => separator,
                 itemBuilder: (_, __) => PodListTile.shimmer(),
               ),
-              error: (error) => Text("Error: ${error}"),
+              error: (error) => Text("Error: $error"),
               done: (PlayerItemsModel items) {
                 return ListView.separated(
                     padding: kPadding,
@@ -88,7 +87,7 @@ class PlayerItemsPage extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min
             ),
             ElevatedButton(
-              child: Text("Put to sale"),
+              child: const Text("Put to sale"),
               onPressed: () async {
                 Navigator.of(_context).pop();
                 await Future.delayed(const Duration(milliseconds: 200));
@@ -104,13 +103,13 @@ class PlayerItemsPage extends StatelessWidget {
                 onTrue: () => () {
                   Navigator.of(_context).pop();
                   controller.globalLoader
-                      .wait(() => controller.boostPod(pod.id), 'scaffold');
+                      .wait(() => controller.boostPod(pod.id), "scaffold");
                 }
               ),
             )
           ].toColumn(
             mainAxisSize: MainAxisSize.min,
-            separator: SizedBox(height: 5)
+            separator: const SizedBox(height: 5)
           )
         );
       });
@@ -142,16 +141,16 @@ class PlayerItemsPage extends StatelessWidget {
                 onChanged: (v) => controller.priceToSale = double.tryParse(v) ?? 0,
               ),
               ElevatedButton(
-                child: Text("Put to sale"),
+                child: const Text("Put to sale"),
                 onPressed: () {
                   Navigator.of(_context).pop();
                   controller.globalLoader
-                      .wait(() => controller.putSale(pod.id, controller.priceToSale), 'scaffold');
+                      .wait(() => controller.putSale(pod.id, controller.priceToSale), "scaffold");
                 },
               )
             ].toColumn(
                 mainAxisSize: MainAxisSize.min,
-                separator: SizedBox(height: 5)
+                separator: const SizedBox(height: 5)
             )
           );
         });

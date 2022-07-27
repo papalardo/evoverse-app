@@ -1,19 +1,17 @@
-import 'package:app/modules/stake/infra/datasources/stake.datasource.dart';
-import 'package:app/modules/stake/infra/models/stake-preview.model.dart';
-import 'package:app/utils/logger.dart';
-import 'package:app/utils/toast/toast.dart';
-import 'package:app/utils/widgets/loader/loader-state.mixin.dart';
-import 'package:app/utils/widgets/loader/loader.controller.dart';
-import 'package:app/utils/widgets/loader/loader.mixin.dart';
-import 'package:dio/dio.dart';
-import 'package:get/get.dart';
-import 'package:get/get_rx/src/rx_workers/utils/debouncer.dart';
+import "package:app/modules/stake/infra/datasources/stake.datasource.dart";
+import "package:app/modules/stake/infra/models/stake-preview.model.dart";
+import "package:app/utils/toast/toast.dart";
+import "package:app/utils/widgets/loader/loader-state.mixin.dart";
+import "package:app/utils/widgets/loader/loader.controller.dart";
+import "package:dio/dio.dart";
+import "package:get/get.dart";
+import "package:get/get_rx/src/rx_workers/utils/debouncer.dart";
 
 class StakeEpwController extends GetxController with LoaderStateMixin {
   final _debounce = Debouncer(delay: const Duration(seconds: 2));
   final _datasource = StakeDatasource();
 
-  var amount = '100';
+  var amount = "100";
 
   var unstakeMode = false;
 
@@ -26,7 +24,7 @@ class StakeEpwController extends GetxController with LoaderStateMixin {
 
   @override
   onInit() {
-    unstakeMode = Get.parameters.containsKey('unstake');
+    unstakeMode = Get.parameters.containsKey("unstake");
 
     fetchPreview();
 

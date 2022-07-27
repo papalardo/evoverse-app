@@ -1,19 +1,17 @@
-import 'package:app/modules/account/application/widgets/user-hash-power-list-tile.widget.dart';
-import 'package:app/modules/mining/application/mining.controller.dart';
-import 'package:app/modules/mining/infra/models/claim-cost.model.dart';
-import 'package:app/modules/mining/infra/models/mining.model.dart';
-import 'package:app/stores/mining.store.dart';
-import 'package:app/utils/functions.dart';
-import 'package:app/utils/number.dart';
-import 'package:app/utils/theme/app.palette.dart';
-import 'package:app/utils/toast/toast.dart';
-import 'package:app/utils/widgets/conditional.widget.dart';
-import 'package:app/utils/widgets/dialog/app-dialog.dart';
-import 'package:app/utils/widgets/main-card-item.widget.dart';
-import 'package:app/utils/widgets/secondary-list-view.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:styled_widget/styled_widget.dart';
+import "package:app/modules/mining/application/mining.controller.dart";
+import "package:app/modules/mining/infra/models/mining.model.dart";
+import "package:app/stores/mining.store.dart";
+import "package:app/utils/functions.dart";
+import "package:app/utils/number.dart";
+import "package:app/utils/theme/app.palette.dart";
+import "package:app/utils/toast/toast.dart";
+import "package:app/utils/widgets/conditional.widget.dart";
+import "package:app/utils/widgets/dialog/app-dialog.dart";
+import "package:app/utils/widgets/main-card-item.widget.dart";
+import "package:app/utils/widgets/secondary-list-view.dart";
+import "package:flutter/material.dart";
+import "package:get/get.dart";
+import "package:styled_widget/styled_widget.dart";
 
 class MiningUserStatsWidget extends GetView<MiningController> {
   final MiningStore miningStore;
@@ -38,7 +36,7 @@ class MiningUserStatsWidget extends GetView<MiningController> {
                 MainCardItemWidget(
                   title: "Available EPW",
                   value: Number.toCurrency(miningData.epwToClaim),
-                  icon: Image.asset('lib/assets/images/rpw_verde.png'),
+                  icon: Image.asset("lib/assets/images/rpw_verde.png"),
                 ),
                 MainCardItemWidget(
                   title: "My Hash Power",

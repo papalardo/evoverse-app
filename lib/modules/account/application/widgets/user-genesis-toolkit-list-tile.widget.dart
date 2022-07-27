@@ -1,9 +1,9 @@
-import 'package:app/modules/account/infra/datasources/account.datasource.dart';
-import 'package:app/modules/account/infra/models/mint-pod.model.dart';
-import 'package:app/utils/functions.dart';
-import 'package:flutter/material.dart';
+import "package:app/modules/account/infra/datasources/account.datasource.dart";
+import "package:app/modules/account/infra/models/mint-pod.model.dart";
+import "package:app/utils/functions.dart";
+import "package:flutter/material.dart";
 
-import 'mintable-list-tile.widget.dart';
+import "package:app/modules/account/application/widgets/mintable-list-tile.widget.dart";
 
 class UserGenesisToolkitListTile extends MintableListTile {
   const UserGenesisToolkitListTile({Key? key}) : super(

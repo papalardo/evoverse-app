@@ -1,5 +1,5 @@
-import 'package:app/services/storage/istorage.service.dart';
-import 'package:get_storage/get_storage.dart';
+import "package:app/services/storage/istorage.service.dart";
+import "package:get_storage/get_storage.dart";
 
 class StorageService implements StorageServiceContract {
   GetStorage box = GetStorage();

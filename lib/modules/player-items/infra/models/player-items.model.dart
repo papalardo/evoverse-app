@@ -1,4 +1,4 @@
-import 'player-item-pod.model.dart';
+import "package:app/modules/player-items/infra/models/player-item-pod.model.dart";
 
 class PlayerItemsModel {
   List<PlayerItemPodModel> pods;
@@ -8,6 +8,6 @@ class PlayerItemsModel {
   });
 
   factory PlayerItemsModel.fromJson(Map json) => PlayerItemsModel(
-    pods: List.from(json['pod_list'].map((e) => PlayerItemPodModel.fromJson(e))),
+    pods: List.from(json["pod_list"].map((e) => PlayerItemPodModel.fromJson(e))),
   );
 }

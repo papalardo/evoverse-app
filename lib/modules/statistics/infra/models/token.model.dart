@@ -14,11 +14,11 @@ class TokenModel {
   });
 
   factory TokenModel.fromJson(Map json) => TokenModel(
-    name: json['name'],
-    symbol: json['symbol'],
-    price: json['price'].toString().substring(0, 6),
-    priceBNB: json['price_BNB'].toString().substring(0, 6),
-    image: json['image'],
+    name: json["name"],
+    symbol: json["symbol"],
+    price: json["price"].toString().substring(0, 6),
+    priceBNB: json["price_BNB"].toString().substring(0, 6),
+    image: json["image"],
   );
 
 }

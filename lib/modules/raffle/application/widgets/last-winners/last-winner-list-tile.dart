@@ -1,10 +1,9 @@
-import 'package:app/modules/raffle/infra/models/raffle-winner.model.dart';
-import 'package:app/utils/functions.dart';
-import 'package:app/utils/theme/app.palette.dart';
-import 'package:app/utils/widgets/loader/shimmer-wrapper.widget.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
-import 'package:styled_widget/styled_widget.dart';
+import "package:app/modules/raffle/infra/models/raffle-winner.model.dart";
+import "package:app/utils/functions.dart";
+import "package:app/utils/widgets/loader/shimmer-wrapper.widget.dart";
+import "package:cached_network_image/cached_network_image.dart";
+import "package:flutter/material.dart";
+import "package:styled_widget/styled_widget.dart";
 
 class LastWinnerListTile extends StatelessWidget {
   final RaffleWinnerModel winner;
@@ -47,7 +46,7 @@ class LastWinnerListTile extends StatelessWidget {
         height: 40,
         imageUrl: "https://evoverse-images.s3.us-west-2.amazonaws.com/pro/${winner.playerId}.jpg",
         httpHeaders: const {
-          'Referer': 'https://farming.evoverse.app/'
+          "Referer": "https://farming.evoverse.app/"
         },
         imageBuilder: (_, provider) => CircleAvatar(
           backgroundImage: provider,

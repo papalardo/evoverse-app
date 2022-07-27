@@ -10,9 +10,9 @@ class PlayerHashPowerModel {
   });
 
   factory PlayerHashPowerModel.fromJson(Map json) => PlayerHashPowerModel(
-    bonus: json['hash_power_bonus'],
-    hpBase: json['player_hash_power_base'],
-    hpTotal: json['player_total_hash_power'],
+    bonus: json["hash_power_bonus"],
+    hpBase: json["player_hash_power_base"],
+    hpTotal: json["player_total_hash_power"],
   );
 
 }

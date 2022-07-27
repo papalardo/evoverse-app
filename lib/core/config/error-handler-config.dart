@@ -1,6 +1,5 @@
-import 'package:app/utils/catcher/custom_console_handler.dart';
-import 'package:catcher/catcher.dart';
-import 'package:flutter/material.dart';
+import "package:app/utils/catcher/custom_console_handler.dart";
+import "package:catcher/catcher.dart";
 
 class ErrorHandlerConfig {
   static CatcherOptions debug() => CatcherOptions(

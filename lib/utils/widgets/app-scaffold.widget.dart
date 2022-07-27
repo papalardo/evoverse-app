@@ -1,12 +1,7 @@
-import 'dart:math';
 
-import 'package:app/core/app.routes.dart';
-import 'package:app/utils/theme/app.palette.dart';
-import 'package:app/utils/widgets/loader/loader-wrapper.widget.dart';
-import 'package:app/utils/widgets/loader/loader.widget.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
+import "package:app/utils/widgets/loader/loader-wrapper.widget.dart";
+import "package:app/utils/widgets/loader/loader.widget.dart";
+import "package:flutter/material.dart";
 
 class AppScaffold extends StatelessWidget {
   final Widget body;
@@ -26,7 +21,7 @@ class AppScaffold extends StatelessWidget {
       appBar: appBar,
       floatingActionButton: floatingActionButton,
       body: LoaderWrapperWidget(
-        id: 'scaffold',
+        id: "scaffold",
         child: body,
         loader: const LoaderWidget(),
       ),

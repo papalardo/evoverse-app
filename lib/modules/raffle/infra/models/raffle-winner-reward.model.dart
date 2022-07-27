@@ -8,7 +8,7 @@ class RaffleWinnerRewardModel {
   });
 
   factory RaffleWinnerRewardModel.fromJson(Map json) => RaffleWinnerRewardModel(
-    amount: json['amount'],
-    name: json['reward_name'],
+    amount: json["amount"],
+    name: json["reward_name"],
   );
 }

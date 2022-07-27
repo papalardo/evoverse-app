@@ -12,9 +12,9 @@ class ClaimCostModel {
   });
 
   static fromJson(Map json) => ClaimCostModel(
-    bestClaimTimeRemaining: json['best_claim_time_remaining'],
-    claimCost: json['claim_cost'],
-    claimPercent: json['claim_percent'],
-    daysRemaining: json['days_remaining'],
+    bestClaimTimeRemaining: json["best_claim_time_remaining"],
+    claimCost: json["claim_cost"],
+    claimPercent: json["claim_percent"],
+    daysRemaining: json["days_remaining"],
   );
 }

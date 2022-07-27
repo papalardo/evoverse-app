@@ -1,5 +1,5 @@
-import 'package:app/utils/widgets/main-card-item.widget.dart';
-import 'package:flutter/material.dart';
+import "package:app/utils/widgets/main-card-item.widget.dart";
+import "package:flutter/material.dart";
 
 class PodCardWidget extends StatelessWidget {
   final String rarity;

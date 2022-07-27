@@ -1,9 +1,9 @@
-import 'package:app/modules/ethereum/infra/models/ethereum-transfer.model.dart';
-import 'package:app/utils/widgets/loader/loader.widget.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import "package:app/modules/ethereum/infra/models/ethereum-transfer.model.dart";
+import "package:app/utils/widgets/loader/loader.widget.dart";
+import "package:flutter/material.dart";
+import "package:get/get.dart";
 
-import 'store/user-donates.store.dart';
+import "package:app/modules/donate/application/store/user-donates.store.dart";
 
 class DonatesPage extends StatelessWidget {
   const DonatesPage({Key? key}) : super(key: key);
@@ -15,10 +15,10 @@ class DonatesPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("My donates"),
+        title: const Text("My donates"),
       ),
       body: userDonatesStore.when(
-          busy: () => Center(
+          busy: () => const Center(
             child: LoaderWidget(),
           ),
           done: (List<EthereumTransferModel> donates) => ListView.builder(

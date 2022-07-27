@@ -1,7 +1,7 @@
-import 'package:app/modules/statistics/infra/datasources/statistics.datasource.dart';
-import 'package:app/modules/statistics/infra/models/token.model.dart';
-import 'package:app/utils/widgets/loader/loader-state.mixin.dart';
-import 'package:get/get.dart';
+import "package:app/modules/statistics/infra/datasources/statistics.datasource.dart";
+import "package:app/modules/statistics/infra/models/token.model.dart";
+import "package:app/utils/widgets/loader/loader-state.mixin.dart";
+import "package:get/get.dart";
 
 class StatisticsController extends GetxController with LoaderStateMixin {
   TokenModel? epw;

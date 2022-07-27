@@ -1,8 +1,8 @@
-import 'package:app/utils/theme/app.palette.dart';
-import 'package:app/utils/widgets/conditional.widget.dart';
-import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
-import 'package:styled_widget/styled_widget.dart';
+import "package:app/utils/theme/app.palette.dart";
+import "package:app/utils/widgets/conditional.widget.dart";
+import "package:flutter/material.dart";
+import "package:shimmer/shimmer.dart";
+import "package:styled_widget/styled_widget.dart";
 
 class MainCardItemWidget extends StatelessWidget {
   final String? title;

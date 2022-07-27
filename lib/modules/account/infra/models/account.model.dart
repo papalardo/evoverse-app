@@ -28,17 +28,17 @@ class AccountModel {
   });
 
   static fromJson(Map json) => AccountModel(
-    walletAddress: json['WalletAddress'],
-    epw: json['EPW'],
-    epwToClaim: json['EPWToClaim'],
-    ekeyToClaim: json['EKEYToClaim'],
-    evs: json['EVS'],
-    evsToClaim: json['EVSToClaim'],
-    epwLastClaimDate: json['EPWLastClaimDate'],
-    evsLasClaimDate: json['EVSLastClaimDate'],
-    nonce: json['Nonce'],
-    lastEnergizeAll: json['LastEnergizeAll'],
-    busdApprove: json['BUSDApprove'],
-    epwStaked: json['StakeEPW'],
+    walletAddress: json["WalletAddress"],
+    epw: json["EPW"],
+    epwToClaim: json["EPWToClaim"],
+    ekeyToClaim: json["EKEYToClaim"],
+    evs: json["EVS"],
+    evsToClaim: json["EVSToClaim"],
+    epwLastClaimDate: json["EPWLastClaimDate"],
+    evsLasClaimDate: json["EVSLastClaimDate"],
+    nonce: json["Nonce"],
+    lastEnergizeAll: json["LastEnergizeAll"],
+    busdApprove: json["BUSDApprove"],
+    epwStaked: json["StakeEPW"],
   );
 }

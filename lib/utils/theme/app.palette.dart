@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
 class AppPalette {
   static const PRIMARY = Color(0xFF325071);
@@ -23,10 +23,10 @@ class AppPalette {
 
   static Color byRarity(String rarity) {
     switch(rarity.toLowerCase()) {
-      case 'legendary': return legendary;
-      case 'epic': return epic;
-      case 'rare': return rare;
-      case 'common':
+      case "legendary": return legendary;
+      case "epic": return epic;
+      case "rare": return rare;
+      case "common":
       default:
         return common;
     }

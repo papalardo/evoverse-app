@@ -1,4 +1,4 @@
-import 'package:app/utils/string.utils.dart';
+import "package:app/utils/string.utils.dart";
 
 class EthereumTransferModel {
   DateTime when;
@@ -10,7 +10,7 @@ class EthereumTransferModel {
   });
 
   factory EthereumTransferModel.fromJson(Map json) => EthereumTransferModel(
-    when: DateTime.fromMillisecondsSinceEpoch(int.parse(json['timeStamp']) * 1000),
-    amount: StringUtils.hexToAmount(json['data'])
+    when: DateTime.fromMillisecondsSinceEpoch(int.parse(json["timeStamp"]) * 1000),
+    amount: StringUtils.hexToAmount(json["data"])
   );
 }

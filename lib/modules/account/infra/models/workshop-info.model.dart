@@ -20,14 +20,14 @@ class WorkshopInfoModel {
   });
 
   factory WorkshopInfoModel.fromJson(Map json) => WorkshopInfoModel(
-    hexToolkitsTotal: json['BlendToolkits'],
-    commonToolkitsTotal: json['Toolkits'],
-    genesisToolkitsTotal: json['GenesisToolkits'],
-    eKeysToClaim: json['EKEYToClaim'],
-    epwToClaim: json['EPWToClaim'],
-    eKeys: json['EKEYs'],
-    evs: json['EVS'],
-    epw: json['EPW'],
+    hexToolkitsTotal: json["BlendToolkits"],
+    commonToolkitsTotal: json["Toolkits"],
+    genesisToolkitsTotal: json["GenesisToolkits"],
+    eKeysToClaim: json["EKEYToClaim"],
+    epwToClaim: json["EPWToClaim"],
+    eKeys: json["EKEYs"],
+    evs: json["EVS"],
+    epw: json["EPW"],
   );
 
 }

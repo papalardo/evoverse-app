@@ -1,9 +1,7 @@
-import 'package:app/core/app.routes.dart';
-import 'package:app/services/http/http.service.dart';
-import 'package:app/utils/widgets/errors/maintence.page.dart';
-import 'package:app/utils/widgets/loader/loader.mixin.dart';
-import 'package:dio/dio.dart';
-import 'package:get/get.dart';
+import "package:app/core/app.routes.dart";
+import "package:app/services/http/http.service.dart";
+import "package:app/utils/widgets/loader/loader.mixin.dart";
+import "package:get/get.dart";
 
 class SplashController extends GetxController with LoaderMixin {
   @override
@@ -24,8 +22,8 @@ class SplashController extends GetxController with LoaderMixin {
     // Handled on error interceptor
     try {
       await Get.find<HttpService>()
-          .get('https://farming.evoverse.app');
-    } on FormatException catch(e) {
+          .get("https://farming.evoverse.app");
+    } on FormatException {
       //
     }
 

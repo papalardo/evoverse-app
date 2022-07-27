@@ -6,6 +6,6 @@ class AccessTokenResponse {
   });
 
   factory AccessTokenResponse.fromJson(Map json) => AccessTokenResponse(
-      token: json['token']
+      token: json["token"]
   );
 }

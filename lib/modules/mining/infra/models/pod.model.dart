@@ -20,13 +20,13 @@ class PodModel {
   });
 
   static fromJson(Map json) => PodModel(
-    id: json['NFTId'],
-    stars: json['Stars'],
-    farming: json['Energizing'],
-    upgraded: json['Upgraded'],
-    hashPower: json['HashPower'],
-    totalHashPower: json['CalculatedHashPower'],
-    boosted: json['Boosted'],
-    rarity: json['Rarity']
+    id: json["NFTId"],
+    stars: json["Stars"],
+    farming: json["Energizing"],
+    upgraded: json["Upgraded"],
+    hashPower: json["HashPower"],
+    totalHashPower: json["CalculatedHashPower"],
+    boosted: json["Boosted"],
+    rarity: json["Rarity"]
   );
 }

@@ -1,12 +1,12 @@
-import 'package:app/modules/account/application/account.view.dart';
-import 'package:app/modules/mining/application/mining.view.dart';
-import 'package:app/modules/profile/application/profile.view.dart';
-import 'package:app/modules/stake/application/stake.view.dart';
-import 'package:app/modules/statistics/application/statistics.page.dart';
-import 'package:app/utils/theme/app.palette.dart';
-import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
-import 'package:flutter/material.dart';
-import 'package:lazy_load_indexed_stack/lazy_load_indexed_stack.dart';
+import "package:app/modules/account/application/account.view.dart";
+import "package:app/modules/mining/application/mining.view.dart";
+import "package:app/modules/profile/application/profile.view.dart";
+import "package:app/modules/stake/application/stake.view.dart";
+import "package:app/modules/statistics/application/statistics.page.dart";
+import "package:app/utils/theme/app.palette.dart";
+import "package:flashy_tab_bar2/flashy_tab_bar2.dart";
+import "package:flutter/material.dart";
+import "package:lazy_load_indexed_stack/lazy_load_indexed_stack.dart";
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

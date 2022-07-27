@@ -1,8 +1,8 @@
-import 'package:another_flushbar/flushbar.dart';
-import 'package:app/utils/theme/app.palette.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
+import "package:another_flushbar/flushbar.dart";
+import "package:app/utils/theme/app.palette.dart";
+import "package:flutter/material.dart";
+import "package:flutter/widgets.dart";
+import "package:get/get.dart";
 
 class Toast {
 

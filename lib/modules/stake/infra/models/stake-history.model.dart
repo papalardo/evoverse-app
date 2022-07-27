@@ -14,11 +14,11 @@ class StakeHistoryModel {
   });
 
   factory StakeHistoryModel.json(Map json) => StakeHistoryModel(
-    eKeyReward: json['EKEY'],
-    epwBonusReward: json['EPWBonus'],
-    hashPowerBase: json['HashPowerBase'],
-    hashPowerBonus: json['HashPowerBonus'],
-    stakedAmount: json['StakedAmount'],
+    eKeyReward: json["EKEY"],
+    epwBonusReward: json["EPWBonus"],
+    hashPowerBase: json["HashPowerBase"],
+    hashPowerBonus: json["HashPowerBonus"],
+    stakedAmount: json["StakedAmount"],
   );
 
 }

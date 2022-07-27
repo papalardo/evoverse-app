@@ -1,20 +1,16 @@
-import 'package:app/modules/account/infra/models/account.model.dart';
-import 'package:app/modules/account/infra/models/player-hash-power.model.dart';
-import 'package:app/stores/stake.store.dart';
-import 'package:app/stores/user-accout.store.dart';
-import 'package:app/stores/user-hash-power.store.dart';
-import 'package:app/utils/functions.dart';
-import 'package:app/utils/number.dart';
-import 'package:app/utils/theme/app.palette.dart';
-import 'package:app/utils/widgets/conditional.widget.dart';
-import 'package:app/utils/widgets/main-card-item.widget.dart';
-import 'package:app/utils/widgets/main-card.widget.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:get/get.dart';
-import 'package:styled_widget/styled_widget.dart';
+import "package:app/stores/stake.store.dart";
+import "package:app/stores/user-accout.store.dart";
+import "package:app/stores/user-hash-power.store.dart";
+import "package:app/utils/functions.dart";
+import "package:app/utils/number.dart";
+import "package:app/utils/widgets/conditional.widget.dart";
+import "package:app/utils/widgets/main-card-item.widget.dart";
+import "package:app/utils/widgets/main-card.widget.dart";
+import "package:flutter/material.dart";
+import "package:get/get.dart";
+import "package:styled_widget/styled_widget.dart";
 
-import 'stake-epw.controller.dart';
+import "package:app/modules/stake/application/modules/stake-epw/application/stake-epw.controller.dart";
 
 class StakeEpwView extends StatelessWidget {
   const StakeEpwView({Key? key}) : super(key: key);
@@ -41,7 +37,7 @@ class StakeEpwView extends StatelessWidget {
             TextFormField(
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(
-                label: Text('Amount'),
+                label: Text("Amount"),
                 helperText: "min: 100"
               ),
               onChanged: (v) => controller.setAmount(v),
@@ -79,10 +75,11 @@ class StakeEpwView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start
               ),
             ),
+            const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () async => controller.stake()
                 .then((_) => stakeStore.reload()),
-              child: Text("Confirm")
+              child: const Text("Confirm")
             )
           ],
         ).paddingOnly(left: 10, right: 10, bottom: 10),
@@ -109,17 +106,20 @@ class StakeEpwView extends StatelessWidget {
         done: (userHashPower) => [
           MainCardItemWidget(
               title: "Hash Power Bonus",
-              icon: Icon(Icons.arrow_circle_up_outlined)
+              icon: const Icon(Icons.arrow_circle_up_outlined)
                   .iconColor(Colors.green)
                   .iconSize(30),
               value: "${preview.newHashPowerBonus}%",
-              afterValue: Conditional(controller.unstakeMode,
-                  onTrue: () => Text("- ${userHashPower.bonus - preview.newHashPowerBonus}%")
-                      .fontSize(10)
-                      .textColor(Colors.red),
-                  onFalse: () => Text("+ ${preview.newHashPowerBonus - userHashPower.bonus}%")
-                      .fontSize(10)
-                      .textColor(Colors.green)
+              afterValue: Padding(
+                padding: const EdgeInsets.only(left: 5),
+                child: Conditional(controller.unstakeMode,
+                    onTrue: () => Text("- ${userHashPower.bonus - preview.newHashPowerBonus}%")
+                        .fontSize(10)
+                        .textColor(Colors.red),
+                    onFalse: () => Text("+ ${preview.newHashPowerBonus - userHashPower.bonus}%")
+                        .fontSize(10)
+                        .textColor(Colors.green)
+                ),
               )
           ),
           MainCardItemWidget(
@@ -129,13 +129,16 @@ class StakeEpwView extends StatelessWidget {
                 child: Image.asset(asset("images/fan.png")),
               ),
               value: Number.toCurrency(preview.newTotalHashPower),
-              afterValue: Conditional(controller.unstakeMode,
-                  onTrue: () => Text("- ${Number.toCurrency(userHashPower.hpTotal - preview.newTotalHashPower)}")
-                      .fontSize(10)
-                      .textColor(Colors.red),
-                  onFalse: () => Text("+ ${Number.toCurrency(preview.newTotalHashPower - userHashPower.hpTotal)}")
-                      .fontSize(10)
-                      .textColor(Colors.green)
+              afterValue: Padding(
+                padding: const EdgeInsets.only(left: 5),
+                child: Conditional(controller.unstakeMode,
+                    onTrue: () => Text("- ${Number.toCurrency(userHashPower.hpTotal - preview.newTotalHashPower)}")
+                        .fontSize(10)
+                        .textColor(Colors.red),
+                    onFalse: () => Text("+ ${Number.toCurrency(preview.newTotalHashPower - userHashPower.hpTotal)}")
+                        .fontSize(10)
+                        .textColor(Colors.green)
+                ),
               )
           ),
         ].toColumn(
@@ -148,13 +151,16 @@ class StakeEpwView extends StatelessWidget {
           title: "EKEY Rewards",
           icon: Image.asset(asset("images/e-key.png")),
           value: "${Number.toCurrency(preview.newDailyEkey, 4)} EKEY/day",
-          afterValue: Conditional(controller.unstakeMode,
-              onTrue: () => Text("- ${Number.toCurrency(stake.eKeyDaily - preview.newDailyEkey, 3)}")
-                  .fontSize(10)
-                  .textColor(Colors.red),
-              onFalse: () => Text("+ ${Number.toCurrency(preview.newDailyEkey - stake.eKeyDaily, 3)}")
-                  .fontSize(10)
-                  .textColor(Colors.green)
+          afterValue: Padding(
+            padding: const EdgeInsets.only(left: 5),
+            child: Conditional(controller.unstakeMode,
+                onTrue: () => Text("- ${Number.toCurrency(stake.eKeyDaily - preview.newDailyEkey, 3)}")
+                    .fontSize(10)
+                    .textColor(Colors.red),
+                onFalse: () => Text("+ ${Number.toCurrency(preview.newDailyEkey - stake.eKeyDaily, 3)}")
+                    .fontSize(10)
+                    .textColor(Colors.green)
+            ),
           )
         )
       ),

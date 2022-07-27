@@ -1,11 +1,9 @@
-import 'dart:math';
+import "dart:math";
 
-import 'package:catcher/model/platform_type.dart';
-import 'package:catcher/model/report.dart';
-import 'package:catcher/model/report_handler.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
+import "package:catcher/model/platform_type.dart";
+import "package:catcher/model/report.dart";
+import "package:catcher/model/report_handler.dart";
+import "package:flutter/material.dart";
 
 class CustomConsoleHandler extends ReportHandler {
   final bool enableDeviceParameters;
@@ -29,7 +27,7 @@ class CustomConsoleHandler extends ReportHandler {
     _printLine();
 
     _print("╔ Message");
-    _printChunked(report.error.toString().replaceAll('\n', ' '));
+    _printChunked(report.error.toString().replaceAll("\n", " "));
     _printLine();
 
     if (enableDeviceParameters) {
@@ -72,7 +70,7 @@ class CustomConsoleHandler extends ReportHandler {
     }
   }
 
-  void _printLine({ String pre = '╚', String suf = '╝', int maxWidth = 80 }) =>
+  void _printLine({ String pre = "╚", String suf = "╝", int maxWidth = 80 }) =>
       _print('$pre${'═' * maxWidth}$suf');
 
 

@@ -1,6 +1,6 @@
-import 'package:get/get.dart';
+import "package:get/get.dart";
 
-import 'loader.controller.dart';
+import "package:app/utils/widgets/loader/loader.controller.dart";
 
 class LoaderBindings extends Bindings {
 

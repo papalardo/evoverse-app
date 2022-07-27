@@ -1,28 +1,26 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:app/modules/account/infra/datasources/account.datasource.dart';
-import 'package:app/modules/wallet/infra/datasources/wallet.datasource.dart';
-import 'package:app/services/http/http.service.dart';
-import 'package:app/services/storage/istorage.service.dart';
-import 'package:app/utils/life-cycle-event-handler.dart';
-import 'package:app/utils/toast/toast.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:walletconnect_dart/walletconnect_dart.dart';
+import "package:app/modules/account/infra/datasources/account.datasource.dart";
+import "package:app/modules/wallet/infra/datasources/wallet.datasource.dart";
+import "package:app/services/http/http.service.dart";
+import "package:app/services/storage/istorage.service.dart";
+import "package:app/utils/toast/toast.dart";
+import "package:get/get.dart";
+import "package:url_launcher/url_launcher.dart";
+import "package:walletconnect_dart/walletconnect_dart.dart";
 
 class WalletController extends GetxController {
   final httpClient = Get.find<HttpService>();
   final storageClient = Get.find<StorageServiceContract>();
 
   final connector = WalletConnect(
-    bridge: 'https://bridge.walletconnect.org',
+    bridge: "https://bridge.walletconnect.org",
     clientMeta: const PeerMeta(
-      name: 'EvoVerse',
+      name: "EvoVerse",
       // description: 'WalletConnect Developer App',
-      url: 'https://farming.evoverse.app',
+      url: "https://farming.evoverse.app",
       icons: [
-        'https://farming.evoverse.app/assets/img/Gameart-Animus_rbx_32px.png'
+        "https://farming.evoverse.app/assets/img/Gameart-Animus_rbx_32px.png"
       ],
     ),
   );
@@ -33,11 +31,11 @@ class WalletController extends GetxController {
 
   @override
   onInit() {
-    connector.on('connect', (session) => print("session ==> $session"));
-    connector.on('session_update', (WCSessionUpdateResponse payload) {
+    connector.on("connect", (session) => print("session ==> $session"));
+    connector.on("session_update", (WCSessionUpdateResponse payload) {
       signMessage(payload.chainId, payload.accounts[0]);
     });
-    connector.on('disconnect', (session) => print("session ==> $session"));
+    connector.on("disconnect", (session) => print("session ==> $session"));
 
     super.onInit();
   }
@@ -67,7 +65,7 @@ class WalletController extends GetxController {
     var messageToSign = createSignMessage(nonce.toString());
 
     var signingRequest = connector.sendCustomRequest(
-        method: 'personal_sign',
+        method: "personal_sign",
         params: [walletAddress, messageToSign]
     );
 
@@ -95,7 +93,7 @@ class WalletController extends GetxController {
         walletAddress ?? connector.session.accounts[0],
     );
 
-    await storageClient.put('accessToken', accessToken.token);
+    await storageClient.put("accessToken", accessToken.token);
   }
 
 }

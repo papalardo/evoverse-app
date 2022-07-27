@@ -1,11 +1,8 @@
-import 'dart:convert';
 
-import 'package:app/core/app.routes.dart';
-import 'package:app/utils/toast/toast.dart';
-import 'package:app/utils/widgets/errors/maintence.page.dart';
-import 'package:deep_pick/deep_pick.dart';
-import 'package:dio/dio.dart';
-import 'package:get/get.dart' as Getx;
+import "package:app/core/app.routes.dart";
+import "package:app/utils/widgets/errors/maintence.page.dart";
+import "package:dio/dio.dart";
+import "package:get/get.dart" as Getx;
 
 class ErrorsHandlerInterceptor extends Interceptor {
 
@@ -38,22 +35,22 @@ class ErrorsHandlerInterceptor extends Interceptor {
   }
 
   verifyIfErrorOnRequest(Response response) {
-    var message = '';
-    var type = 'success';
+    var message = "";
+    var type = "success";
 
     try {
-      message = response.data['message'];
+      message = response.data["message"];
     } catch (e) {
       //
     }
 
     try {
-      type = response.data['type'];
+      type = response.data["type"];
     } catch (e) {
       //
     }
 
-    if (message.contains('Session is invalid')) {
+    if (message.contains("Session is invalid")) {
       if (Getx.Get.currentRoute != AppRoutes.AUTH) {
         Getx.Get.offAllNamed(AppRoutes.AUTH);
       }
@@ -61,7 +58,7 @@ class ErrorsHandlerInterceptor extends Interceptor {
       throw message;
     }
 
-    if (type == 'error') {
+    if (type == "error") {
       throw message;
     }
   }

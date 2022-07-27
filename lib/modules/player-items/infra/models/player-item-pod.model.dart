@@ -24,16 +24,16 @@ class PlayerItemPodModel {
   });
 
   factory PlayerItemPodModel.fromJson(Map json) => PlayerItemPodModel(
-    id: json['NFTId'],
-    rarity: json['Rarity'],
-    stars: json['Stars'],
-    hashPower: json['HashPower'],
-    hashPowerTotal: json['CalculatedHashPower'],
-    boosted: json['Boosted'],
-    boostEnds: json['BoostTimer'] ?? 0,
-    mining: json['Energizing'] ?? false,
-    onSale: json['OnSale'] ?? false,
-    onSalePending: json['SalePending'] ?? false,
+    id: json["NFTId"],
+    rarity: json["Rarity"],
+    stars: json["Stars"],
+    hashPower: json["HashPower"],
+    hashPowerTotal: json["CalculatedHashPower"],
+    boosted: json["Boosted"],
+    boostEnds: json["BoostTimer"] ?? 0,
+    mining: json["Energizing"] ?? false,
+    onSale: json["OnSale"] ?? false,
+    onSalePending: json["SalePending"] ?? false,
   );
 
   bool canBoost() => [

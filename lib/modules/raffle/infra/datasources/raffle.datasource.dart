@@ -1,15 +1,15 @@
-import 'package:app/core/base/base.datasource.dart';
-import 'package:app/modules/raffle/infra/models/raffle-data.model.dart';
+import "package:app/core/base/base.datasource.dart";
+import "package:app/modules/raffle/infra/models/raffle-data.model.dart";
 
 class RaffleDatasource extends BaseDatasource {
   Future<RaffleDataModel> fetchData() async {
-    var response = await httpClient.post('GetRaffleData');
+    var response = await httpClient.post("GetRaffleData");
 
-    return RaffleDataModel.fromJson(response.json!['data']);
+    return RaffleDataModel.fromJson(response.json!["data"]);
   }
 
-  Future<void> buyTickets(int amount) => httpClient.post('BuyRaffleTicket', {
-    'amount': amount
+  Future<void> buyTickets(int amount) => httpClient.post("BuyRaffleTicket", {
+    "amount": amount
   });
 
 }

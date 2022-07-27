@@ -1,9 +1,8 @@
-import 'dart:math';
-import 'package:app/utils/functions.dart';
-import 'package:app/utils/theme/app.palette.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:styled_widget/styled_widget.dart';
+import "dart:math";
+import "package:app/utils/theme/app.palette.dart";
+import "package:flutter/material.dart";
+import "package:get/get.dart";
+import "package:styled_widget/styled_widget.dart";
 
 class AppDialog extends StatelessWidget {
   final Widget child;

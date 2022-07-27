@@ -1,12 +1,11 @@
-import 'package:app/app.dart';
-import 'package:app/utils/theme/app.palette.dart';
-import 'package:flutter/material.dart';
+import "package:app/utils/theme/app.palette.dart";
+import "package:flutter/material.dart";
 
 class AppThemeData {
   static themeData() => ThemeData(
       brightness: Brightness.dark,
       primaryColor: AppPalette.PRIMARY,
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         backgroundColor: AppPalette.primary600,
         centerTitle: true,
         titleTextStyle: TextStyle(
@@ -15,13 +14,13 @@ class AppThemeData {
           letterSpacing: 3,
         ),
       ),
-      listTileTheme: ListTileThemeData(
+      listTileTheme: const ListTileThemeData(
         selectedColor: Colors.white,
         tileColor: AppPalette.primary600,
         selectedTileColor: Colors.red,
       ),
       scaffoldBackgroundColor: AppPalette.primary800,
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: AppPalette.gray500,
         elevation: 10,
         selectedItemColor: Colors.white,
@@ -30,23 +29,23 @@ class AppThemeData {
         unselectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
         unselectedIconTheme: IconThemeData(size: 20)
       ),
-      progressIndicatorTheme: ProgressIndicatorThemeData(
+      progressIndicatorTheme: const ProgressIndicatorThemeData(
           color: Color(0xFF325071),
           linearTrackColor: Color(0xFFe9ecef)
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            primary: Color(0xFF325071),
+            primary: const Color(0xFF325071),
           )
       ),
       inputDecorationTheme: InputDecorationTheme(
         fillColor: AppPalette.PRIMARY,
         filled: true,
-        labelStyle: TextStyle(
+        labelStyle: const TextStyle(
           color: Colors.white
         ),
         focusColor: Colors.white,
-        hintStyle: TextStyle(
+        hintStyle: const TextStyle(
           color: Colors.white
         ),
         enabledBorder: OutlineInputBorder(
@@ -58,7 +57,7 @@ class AppThemeData {
           borderRadius: BorderRadius.circular(15),
         )
       ),
-      textTheme: TextTheme(
+      textTheme: const TextTheme(
         bodyText1: TextStyle(),
         bodyText2: TextStyle(
             color: Colors.white

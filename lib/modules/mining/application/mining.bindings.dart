@@ -1,6 +1,6 @@
-import 'package:get/get.dart';
+import "package:get/get.dart";
 
-import 'mining.controller.dart';
+import "package:app/modules/mining/application/mining.controller.dart";
 
 class MiningBindings extends Bindings {
   @override

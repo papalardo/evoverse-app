@@ -20,13 +20,13 @@ class MiningHistoryModel {
   });
 
   static fromJson(Map json) => MiningHistoryModel(
-    date: json['Date'],
-    epwToClaim: json['EPWToClaim'],
-    id: json['Id'],
-    podAmount: json['PodAmount'],
-    processed: json['Processed'],
-    totalHashPower: json['TotalHashPower'],
-    walletAddress: json['WalletAddress'],
-    walletId: json['WalletId'],
+    date: json["Date"],
+    epwToClaim: json["EPWToClaim"],
+    id: json["Id"],
+    podAmount: json["PodAmount"],
+    processed: json["Processed"],
+    totalHashPower: json["TotalHashPower"],
+    walletAddress: json["WalletAddress"],
+    walletId: json["WalletId"],
   );
 }

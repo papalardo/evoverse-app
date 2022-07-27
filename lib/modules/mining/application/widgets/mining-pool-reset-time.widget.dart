@@ -1,11 +1,10 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:app/modules/mining/application/mining.controller.dart';
-import 'package:app/services/http/http.service.dart';
-import 'package:app/stores/mining.store.dart';
-import 'package:app/utils/extensions/datetime.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import "package:app/services/http/http.service.dart";
+import "package:app/stores/mining.store.dart";
+import "package:app/utils/extensions/datetime.dart";
+import "package:flutter/material.dart";
+import "package:get/get.dart";
 
 class MiningPoolResetTimeWidget extends StatefulWidget {
   final MiningStore miningStore;
@@ -34,9 +33,9 @@ class _MiningPoolResetTimeWidgetState extends State<MiningPoolResetTimeWidget> {
 
   Future<void> fetchTimeFromServer() async {
     var httpClient = Get.find<HttpService>();
-    var response = await httpClient.get('https://worldtimeapi.org/api/timezone/Etc/GMT');
+    var response = await httpClient.get("https://worldtimeapi.org/api/timezone/Etc/GMT");
 
-    now = DateTime.parse(response.json!['datetime'].substring(0, 19));
+    now = DateTime.parse(response.json!["datetime"].substring(0, 19));
   }
 
   initTime() {
@@ -56,7 +55,7 @@ class _MiningPoolResetTimeWidgetState extends State<MiningPoolResetTimeWidget> {
         widget.miningStore.reload();
       }
 
-      setState(() => time = diff.toString().split('.').first.padLeft(8, '0'));
+      setState(() => time = diff.toString().split(".").first.padLeft(8, "0"));
     });
   }
 

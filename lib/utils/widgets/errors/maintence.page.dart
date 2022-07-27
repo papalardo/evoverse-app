@@ -1,7 +1,6 @@
-import 'package:app/core/app.routes.dart';
-import 'package:app/utils/theme/app.palette.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import "package:app/core/app.routes.dart";
+import "package:flutter/material.dart";
+import "package:get/get.dart";
 
 class MaintenancePage extends StatelessWidget {
   const MaintenancePage({Key? key}) : super(key: key);

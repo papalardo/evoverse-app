@@ -8,8 +8,8 @@ class PodCount {
   });
 
   factory PodCount.fromJson(Map json) => PodCount(
-    rarity: json['rarity'],
-    qty: json['count'],
+    rarity: json["rarity"],
+    qty: json["count"],
   );
 
 }

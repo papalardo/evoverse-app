@@ -1,15 +1,15 @@
-import 'package:app/modules/statistics/infra/models/token.model.dart';
-import 'package:app/stores/stake.store.dart';
-import 'package:app/stores/user-accout.store.dart';
-import 'package:app/utils/functions.dart';
-import 'package:app/utils/number.dart';
-import 'package:app/utils/widgets/conditional.widget.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:styled_widget/styled_widget.dart';
+import "package:app/modules/statistics/infra/models/token.model.dart";
+import "package:app/stores/stake.store.dart";
+import "package:app/stores/user-accout.store.dart";
+import "package:app/utils/functions.dart";
+import "package:app/utils/number.dart";
+import "package:app/utils/widgets/conditional.widget.dart";
+import "package:flutter/material.dart";
+import "package:get/get.dart";
+import "package:styled_widget/styled_widget.dart";
 
-import 'statistics.controller.dart';
-import 'widgets/statistic-card.widget.dart';
+import "package:app/modules/statistics/application/statistics.controller.dart";
+import "package:app/modules/statistics/application/widgets/statistic-card.widget.dart";
 
 class StatisticsPage extends GetView<StatisticsController> {
   const StatisticsPage({Key? key}) : super(key: key);

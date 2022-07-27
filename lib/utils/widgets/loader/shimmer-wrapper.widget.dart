@@ -1,6 +1,6 @@
-import 'package:app/utils/theme/app.palette.dart';
-import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
+import "package:app/utils/theme/app.palette.dart";
+import "package:flutter/material.dart";
+import "package:shimmer/shimmer.dart";
 
 class ShimmerWrapper extends StatelessWidget {
   final Widget child;

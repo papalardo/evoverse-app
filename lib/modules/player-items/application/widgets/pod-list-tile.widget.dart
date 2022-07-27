@@ -1,12 +1,12 @@
-import 'package:app/modules/player-items/infra/models/player-item-pod.model.dart';
-import 'package:app/utils/functions.dart';
-import 'package:app/utils/number.dart';
-import 'package:app/utils/theme/app.palette.dart';
-import 'package:app/utils/widgets/loader/shimmer-wrapper.widget.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
-import 'package:styled_widget/styled_widget.dart';
+import "package:app/modules/player-items/infra/models/player-item-pod.model.dart";
+import "package:app/utils/functions.dart";
+import "package:app/utils/number.dart";
+import "package:app/utils/theme/app.palette.dart";
+import "package:app/utils/widgets/loader/shimmer-wrapper.widget.dart";
+import "package:flutter/material.dart";
+import "package:flutter_svg/svg.dart";
+import "package:get/get.dart";
+import "package:styled_widget/styled_widget.dart";
 
 class PodListTile extends StatelessWidget {
   final PlayerItemPodModel pod;

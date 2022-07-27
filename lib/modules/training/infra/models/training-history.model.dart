@@ -10,9 +10,9 @@ class TrainingHistoryModel {
   });
 
   factory TrainingHistoryModel.fromJson(Map json) => TrainingHistoryModel(
-      evo: json['evo'],
-      bidAmount: json['recharge_amount'],
-      rewardAmount: json['reward_amount'],
+      evo: json["evo"],
+      bidAmount: json["recharge_amount"],
+      rewardAmount: json["reward_amount"],
   );
 
 }

@@ -1,9 +1,9 @@
-import 'package:app/stores/user-accout.store.dart';
-import 'package:app/utils/functions.dart';
-import 'package:app/utils/number.dart';
-import 'package:app/utils/widgets/main-card-item.widget.dart';
-import 'package:flutter/material.dart';
-import 'package:get/instance_manager.dart';
+import "package:app/stores/user-accout.store.dart";
+import "package:app/utils/functions.dart";
+import "package:app/utils/number.dart";
+import "package:app/utils/widgets/main-card-item.widget.dart";
+import "package:flutter/material.dart";
+import "package:get/instance_manager.dart";
 
 class UserEvsAmountListTile extends StatelessWidget {
   const UserEvsAmountListTile({Key? key}) : super(key: key);

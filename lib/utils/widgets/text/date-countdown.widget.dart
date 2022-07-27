@@ -1,9 +1,9 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:app/services/http/http.service.dart';
-import 'package:app/utils/widgets/loader/shimmer-wrapper.widget.dart';
-import 'package:flutter/material.dart';
-import 'package:get/instance_manager.dart';
+import "package:app/services/http/http.service.dart";
+import "package:app/utils/widgets/loader/shimmer-wrapper.widget.dart";
+import "package:flutter/material.dart";
+import "package:get/instance_manager.dart";
 
 class DateCountdownWidget extends StatefulWidget {
   final DateTime endsAt;
@@ -16,7 +16,7 @@ class DateCountdownWidget extends StatefulWidget {
     required this.endsAt,
     this.onOver,
     this.style,
-    this.timezone = 'Etc/GMT',
+    this.timezone = "Etc/GMT",
   }) : super(key: key);
 
   @override
@@ -39,9 +39,9 @@ class _DateCountdownWidgetState extends State<DateCountdownWidget> {
   Future<void> fetchTimeFromServer() async {
     var httpClient = Get.find<HttpService>();
     var response = await httpClient
-        .get('https://worldtimeapi.org/api/timezone/${widget.timezone}');
+        .get("https://worldtimeapi.org/api/timezone/${widget.timezone}");
 
-    now = DateTime.parse(response.json!['datetime'].substring(0, 19));
+    now = DateTime.parse(response.json!["datetime"].substring(0, 19));
   }
 
   initTime() {
@@ -59,7 +59,7 @@ class _DateCountdownWidgetState extends State<DateCountdownWidget> {
         return;
       }
 
-      setState(() => time = diff.toString().split('.').first.padLeft(8, '0'));
+      setState(() => time = diff.toString().split(".").first.padLeft(8, "0"));
     });
   }
 

@@ -1,10 +1,10 @@
-import 'package:app/exceptions/http-exception.dart';
-import 'package:app/modules/player-items/infra/datasource/player-items.datasource.dart';
-import 'package:app/modules/player-items/infra/models/player-items.model.dart';
-import 'package:app/utils/toast/toast.dart';
-import 'package:app/utils/widgets/loader/loader-state.mixin.dart';
-import 'package:app/utils/widgets/loader/loader.controller.dart';
-import 'package:get/get.dart';
+import "package:app/exceptions/http-exception.dart";
+import "package:app/modules/player-items/infra/datasource/player-items.datasource.dart";
+import "package:app/modules/player-items/infra/models/player-items.model.dart";
+import "package:app/utils/toast/toast.dart";
+import "package:app/utils/widgets/loader/loader-state.mixin.dart";
+import "package:app/utils/widgets/loader/loader.controller.dart";
+import "package:get/get.dart";
 
 class PlayerItemsController extends GetxController with LoaderStateMixin {
   final _datasource = PlayerItemsDatasource();

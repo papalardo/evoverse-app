@@ -1,12 +1,12 @@
-import 'package:app/stores/user-hash-power.store.dart';
-import 'package:app/utils/functions.dart';
-import 'package:app/utils/number.dart';
-import 'package:app/utils/theme/app.palette.dart';
-import 'package:app/utils/widgets/conditional.widget.dart';
-import 'package:app/utils/widgets/main-card-item.widget.dart';
-import 'package:flutter/material.dart';
-import 'package:get/instance_manager.dart';
-import 'package:styled_widget/styled_widget.dart';
+import "package:app/stores/user-hash-power.store.dart";
+import "package:app/utils/functions.dart";
+import "package:app/utils/number.dart";
+import "package:app/utils/theme/app.palette.dart";
+import "package:app/utils/widgets/conditional.widget.dart";
+import "package:app/utils/widgets/main-card-item.widget.dart";
+import "package:flutter/material.dart";
+import "package:get/instance_manager.dart";
+import "package:styled_widget/styled_widget.dart";
 
 class UserHashPowerListTile extends StatelessWidget {
   const UserHashPowerListTile({Key? key}) : super(key: key);

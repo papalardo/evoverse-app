@@ -1,7 +1,7 @@
-import 'package:app/core/app.bindings.dart';
-import 'package:app/core/config/error-handler-config.dart';
-import 'package:catcher/catcher.dart';
-import 'package:flutter/material.dart';
+import "package:app/core/app.bindings.dart";
+import "package:app/core/config/error-handler-config.dart";
+import "package:catcher/catcher.dart";
+import "package:flutter/material.dart";
 
 class Bootstrap {
   _boot() async {

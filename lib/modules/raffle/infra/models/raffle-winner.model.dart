@@ -1,4 +1,4 @@
-import 'raffle-winner-reward.model.dart';
+import "package:app/modules/raffle/infra/models/raffle-winner-reward.model.dart";
 
 class RaffleWinnerModel {
   int position;
@@ -14,9 +14,9 @@ class RaffleWinnerModel {
   });
 
   factory RaffleWinnerModel.fromJson(Map json) => RaffleWinnerModel(
-    position: json['raffle_position'],
-    playerId: json['id'],
-    playerName: json['display_name'],
-    rewards: List.from(json['rewards'].map((e) => RaffleWinnerRewardModel.fromJson(e))),
+    position: json["raffle_position"],
+    playerId: json["id"],
+    playerName: json["display_name"],
+    rewards: List.from(json["rewards"].map((e) => RaffleWinnerRewardModel.fromJson(e))),
   );
 }

@@ -1,7 +1,6 @@
-import 'package:app/utils/logger.dart';
-import 'package:get/get.dart';
+import "package:get/get.dart";
 
-import 'config.model.dart';
+import "package:app/modules/config/infra/models/config.model.dart";
 
 class ConfigListModel {
   List<ConfigModel> configs = [];

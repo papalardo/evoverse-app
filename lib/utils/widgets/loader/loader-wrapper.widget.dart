@@ -1,7 +1,7 @@
-import 'package:app/utils/theme/app.palette.dart';
-import 'package:app/utils/widgets/loader/loader.controller.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import "package:app/utils/theme/app.palette.dart";
+import "package:app/utils/widgets/loader/loader.controller.dart";
+import "package:flutter/material.dart";
+import "package:get/get.dart";
 
 
 class LoaderWrapperWidget extends StatelessWidget {

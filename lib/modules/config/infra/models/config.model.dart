@@ -10,8 +10,8 @@ class ConfigModel {
   });
 
   factory ConfigModel.fromJson(Map json) => ConfigModel(
-    id: json['id'],
-    field: json['field'],
-    value: json['value'],
+    id: json["id"],
+    field: json["field"],
+    value: json["value"],
   );
 }

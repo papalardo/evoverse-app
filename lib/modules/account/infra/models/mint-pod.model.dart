@@ -12,10 +12,10 @@ class MintPodModel {
   });
 
   factory MintPodModel.fromJson(Map json) => MintPodModel(
-    podId: json['NFTId'],
-    rarity: json['Rarity'],
-    hashPower: json['HashPower'],
-    isGenesis: json['Genesis'],
+    podId: json["NFTId"],
+    rarity: json["Rarity"],
+    hashPower: json["HashPower"],
+    isGenesis: json["Genesis"],
   );
 
 }

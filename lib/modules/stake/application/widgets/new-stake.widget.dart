@@ -1,8 +1,8 @@
-import 'package:app/core/app.routes.dart';
-import 'package:app/utils/functions.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
+import "package:app/core/app.routes.dart";
+import "package:app/utils/functions.dart";
+import "package:flutter/material.dart";
+import "package:flutter_svg/flutter_svg.dart";
+import "package:get/get.dart";
 
 class NewStakeWidget extends StatelessWidget {
   const NewStakeWidget({Key? key}) : super(key: key);
@@ -44,7 +44,7 @@ class NewStakeWidget extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         ElevatedButton(
-          child: Text("Stake EPW"),
+          child: const Text("Stake EPW"),
           onPressed: () => Get.toNamed(AppRoutes.STAKE_EPW),
         ),
         const SizedBox(height: 10),

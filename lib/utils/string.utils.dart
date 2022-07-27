@@ -1,4 +1,4 @@
-import 'dart:math';
+import "dart:math";
 
 class StringUtils {
   static String padLeft(String text, int width, String padding, [int offset = 0]) {

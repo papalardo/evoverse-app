@@ -1,18 +1,16 @@
-import 'dart:convert';
-import 'dart:io';
+import "dart:convert";
 
-import 'package:app/exceptions/http-exception.dart';
-import 'package:app/main.dart';
-import 'package:app/services/http/interceptors/authorization.interceptor.dart';
-import 'package:app/services/http/interceptors/errors-handler.interceptor.dart';
-import 'package:app/services/storage/istorage.service.dart';
-import 'package:deep_pick/deep_pick.dart';
-import 'package:dio/dio.dart';
-import 'package:get/get.dart' as Getx;
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import "package:app/exceptions/http-exception.dart";
+import "package:app/services/http/interceptors/authorization.interceptor.dart";
+import "package:app/services/http/interceptors/errors-handler.interceptor.dart";
+import "package:app/services/storage/istorage.service.dart";
+import "package:deep_pick/deep_pick.dart";
+import "package:dio/dio.dart";
+import "package:get/get.dart" as Getx;
+import "package:pretty_dio_logger/pretty_dio_logger.dart";
 
-import 'http-response.dart';
-import 'interceptors/app-formatter.interceptor.dart';
+import "package:app/services/http/http-response.dart";
+import "package:app/services/http/interceptors/app-formatter.interceptor.dart";
 
 class HttpService {
   var client = Dio();
@@ -20,7 +18,7 @@ class HttpService {
   var storage = Getx.Get.find<StorageServiceContract>();
 
   boot() async {
-    client.options.baseUrl = 'https://api.evoverse.app/';
+    client.options.baseUrl = "https://api.evoverse.app/";
 
     client.interceptors.addAll([
       AppFormatterInterceptor(),
@@ -68,13 +66,13 @@ class HttpService {
   int? _handleStatusCode(Response<dynamic> response) {
     var json = _handleBody(response.data);
 
-    var responseType = pick(response.data, 'type').asStringOrNull() ?? 'success';
+    var responseType = pick(response.data, "type").asStringOrNull() ?? "success";
 
-    if (responseType == 'error' || responseType == 'crash') {
-      return pick(response.data, 'statusCode').asIntOrNull() ?? 400;
+    if (responseType == "error" || responseType == "crash") {
+      return pick(response.data, "statusCode").asIntOrNull() ?? 400;
     }
 
-    return json?['statusCode']
+    return json?["statusCode"]
         ?? response.statusCode
         ?? 200;
   }
@@ -84,12 +82,12 @@ class HttpService {
       return null;
     }
 
-    if (body is Map && body.containsKey('body')) {
-      if (body['body'] is Map) {
-        return body['body'];
+    if (body is Map && body.containsKey("body")) {
+      if (body["body"] is Map) {
+        return body["body"];
       }
 
-      return jsonDecode(body['body']);
+      return jsonDecode(body["body"]);
     }
 
     return body;

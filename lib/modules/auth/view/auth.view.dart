@@ -1,11 +1,10 @@
-import 'package:app/utils/app-platform.dart';
-import 'package:app/utils/theme/app.palette.dart';
-import 'package:app/utils/toast/toast.dart';
-import 'package:catcher/core/catcher.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import "package:app/utils/app-platform.dart";
+import "package:app/utils/theme/app.palette.dart";
+import "package:app/utils/toast/toast.dart";
+import "package:flutter/material.dart";
+import "package:get/get.dart";
 
-import 'auth.controller.dart';
+import "package:app/modules/auth/view/auth.controller.dart";
 
 class AuthView extends GetView<AuthController> {
   AuthView({Key? key}) : super(key: key);
@@ -22,7 +21,7 @@ class AuthView extends GetView<AuthController> {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Center(
             child: ConstrainedBox(
-              constraints: BoxConstraints(
+              constraints: const BoxConstraints(
                 maxWidth: 500
               ),
               child: Stack(
@@ -79,7 +78,7 @@ class AuthView extends GetView<AuthController> {
                             ElevatedButton(
                               onPressed: () => controller.authFromWallet()
                                 .catchError((e) => Toast.danger(e.toString())),
-                              child: Text("Connect with wallet")
+                              child: const Text("Connect with wallet")
                             )
                           ],
                         ),
@@ -90,7 +89,7 @@ class AuthView extends GetView<AuthController> {
                     top: 0,
                     left: 0,
                     right: 0,
-                    child: Image.asset('lib/assets/images/evo_head.png',
+                    child: Image.asset("lib/assets/images/evo_head.png",
                       width: 150,
                       height: 150,
                     ),

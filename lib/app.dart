@@ -1,12 +1,12 @@
-import 'package:app/core/app.bindings.dart';
-import 'package:app/core/app.module.dart';
-import 'package:app/core/app.routes.dart';
-import 'package:app/utils/theme/app.theme-data.dart';
-import 'package:app/utils/widgets/loader/loader-wrapper.widget.dart';
-import 'package:app/utils/widgets/loader/loader.widget.dart';
-import 'package:catcher/catcher.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import "package:app/core/app.bindings.dart";
+import "package:app/core/app.module.dart";
+import "package:app/core/app.routes.dart";
+import "package:app/utils/theme/app.theme-data.dart";
+import "package:app/utils/widgets/loader/loader-wrapper.widget.dart";
+import "package:app/utils/widgets/loader/loader.widget.dart";
+import "package:catcher/catcher.dart";
+import "package:flutter/material.dart";
+import "package:get/get.dart";
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -35,7 +35,7 @@ class App extends StatelessWidget {
       ],
       onGenerateRoute: (settings) => MaterialPageRoute(
         builder: (_) => LoaderWrapperWidget(
-          id: 'default',
+          id: "default",
           child: widget!,
           loader: const LoaderWidget(),
         ),

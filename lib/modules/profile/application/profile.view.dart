@@ -1,11 +1,11 @@
-import 'package:app/core/app.routes.dart';
-import 'package:app/services/storage/istorage.service.dart';
-import 'package:app/utils/functions.dart';
-import 'package:app/utils/theme/app.palette.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
-import 'package:styled_widget/styled_widget.dart';
+import "package:app/core/app.routes.dart";
+import "package:app/services/storage/istorage.service.dart";
+import "package:app/utils/functions.dart";
+import "package:app/utils/theme/app.palette.dart";
+import "package:flutter/material.dart";
+import "package:flutter_svg/svg.dart";
+import "package:get/get.dart";
+import "package:styled_widget/styled_widget.dart";
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -52,7 +52,7 @@ class ProfilePage extends StatelessWidget {
             icon: const Icon(Icons.logout, size: kIconSize),
             label: "Logout",
             onTap: () async {
-              await Get.find<StorageServiceContract>().delete('accessToken');
+              await Get.find<StorageServiceContract>().delete("accessToken");
               Get.offAllNamed(AppRoutes.AUTH);
             },
           ),

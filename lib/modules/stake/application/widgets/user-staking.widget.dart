@@ -1,13 +1,13 @@
-import 'package:app/core/app.routes.dart';
-import 'package:app/modules/stake/application/stake.controller.dart';
-import 'package:app/modules/stake/infra/models/stake.model.dart';
-import 'package:app/stores/stake.store.dart';
-import 'package:app/utils/functions.dart';
-import 'package:app/utils/number.dart';
-import 'package:app/utils/theme/app.palette.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import "package:app/core/app.routes.dart";
+import "package:app/modules/stake/application/stake.controller.dart";
+import "package:app/modules/stake/infra/models/stake.model.dart";
+import "package:app/stores/stake.store.dart";
+import "package:app/utils/functions.dart";
+import "package:app/utils/number.dart";
+import "package:app/utils/theme/app.palette.dart";
+import "package:flutter/material.dart";
+import "package:get/get.dart";
+import "package:flutter_svg/flutter_svg.dart";
 
 class UserStakingWidget extends StatelessWidget {
   const UserStakingWidget({Key? key}) : super(key: key);
@@ -111,12 +111,12 @@ class UserStakingWidget extends StatelessWidget {
       ),
       const SizedBox(height: 10),
       Hero(
-        tag: 'stakeEpw',
+        tag: "stakeEpw",
         child: ElevatedButton(
-          child: Text("Unstake EPW"),
+          child: const Text("Unstake EPW"),
           onPressed: () {
             Get.toNamed(AppRoutes.STAKE_EPW, parameters: {
-              'unstake': '1',
+              "unstake": "1",
             });
           },
         ),

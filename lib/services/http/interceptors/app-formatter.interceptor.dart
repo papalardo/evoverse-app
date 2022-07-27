@@ -1,6 +1,6 @@
-import 'dart:convert';
+import "dart:convert";
 
-import 'package:dio/dio.dart';
+import "package:dio/dio.dart";
 
 class AppFormatterInterceptor extends Interceptor {
   @override
@@ -8,7 +8,7 @@ class AppFormatterInterceptor extends Interceptor {
     var body = response.data;
 
     try {
-      response.data = jsonDecode(body['body']);
+      response.data = jsonDecode(body["body"]);
     } catch(e) {
       //
     }

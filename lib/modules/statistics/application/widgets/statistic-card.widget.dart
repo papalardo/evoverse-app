@@ -1,9 +1,9 @@
-import 'package:app/utils/functions.dart';
-import 'package:app/utils/theme/app.palette.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:shimmer/shimmer.dart';
-import 'package:styled_widget/styled_widget.dart';
+import "package:app/utils/functions.dart";
+import "package:app/utils/theme/app.palette.dart";
+import "package:flutter/material.dart";
+import "package:get/get.dart";
+import "package:shimmer/shimmer.dart";
+import "package:styled_widget/styled_widget.dart";
 
 class StatisticCard extends StatelessWidget {
   final String? title;

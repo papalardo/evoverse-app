@@ -1,11 +1,7 @@
-import 'package:app/modules/raffle/application/stores/raffle-data.store.dart';
-import 'package:app/modules/raffle/application/widgets/last-winners/last-winner-list-tile.dart';
-import 'package:app/utils/functions.dart';
-import 'package:app/utils/widgets/loader/shimmer-wrapper.widget.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
-import 'package:get/instance_manager.dart';
-import 'package:styled_widget/styled_widget.dart';
+import "package:app/modules/raffle/application/stores/raffle-data.store.dart";
+import "package:app/modules/raffle/application/widgets/last-winners/last-winner-list-tile.dart";
+import "package:flutter/material.dart";
+import "package:get/instance_manager.dart";
 
 class LastWinnersListView extends StatelessWidget {
   const LastWinnersListView({Key? key}) : super(key: key);

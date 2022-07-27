@@ -1,9 +1,9 @@
-import 'package:app/core/app.module.dart';
-import 'package:app/core/app.routes.dart';
-import 'package:get/get.dart';
+import "package:app/core/app.module.dart";
+import "package:app/core/app.routes.dart";
+import "package:get/get.dart";
 
-import 'application/player-items.bindings.dart';
-import 'application/player-items.page.dart';
+import "package:app/modules/player-items/application/player-items.bindings.dart";
+import "package:app/modules/player-items/application/player-items.page.dart";
 
 class PlayerItemsModule extends Module {
   @override

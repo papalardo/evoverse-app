@@ -1,16 +1,13 @@
-import 'package:app/modules/mining/application/mining.controller.dart';
-import 'package:app/stores/mining.store.dart';
-import 'package:app/stores/user-hash-power.store.dart';
-import 'package:app/utils/functions.dart';
-import 'package:app/utils/widgets/app-scaffold.widget.dart';
-import 'package:app/utils/widgets/dialog/app-dialog.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import "package:app/modules/mining/application/mining.controller.dart";
+import "package:app/stores/mining.store.dart";
+import "package:app/stores/user-hash-power.store.dart";
+import "package:flutter/material.dart";
+import "package:get/get.dart";
 
-import 'widgets/mining-card.widget.dart';
-import 'widgets/mining-global-stats.widget.dart';
-import 'widgets/mining-pod-list.widget.dart';
-import 'widgets/mining-user-stats.widget.dart';
+import "package:app/modules/mining/application/widgets/mining-card.widget.dart";
+import "package:app/modules/mining/application/widgets/mining-global-stats.widget.dart";
+import "package:app/modules/mining/application/widgets/mining-pod-list.widget.dart";
+import "package:app/modules/mining/application/widgets/mining-user-stats.widget.dart";
 
 class MiningView extends GetView<MiningController> {
   const MiningView({Key? key}) : super(key: key);

@@ -1,8 +1,8 @@
-import 'package:app/core/app.module.dart';
-import 'package:app/core/app.routes.dart';
-import 'package:app/modules/mining/application/mining.bindings.dart';
-import 'package:app/modules/mining/application/mining.view.dart';
-import 'package:get/get.dart';
+import "package:app/core/app.module.dart";
+import "package:app/core/app.routes.dart";
+import "package:app/modules/mining/application/mining.bindings.dart";
+import "package:app/modules/mining/application/mining.view.dart";
+import "package:get/get.dart";
 
 class MiningModule implements Module {
   @override
