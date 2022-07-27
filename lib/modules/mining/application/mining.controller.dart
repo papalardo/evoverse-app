@@ -8,6 +8,7 @@ class MiningController extends GetxController with LoaderMixin {
   }
 
   Future<void> claim() async {
+    throw "Not available yet";
     await Future.delayed(const Duration(seconds: 2));
   }
 

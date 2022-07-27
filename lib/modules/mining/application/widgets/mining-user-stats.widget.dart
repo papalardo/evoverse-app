@@ -84,6 +84,7 @@ class MiningUserStatsWidget extends GetView<MiningController> {
       context: context,
       builder: (context) => AppDialog.confirm(
           context: context,
+          icon: Image.asset(asset("images/rpw_verde.png")),
           title: "You sure?",
           message: "You will receive "
               "${Number.toCurrency(mining.epwToClaim - mining.claimCost.claimCost)} "
