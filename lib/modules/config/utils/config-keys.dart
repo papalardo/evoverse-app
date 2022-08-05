@@ -1,4 +1,7 @@
 class ConfigKeys {
+  static const boostEpicCost = 'EpicBoostCost';
+  static const boostLegendaryCost = 'LegendaryBoostCost';
+  static const boostDuration = 'BoostDuration';
   static const trainingRechargeCost = 'RechargeCost';
   static const trainingRechargeCurrency = 'RechargeCurrency';
   static const trainingTimeRemaining = 'TrainingTimeRemaining';

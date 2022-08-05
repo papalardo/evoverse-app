@@ -1,4 +1,6 @@
+import 'package:app/modules/boost-pod/application/stores/boost_pod.store.dart';
 import "package:app/modules/mining/application/mining.controller.dart";
+import 'package:app/modules/mining/application/widgets/mining_boost_pod.widget.dart';
 import "package:app/stores/mining.store.dart";
 import "package:app/stores/user-hash-power.store.dart";
 import "package:flutter/material.dart";
@@ -20,7 +22,8 @@ class MiningView extends GetView<MiningController> {
   refresh() {
     return Future.wait([
       miningStore.reload(),
-      hashPowerStore.reload()
+      hashPowerStore.reload(),
+      BoostPodStore.to.reload(),
     ]);
   }
 
@@ -41,6 +44,11 @@ class MiningView extends GetView<MiningController> {
               MiningCardWidget(
                 title: "Global Stats",
                 child: MiningGlobalStatsWidget(miningStore: miningStore),
+              ),
+              const SizedBox(height: 10),
+              MiningCardWidget(
+                title: "Pod Boost",
+                child: MiningBoostPodWidget(),
               ),
               const SizedBox(height: 10),
               MiningCardWidget(

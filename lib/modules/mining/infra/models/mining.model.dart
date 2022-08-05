@@ -30,15 +30,17 @@ class MiningModel {
   });
 
   static fromJson(Map json) => MiningModel(
-    hashPowerBonus: json["HashPowerBonus"],
-    epwToClaim: json["EPWToClaim"],
-    energizeCost: json["EnergizeAllCost"],
-    userTotalHashPower: json["PlayerTotalHashPower"],
-    userBaseHashPower: json["PlayerHashPowerBase"],
-    totalHashPowerPool: json["HashPowerPool"],
-    totalHashPowerDaily: json["DailyMiningPool"][0],
-    miningHistory: List.from(json["MiningHistory"].map((e) => MiningHistoryModel.fromJson(e))),
-    claimCost: ClaimCostModel.fromJson(json["ClaimCost"]),
-    pods: List.from(json["Pods"].map((e) => PodModel.fromJson(e))),
-  );
+        hashPowerBonus: json["HashPowerBonus"],
+        epwToClaim: json["EPWToClaim"],
+        energizeCost: json["EnergizeAllCost"],
+        userTotalHashPower: json["PlayerTotalHashPower"],
+        userBaseHashPower: json["PlayerHashPowerBase"],
+        totalHashPowerPool: json["HashPowerPool"],
+        totalHashPowerDaily: json["DailyMiningPool"][0],
+        miningHistory: List.from(
+          json["MiningHistory"].map((e) => MiningHistoryModel.fromJson(e)),
+        ),
+        claimCost: ClaimCostModel.fromJson(json["ClaimCost"]),
+        pods: List.from(json["Pods"].map((e) => PodModel.fromJson(e))),
+      );
 }

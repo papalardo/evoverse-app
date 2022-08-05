@@ -2,6 +2,7 @@ import 'package:app/exceptions/http-exception.dart';
 import "package:app/utils/app-platform.dart";
 import "package:app/utils/theme/app.palette.dart";
 import "package:app/utils/toast/toast.dart";
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import "package:flutter/material.dart";
 import "package:get/get.dart";
 

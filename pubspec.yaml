@@ -43,7 +43,6 @@ dependencies:
   pretty_dio_logger: ^1.2.0-beta-1
   logger: ^1.1.0
   shimmer: ^2.0.0
-  catcher: ^0.6.9
   styled_widget: ^0.4.0+3
   lazy_load_indexed_stack: ^0.1.4
   flashy_tab_bar2: ^0.0.4
@@ -53,17 +52,13 @@ dependencies:
   package_info_plus: ^1.4.3
   walletconnect_qrcode_modal_dart:
     git: https://github.com/papalardo/walletconnect_qrcode_modal_dart
-  scan: ^1.6.0
-
-dependency_overrides:
-  catcher:
-    git:
-      url: https://github.com/ThexXTURBOXx/catcher.git
+  firebase_crashlytics: ^2.8.6
+  firebase_core: ^1.20.0
 
 dev_dependencies:
+  change_app_package_name: ^1.1.0
 #  flutter_launcher_name: "^0.0.1"
   flutter_launcher_icons: "^0.9.2"
-  change_app_package_name: ^1.1.0
 
   flutter_test:
     sdk: flutter

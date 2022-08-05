@@ -4,7 +4,6 @@ import "package:app/core/app.routes.dart";
 import "package:app/utils/theme/app.theme-data.dart";
 import "package:app/utils/widgets/loader/loader-wrapper.widget.dart";
 import "package:app/utils/widgets/loader/loader.widget.dart";
-import "package:catcher/catcher.dart";
 import "package:flutter/material.dart";
 import "package:get/get.dart";
 
@@ -14,7 +13,6 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      navigatorKey: Catcher.navigatorKey,
       getPages: AppModule().routes(),
       initialRoute: AppRoutes.SPLASH,
       initialBinding: AppBindings(),

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "428964772556",
+    "project_id": "evoverse-a055b",
+    "storage_bucket": "evoverse-a055b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428964772556:android:731155d824acee7076e069",
+        "android_client_info": {
+          "package_name": "app.evoverse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "428964772556-spvulqhbuj25noqha58nmcd63uhae7qu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCl8r9IhF9r5oInp_ZcB4mpTBmkRYOU2ts"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "428964772556-spvulqhbuj25noqha58nmcd63uhae7qu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

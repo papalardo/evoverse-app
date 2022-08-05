@@ -105,8 +105,6 @@ class AuthController extends GetxController with LoaderMixin {
     var signature = await qrCodeModal.connector.sendCustomRequest(
         method: "personal_sign", params: [messageToSign, walletAddress]);
 
-    logger.i("requestResult ==> ${signature}");
-
     await loader
         .wait(() => WalletController().authenticate(signature, walletAddress));
 

@@ -1,3 +1,4 @@
+import 'package:app/modules/boost-pod/application/stores/boost_pod.store.dart';
 import "package:app/modules/donate/application/store/user-donates.store.dart";
 import "package:app/modules/wallet/infra/datasources/wallet.bindings.dart";
 import "package:app/services/http/http.service.dart";
@@ -45,6 +46,7 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => UserHashPowerStore(), fenix: true);
     Get.lazyPut(() => StakeStore(), fenix: true);
     Get.lazyPut(() => UserDonatesStore(), fenix: true);
+    Get.lazyPut(() => BoostPodStore(), fenix: true);
   }
 
 }
