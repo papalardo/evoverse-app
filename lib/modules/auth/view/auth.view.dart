@@ -1,3 +1,4 @@
+import 'package:app/exceptions/http-exception.dart';
 import "package:app/utils/app-platform.dart";
 import "package:app/utils/theme/app.palette.dart";
 import "package:app/utils/toast/toast.dart";
@@ -5,6 +6,7 @@ import "package:flutter/material.dart";
 import "package:get/get.dart";
 
 import "package:app/modules/auth/view/auth.controller.dart";
+import 'package:walletconnect_qrcode_modal_dart/walletconnect_qrcode_modal_dart.dart';
 
 class AuthView extends GetView<AuthController> {
   AuthView({Key? key}) : super(key: key);
@@ -74,12 +76,17 @@ class AuthView extends GetView<AuthController> {
                             //     focusNode.requestFocus();
                             //   },
                             // ),
-                            if (! AppPlatform.isDesktop)
+                            // if (! AppPlatform.isDesktop)
                             ElevatedButton(
-                              onPressed: () => controller.authFromWallet()
-                                .catchError((e) => Toast.danger(e.toString())),
+                              onPressed: () async {
+                                try {
+                                  await controller.authFromWallet(context: context);
+                                } on AppHttpException catch (e) {
+                                  Toast.danger(e.message);
+                                }
+                              },
                               child: const Text("Connect with wallet")
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -102,5 +109,4 @@ class AuthView extends GetView<AuthController> {
       ),
     );
   }
-
 }

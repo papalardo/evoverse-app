@@ -51,6 +51,9 @@ dependencies:
   direct_select: ^2.0.0
   cached_network_image: ^3.2.1
   package_info_plus: ^1.4.3
+  walletconnect_qrcode_modal_dart:
+    git: https://github.com/papalardo/walletconnect_qrcode_modal_dart
+  scan: ^1.6.0
 
 dependency_overrides:
   catcher:
@@ -60,6 +63,7 @@ dependency_overrides:
 dev_dependencies:
 #  flutter_launcher_name: "^0.0.1"
   flutter_launcher_icons: "^0.9.2"
+  change_app_package_name: ^1.1.0
 
   flutter_test:
     sdk: flutter

@@ -66,6 +66,13 @@ packages:
       url: "https://github.com/ThexXTURBOXx/catcher.git"
     source: git
     version: "0.7.0"
+  change_app_package_name:
+    dependency: "direct dev"
+    description:
+      name: change_app_package_name
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   characters:
     dependency: transitive
     description:
@@ -578,6 +585,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.4"
+  qr:
+    dependency: transitive
+    description:
+      name: qr
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.0"
+  qr_flutter:
+    dependency: transitive
+    description:
+      name: qr_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.0"
   rxdart:
     dependency: transitive
     description:
@@ -585,6 +606,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.27.5"
+  scan:
+    dependency: "direct main"
+    description:
+      name: scan
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.6.0"
   sentry:
     dependency: transitive
     description:
@@ -765,6 +793,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.11"
+  walletconnect_qrcode_modal_dart:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "0db5c421f6c84c6a083c40e12c2f7eb51a71c627"
+      url: "https://github.com/papalardo/walletconnect_qrcode_modal_dart"
+    source: git
+    version: "0.0.5"
   web_socket_channel:
     dependency: transitive
     description:

@@ -6,7 +6,7 @@ class WalletDatasource extends BaseDatasource {
     var response = await httpClient
       .post("JWTVerifySignature", {
         "signature": signature,
-        "wallet_address": walletAddress
+        "wallet_address": walletAddress.toLowerCase()
       });
 
     return AccessTokenResponse.fromJson(response.json!);

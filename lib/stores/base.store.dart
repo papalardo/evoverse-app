@@ -1,3 +1,4 @@
+import 'package:app/utils/functions.dart';
 import "package:app/utils/logger.dart";
 import "package:app/utils/widgets/loader/loader-state.mixin.dart";
 import "package:flutter/material.dart";
@@ -41,7 +42,9 @@ abstract class BaseStore<P extends GetxController, M> extends GetxController
     Widget Function()? busy,
     Widget Function(dynamic)? error,
     Widget? empty,
+    bool Function(M)? emptyValidator,
   }) {
+    emptyValidator = emptyValidator ?? isEmpty;
     return GetBuilder<P>(
         builder: (controller) {
           // BUSY
@@ -54,7 +57,7 @@ abstract class BaseStore<P extends GetxController, M> extends GetxController
             return error == null ? const Text("Error") : error(_error);
           }
           // EMPTY
-          if (_state == null) {
+          if (_state == null || emptyValidator!(_state!)) {
             return empty ?? const SizedBox();
           }
           // DONE

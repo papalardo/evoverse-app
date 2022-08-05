@@ -15,7 +15,9 @@ class PlayerItemsController extends GetxController with LoaderStateMixin {
 
   double priceToSale = 0;
 
-  Future<PlayerItemsModel> getItems() => _datasource.getItems();
+  Future<PlayerItemsModel> getItems() {
+    return _datasource.getItems(PlayerItemsNftType.pod);
+  }
 
   void toggleSelecting() {
     selecting = !selecting;
@@ -26,9 +28,7 @@ class PlayerItemsController extends GetxController with LoaderStateMixin {
   }
 
   void toggleSelected(int podInt) {
-    selected.contains(podInt)
-        ? selected.remove(podInt)
-        : selected.add(podInt);
+    selected.contains(podInt) ? selected.remove(podInt) : selected.add(podInt);
 
     update();
   }

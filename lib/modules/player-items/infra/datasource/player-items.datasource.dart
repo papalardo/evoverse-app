@@ -1,8 +1,13 @@
 import "package:app/core/base/base.datasource.dart";
 import "package:app/modules/player-items/infra/models/player-items.model.dart";
 
+class PlayerItemsNftType {
+    static const pod = "Pod";
+    static const key = "EKEY";
+}
+
 class PlayerItemsDatasource extends BaseDatasource {
-  Future<PlayerItemsModel> getItems() async {
+  Future<PlayerItemsModel> getItems(String assetType) async {
     var response = await httpClient.post("GetPlayerItems", {
       "page_number": 0,
       "nft_type": "Pod"

@@ -1,4 +1,5 @@
 import "package:app/core/app.routes.dart";
+import 'package:app/modules/wallet/application/wallet.controller.dart';
 import "package:app/services/storage/istorage.service.dart";
 import "package:app/utils/functions.dart";
 import "package:app/utils/theme/app.palette.dart";
@@ -66,6 +67,7 @@ class ProfilePage extends StatelessWidget {
             label: "Logout",
             onTap: () async {
               await Get.find<StorageServiceContract>().delete("accessToken");
+              await WalletController.to.connector.killSession();
               Get.offAllNamed(AppRoutes.AUTH);
             },
           ),

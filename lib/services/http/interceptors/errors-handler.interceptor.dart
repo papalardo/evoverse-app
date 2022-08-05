@@ -37,6 +37,14 @@ class ErrorsHandlerInterceptor extends Interceptor {
   verifyIfErrorOnRequest(Response response) {
     var message = "";
     var type = "success";
+    var statusCode = response.statusCode ?? 200;
+
+    try {
+      statusCode = response.data["statusCode"];
+      message = response.data['body']['message'];
+    } catch (e) {
+      //
+    }
 
     try {
       message = response.data["message"];
@@ -58,7 +66,7 @@ class ErrorsHandlerInterceptor extends Interceptor {
       throw message;
     }
 
-    if (type == "error") {
+    if (type == "error" || statusCode >= 400) {
       throw message;
     }
   }

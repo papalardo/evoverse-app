@@ -19,20 +19,14 @@ class App extends StatelessWidget {
       initialRoute: AppRoutes.SPLASH,
       initialBinding: AppBindings(),
       debugShowCheckedModeBanner: false,
-      builder: (context, widget) => _addRouterWrappers(context, widget),
-      theme: AppThemeData.themeData(),
+      builder: (context, widget) => _customNavigator(context, widget),
+      theme: AppThemeData.themeData,
       transitionDuration: const Duration(milliseconds: 500),
-      navigatorObservers: [
-        HeroController(),
-      ],
     );
   }
 
-  Widget _addRouterWrappers(BuildContext context, Widget? widget) {
+  Widget _customNavigator(BuildContext context, Widget? widget) {
     return Navigator(
-      observers: [
-        HeroController(),
-      ],
       onGenerateRoute: (settings) => MaterialPageRoute(
         builder: (_) => LoaderWrapperWidget(
           id: "default",

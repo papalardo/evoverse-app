@@ -12,4 +12,5 @@ class AppRoutes {
   static const PLAYER_ITEMS = "/player-items";
   static const raffles = "/raffle";
   static const training = "/training";
+  static const playerKeys = '/player/keys';
 }

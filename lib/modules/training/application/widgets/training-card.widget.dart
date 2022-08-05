@@ -39,16 +39,9 @@ class TrainingCard extends StatelessWidget {
         child: Column(
           children: [
             MainCardItemWidget(
-              icon: Image.asset(
-                asset("images-animated/hourglass.gif"),
-              ),
-              child: DateCountdownWidget(
-                timezone: DateCountDownTimezones.br,
-                endsAt: training.startsAt.add(
-                  Duration(seconds: state.duration),
-                ),
-                onOver: () => store.reload(),
-              ),
+              title: "Prize",
+              icon: Image.asset(asset("images/training.png")),
+              value: "${training.evos.length}x",
             ),
             const Divider(),
             Wrap(

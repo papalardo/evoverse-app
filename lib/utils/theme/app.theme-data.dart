@@ -2,7 +2,7 @@ import "package:app/utils/theme/app.palette.dart";
 import "package:flutter/material.dart";
 
 class AppThemeData {
-  static themeData() => ThemeData(
+  static final themeData = ThemeData(
       brightness: Brightness.dark,
       primaryColor: AppPalette.PRIMARY,
       appBarTheme: const AppBarTheme(

@@ -16,6 +16,10 @@ class TrainingHistory extends StatelessWidget {
     return MainCardWidget(
       title: 'History',
       child: store.when(
+        emptyValidator: (state) => state.history.isEmpty,
+        empty: const Text("No entries")
+          .textAlignment(TextAlign.center)
+          .paddingSymmetric(vertical: 5),
         done: (state) => ListView.builder(
           shrinkWrap: true,
           primary: false,

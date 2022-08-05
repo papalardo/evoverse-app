@@ -14,8 +14,16 @@ class TrainingButtons extends StatelessWidget {
     return Obx(() {
       bool selected = index == TrainingController.to.trainingSelected();
       return ElevatedButton(
-        child: Text(training.type).textColor(
-          selected ? AppPalette.primary900 : Colors.white,
+        child: Wrap(
+          spacing: 5,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: [
+            Text(training.type)
+              .textColor(selected ? AppPalette.primary900 : Colors.white),
+            Text("${training.evos.length}x")
+              .textColor(selected ? AppPalette.primary900 : Colors.white)
+              .fontSize(10)
+          ],
         ),
         style: ElevatedButton.styleFrom(
           primary: selected ? AppPalette.orange400 : AppPalette.primary900,
