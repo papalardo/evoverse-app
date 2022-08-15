@@ -1,4 +1,5 @@
 import "package:app/modules/account/application/account.controller.dart";
+import 'package:app/modules/account/application/widgets/user-keys-list-tile.widget.dart';
 import "package:app/utils/widgets/main-card.widget.dart";
 import "package:flutter/material.dart";
 import "package:get/get.dart";
@@ -27,6 +28,7 @@ class AccountGameWalletSection extends GetView<AccountController> {
         UserHexToolkitListTile(),
         UserGenesisToolkitListTile(),
         UserEkeyListTile(),
+        UserKeysListTile(),
       ].toColumn(
         crossAxisAlignment: CrossAxisAlignment.start,
         separator: const SizedBox(height: 5),

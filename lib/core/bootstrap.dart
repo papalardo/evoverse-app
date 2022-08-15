@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import "package:app/core/app.bindings.dart";
 import 'package:app/utils/catcher/custom_console_handler.dart';
@@ -15,8 +16,11 @@ class Bootstrap {
     FutureBuilder.debugRethrowError = true;
 
     await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
+      options: Platform.isWindows
+          ? null
+          : DefaultFirebaseOptions.currentPlatform,
     );
+
 
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
 

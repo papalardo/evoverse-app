@@ -13,5 +13,4 @@ class PlayerKeysModule implements Module {
       binding: PlayerKeysBindings()
     ),
   ];
-
 }

@@ -4,6 +4,7 @@ import "package:app/modules/donate/donate.module.dart";
 import "package:app/modules/home/home.module.dart";
 import "package:app/modules/mining/mining.module.dart";
 import "package:app/modules/player-items/player-items.module.dart";
+import 'package:app/modules/player-keys/player-keys.module.dart';
 import "package:app/modules/raffle/raffle.module.dart";
 import "package:app/modules/splash/splash.module.dart";
 import "package:app/modules/stake/application/modules/stake-epw/stake-epw.module.dart";
@@ -31,6 +32,7 @@ class AppModule implements Module {
     ...PlayerItemsModule().routes(),
     ...RaffleModule().routes(),
     ...TrainingModule().routes(),
+    ...PlayerKeysModule().routes(),
   ];
 
 }

@@ -27,6 +27,7 @@ class UserHashPowerListTile extends StatelessWidget {
             .fontWeight(FontWeight.bold)
             .textColor(AppPalette.green400)
             .padding(left: 5),
+          onFalse: () => const SizedBox(),
         ),
       )
     );

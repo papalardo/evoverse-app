@@ -1,0 +1,22 @@
+{
+  "type": "success",
+  "message": null,
+  "data": {
+    "PlayerInfo": {
+      "toolkit_list": [
+        {
+          "NFTId": 158245,
+          "Name": "",
+          "WalletAddress": "0x522be008db71bac39a54df3dae5de419daae62f6",
+          "WalletId": 2384,
+          "Genesis": false,
+          "Opened": false,
+          "OpenedDate": null,
+          "Blend": true
+        }
+      ],
+      "pages_max": 1
+    }
+  },
+  "log_id": -1
+}

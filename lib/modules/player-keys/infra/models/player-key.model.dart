@@ -1,7 +1,18 @@
 class PlayerKeyModel {
-  PlayerKeyModel();
+  int id;
+  double? sellingPrice;
+
+  PlayerKeyModel({
+    required this.id,
+    this.sellingPrice,
+  });
 
   factory PlayerKeyModel.fromJson(Map json) {
-    return PlayerKeyModel();
+    return PlayerKeyModel(
+      id: json['id'],
+      sellingPrice: json['selling_price'],
+    );
   }
+
+  bool onSale() => sellingPrice != null;
 }

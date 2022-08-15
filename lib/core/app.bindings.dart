@@ -1,5 +1,7 @@
 import 'package:app/modules/boost-pod/application/stores/boost_pod.store.dart';
 import "package:app/modules/donate/application/store/user-donates.store.dart";
+import 'package:app/modules/player-keys/application/player-keys.bindings.dart';
+import 'package:app/modules/statistics/application/statistics.bindings.dart';
 import "package:app/modules/wallet/infra/datasources/wallet.bindings.dart";
 import "package:app/services/http/http.service.dart";
 import "package:app/services/storage/istorage.service.dart";
@@ -47,6 +49,8 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => StakeStore(), fenix: true);
     Get.lazyPut(() => UserDonatesStore(), fenix: true);
     Get.lazyPut(() => BoostPodStore(), fenix: true);
+    PlayerKeysBindings().stores();
+    StatisticsBindings().stores();
   }
 
 }
