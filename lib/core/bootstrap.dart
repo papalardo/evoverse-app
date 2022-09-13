@@ -3,6 +3,7 @@ import 'dart:io';
 
 import "package:app/core/app.bindings.dart";
 import 'package:app/utils/catcher/custom_console_handler.dart';
+import 'package:app/utils/logger.dart';
 import "package:firebase_core/firebase_core.dart";
 import "package:firebase_crashlytics/firebase_crashlytics.dart";
 import 'package:flutter/foundation.dart';
@@ -15,14 +16,15 @@ class Bootstrap {
     WidgetsFlutterBinding.ensureInitialized();
     FutureBuilder.debugRethrowError = true;
 
-    await Firebase.initializeApp(
-      options: Platform.isWindows
-          ? null
-          : DefaultFirebaseOptions.currentPlatform,
-    );
+    try {
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
 
-
-    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+      FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+    } catch (err) {
+      //
+    }
 
     await AppBindings.initServices();
   }
